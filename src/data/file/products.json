@@ -1,0 +1,322 @@
+[
+  {
+    "title": "Zapatillas deportivas Nike",
+    "photo": "nike_zapatillas.jpg",
+    "category": "Zapatillas",
+    "price": 75,
+    "stock": 50,
+    "id": "734fca20fbd7b614c0df100a"
+  },
+  {
+    "title": "Zapatillas Adidas Ultraboost",
+    "photo": "adidas_ultraboost.jpg",
+    "category": "Zapatillas",
+    "price": 90,
+    "stock": 30,
+    "id": "515922de0a813bafb50d6870"
+  },
+  {
+    "title": "Zapatillas Puma RS-X",
+    "photo": "puma_rsx.jpg",
+    "category": "Zapatillas",
+    "price": 80,
+    "stock": 40,
+    "id": "73b1cd1a8f66d286e09e512b"
+  },
+  {
+    "title": "Zapatillas Reebok Classic",
+    "photo": "reebok_classic.jpg",
+    "category": "Zapatillas",
+    "price": 70,
+    "stock": 25,
+    "id": "9fa6f082cc7f77ee9fef28c1"
+  },
+  {
+    "title": "Zapatillas New Balance 574",
+    "photo": "new_balance_574.jpg",
+    "category": "Zapatillas",
+    "price": 85,
+    "stock": 20,
+    "id": "4a38f2c8e67365bfd574b2cd"
+  },
+  {
+    "title": "Zapatillas Asics Gel-Kayano",
+    "photo": "asics_gel_kayano.jpg",
+    "category": "Zapatillas",
+    "price": 110,
+    "stock": 15,
+    "id": "1835519073ad5753f7c219ab"
+  },
+  {
+    "title": "Zapatillas Saucony Jazz",
+    "photo": "saucony_jazz.jpg",
+    "category": "Zapatillas",
+    "price": 65,
+    "stock": 35,
+    "id": "903ac28658887e81684a1f7a"
+  },
+  {
+    "title": "Zapatillas Hoka One One",
+    "photo": "hoka_one_one.jpg",
+    "category": "Zapatillas",
+    "price": 120,
+    "stock": 10,
+    "id": "4ce6478b0d2d8600b2aecd9c"
+  },
+  {
+    "title": "Zapatillas Converse Chuck Taylor",
+    "photo": "converse_chuck_taylor.jpg",
+    "category": "Zapatillas",
+    "price": 60,
+    "stock": 45,
+    "id": "f1ad3bde6845d0b5688a95fd"
+  },
+  {
+    "title": "Zapatillas Vans Old Skool",
+    "photo": "vans_old_skool.jpg",
+    "category": "Zapatillas",
+    "price": 55,
+    "stock": 60,
+    "id": "d625e7c495ea8495157189e3"
+  },
+  {
+    "title": "Camisa de algodón blanca",
+    "photo": "camisa_algodon_blanca.jpg",
+    "category": "Camisas",
+    "price": 30,
+    "stock": 100,
+    "id": "8492c077e10df5b484191a0e"
+  },
+  {
+    "title": "Camisa de cuadros",
+    "photo": "camisa_cuadros.jpg",
+    "category": "Camisas",
+    "price": 35,
+    "stock": 80,
+    "id": "ca94c862dc2cc0e7ec14c320"
+  },
+  {
+    "title": "Camisa de denim",
+    "photo": "camisa_denim.jpg",
+    "category": "Camisas",
+    "price": 40,
+    "stock": 60,
+    "id": "a20dfe72a79e71a2982bfe05"
+  },
+  {
+    "title": "Camisa de manga larga",
+    "photo": "camisa_manga_larga.jpg",
+    "category": "Camisas",
+    "price": 45,
+    "stock": 50,
+    "id": "0e6be5b3f0f0e88ea36fcf9f"
+  },
+  {
+    "title": "Camisa de rayas",
+    "photo": "camisa_rayada.jpg",
+    "category": "Camisas",
+    "price": 32,
+    "stock": 70,
+    "id": "ecb562737ae73fced5e84b47"
+  },
+  {
+    "title": "Camisa de lino",
+    "photo": "camisa_lino.jpg",
+    "category": "Camisas",
+    "price": 50,
+    "stock": 40,
+    "id": "f8e0fbd9d123b8453b2f8b3b"
+  },
+  {
+    "title": "Camisa de gala negra",
+    "photo": "camisa_gala_negra.jpg",
+    "category": "Camisas",
+    "price": 60,
+    "stock": 30,
+    "id": "f8cb0eeb8c0b0bb0e9ae0a30"
+  },
+  {
+    "title": "Camisa estampada",
+    "photo": "camisa_estampada.jpg",
+    "category": "Camisas",
+    "price": 38,
+    "stock": 55,
+    "id": "0d4e883795c89e88b292a779"
+  },
+  {
+    "title": "Camisa de manga corta",
+    "photo": "camisa_manga_corta.jpg",
+    "category": "Camisas",
+    "price": 28,
+    "stock": 90,
+    "id": "5691c695081d2abc7cc88dbb"
+  },
+  {
+    "title": "Camisa de terciopelo",
+    "photo": "camisa_terciopelo.jpg",
+    "category": "Camisas",
+    "price": 75,
+    "stock": 20,
+    "id": "3d4c2f675e36363e83691c09"
+  },
+  {
+    "title": "Pantalones vaqueros",
+    "photo": "pantalones_vaqueros.jpg",
+    "category": "Pantalones",
+    "price": 50,
+    "stock": 100,
+    "id": "2ba874d2ae9d1fd96aa086de"
+  },
+  {
+    "title": "Pantalones deportivos",
+    "photo": "pantalones_deportivos.jpg",
+    "category": "Pantalones",
+    "price": 45,
+    "stock": 80,
+    "id": "c36521e8f0e42fe261348e1c"
+  },
+  {
+    "title": "Pantalones chinos",
+    "photo": "pantalones_chinos.jpg",
+    "category": "Pantalones",
+    "price": 40,
+    "stock": 70,
+    "id": "436fef98c54e9fbcdf802e5e"
+  },
+  {
+    "title": "Pantalones de vestir",
+    "photo": "pantalones_vestir.jpg",
+    "category": "Pantalones",
+    "price": 60,
+    "stock": 50,
+    "id": "f6d99a80cdde0a93936266ee"
+  },
+  {
+    "title": "Pantalones cortos",
+    "photo": "pantalones_cortos.jpg",
+    "category": "Pantalones",
+    "price": 30,
+    "stock": 90,
+    "id": "a727a819f1cd6d06ada67227"
+  },
+  {
+    "title": "Pantalones de cuero",
+    "photo": "pantalones_cuero.jpg",
+    "category": "Pantalones",
+    "price": 80,
+    "stock": 30,
+    "id": "0c5a849246cbb847d40da15c"
+  },
+  {
+    "title": "Pantalones jogger",
+    "photo": "pantalones_jogger.jpg",
+    "category": "Pantalones",
+    "price": 55,
+    "stock": 40,
+    "id": "06ea61812190cc4d5e46bb77"
+  },
+  {
+    "title": "Pantalones cargo",
+    "photo": "pantalones_cargo.jpg",
+    "category": "Pantalones",
+    "price": 50,
+    "stock": 60,
+    "id": "b35796c1fbe84d04d24b3a68"
+  },
+  {
+    "title": "Pantalones de lana",
+    "photo": "pantalones_lana.jpg",
+    "category": "Pantalones",
+    "price": 70,
+    "stock": 20,
+    "id": "1a97ba3e92ff9e96e11d15f2"
+  },
+  {
+    "title": "Pantalones de pijama",
+    "photo": "pantalones_pijama.jpg",
+    "category": "Pantalones",
+    "price": 25,
+    "stock": 100,
+    "id": "1bc0d4e2b1bb904024c60361"
+  },
+  {
+    "title": "Abrigo de lana",
+    "photo": "abrigo_lana.jpg",
+    "category": "Abrigos",
+    "price": 120,
+    "stock": 30,
+    "id": "40e516147996e0ad8a3f461a"
+  },
+  {
+    "title": "Abrigo impermeable",
+    "photo": "abrigo_impermeable.jpg",
+    "category": "Abrigos",
+    "price": 110,
+    "stock": 25,
+    "id": "1e7adf0deb4254de2af83370"
+  },
+  {
+    "title": "Abrigo de cuero",
+    "photo": "abrigo_cuero.jpg",
+    "category": "Abrigos",
+    "price": 150,
+    "stock": 20,
+    "id": "01a58cdc59e83f0d797f66b9"
+  },
+  {
+    "title": "Abrigo de plumas",
+    "photo": "abrigo_plumas.jpg",
+    "category": "Abrigos",
+    "price": 130,
+    "stock": 35,
+    "id": "a5ab582a51419826c97de3a2"
+  },
+  {
+    "title": "Abrigo de trench",
+    "photo": "abrigo_trench.jpg",
+    "category": "Abrigos",
+    "price": 90,
+    "stock": 40,
+    "id": "31c999173a2108000f826b5a"
+  },
+  {
+    "title": "Abrigo impermeable",
+    "photo": "abrigo_piel_sintetica.jpg",
+    "category": "Abrigos",
+    "price": 100,
+    "stock": 15,
+    "id": "b3294056711490c915916f16"
+  },
+  {
+    "title": "Abrigo de mezcla de lana",
+    "photo": "abrigo_mezcla_lana.jpg",
+    "category": "Abrigos",
+    "price": 140,
+    "stock": 10,
+    "id": "2b5ae50072538dbd380f2dfb"
+  },
+  {
+    "title": "Abrigo ligero",
+    "photo": "abrigo_ligero.jpg",
+    "category": "Abrigos",
+    "price": 70,
+    "stock": 50,
+    "id": "e8e97292ec0505c8fa027fa5"
+  },
+  {
+    "title": "Parca",
+    "photo": "ruta/por/defecto.jpg",
+    "category": "Abrigos",
+    "price": 100,
+    "stock": 20,
+    "id": "b81d7601d039397ae83ce16f"
+  },
+  {
+    "title": "Polera",
+    "photo": "ruta/por/defecto.jpg",
+    "category": "Abrigos",
+    "price": 50,
+    "stock": 20,
+    "id": "38d25475922c5d9bc4bcd214"
+  }
+]

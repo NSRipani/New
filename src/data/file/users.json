@@ -1,0 +1,30 @@
+[
+  {
+    "photo": "ruta/por/defecto.jpg",
+    "email": "maria.rodriguez@example.com",
+    "password": "maria1111",
+    "role": "cliente",
+    "id": "09a10469b81f60c678f84241"
+  },
+  {
+    "photo": "ruta/por/defecto.jpg",
+    "email": "juan.perez@example.com",
+    "password": "juan054845",
+    "role": "cliente",
+    "id": "0f25a1c58145f65e9ad31b0d"
+  },
+  {
+    "photo": "ruta/por/defecto.jpg",
+    "email": "juan.perez@example.com",
+    "password": "maria1111",
+    "role": "administrador",
+    "id": "9b91bd06407a164b18db04bc"
+  },
+  {
+    "photo": "ruta/por/defecto.jpg",
+    "email": "pedro.pedro@example.com",
+    "password": "PPedro34343",
+    "role": "cliente",
+    "id": "cbca60e4d92a7e069f9be633"
+  }
+]
