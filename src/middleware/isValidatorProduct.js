@@ -6,7 +6,6 @@ function isValidatorProduct (req, res, next){
             error.statusCode = 404;
             throw error;
         }
-        next(error)
     } catch (error) {
         return next(error)
     }

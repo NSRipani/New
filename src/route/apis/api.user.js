@@ -5,10 +5,10 @@ import isValidatorUser from "../../middleware/isValidatorUser.js";
 
 const userRoute = Router()
 
-userRoute.use("/", userController.getAllUsers)
-userRoute.use("/:id",userController.getUser)
-userRoute.use("/", isValidatorUser, userController.createUser)
-userRoute.use("/:id", userController.updateUser)
-userRoute.use("/:id", userController.deleteUser)
+userRoute.get("/", userController.getAllUsers)
+userRoute.get("/:id",userController.getUser)
+userRoute.post("/", isValidatorUser, userController.createUser)
+userRoute.put("/:id", userController.updateUser)
+userRoute.delete("/:id", userController.deleteUser)
 
 export default userRoute;

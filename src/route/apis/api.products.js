@@ -4,10 +4,10 @@ import isValidatorProduct from './../../middleware/isValidatorProduct.js';
 
 const prodRouter = Router()
 
-prodRouter.use("/", prodController.getAllProducts)
-prodRouter.use("/:id", prodController.getProduct)
-prodRouter.use("/", isValidatorProduct, prodController.create)
-prodRouter.use("/:id", prodController.updateProduct)
-prodRouter.use("/:id", prodController.deleteProduct)
+prodRouter.get("/", prodController.getAllProducts)
+prodRouter.get("/:id", prodController.getProduct)
+prodRouter.post("/", isValidatorProduct, prodController.create)
+prodRouter.put("/:id", prodController.updateProduct)
+prodRouter.delete("/:id", prodController.deleteProduct)
 
 export default prodRouter;

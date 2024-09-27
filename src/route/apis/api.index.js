@@ -1,6 +1,6 @@
 import { Router } from "express";
 import userRoute from "./api.user.js";
-import prodRouter from './api.products.js';
+import prodRouter from "./api.products.js";
 import cartsRouter from "./api.cart.js";
 
 const apiRouter = Router();
