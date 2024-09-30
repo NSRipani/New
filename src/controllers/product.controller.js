@@ -112,6 +112,39 @@ class ProductsManager{
       return next(error)
     }
   }
+
+  async showProducts(req, res, next){
+    try {
+      const { category } = req.query;
+      const data = await productsManager.read(category);
+      if (data.length > 0) {
+        return res.render("products", {product: data});
+      } else {
+        const error = new Error("NOT FOUND PRODUCTS");
+        error.statusCode = 404;
+        throw error;
+      }
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async detailProduct(req, res, next) {
+    // res es el objeto de respuesta a enviar al cliente
+    try {
+      const { id } = req.params;
+      const prodID = await productsManager.readOne(id);
+      // response es la respuesta que se espera del manager (para leer un producto)
+      if (!prodID) {
+        const error = new Error(`Not found product with ID: ${id}`);
+        error.statusCode = 404;
+        throw error;
+      }
+      return res.render("detailProd", { prod: prodID});     
+    } catch (error) {
+      return next(error)
+    }
+  }
 }
 
 const prodController = new ProductsManager()

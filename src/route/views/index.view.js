@@ -27,12 +27,13 @@ const viewRouter = Router();
 viewRouter.use("/products", productView);
 viewRouter.use("/users", userView);
 viewRouter.use("/carts", cartView);
-viewRouter.get("/", (req, res, next) => {
-    try {
-        return res.render("index");
-    } catch (error) {
-        return next(error);
-    }
-});
+viewRouter.get("/", productView)
+//     (req, res, next) => {
+//     try {
+//         return res.render("index");
+//     } catch (error) {
+//         return next(error);
+//     }
+// });
 
 export default viewRouter;

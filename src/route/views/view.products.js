@@ -1,7 +1,9 @@
 import { Router } from "express";
+import prodController from "../../controllers/product.controller.js";
 
 const productView = Router()
 
-// definir metodos
+productView.get("/", prodController.showProducts)
+productView.get("/:id", prodController.detailProduct)
 
 export default productView

@@ -1,0 +1,41 @@
+<h2 class="text-black text-left  mb-3">Productos destacados</h2>
+<section class="d-flex flex-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Aquí puedes agregar tu filtro -->
+                <h5>Filtrar por:</h5>
+                <!-- Ejemplo de filtro -->
+                <form>
+                    <input type="text" class="form-control mb-2" placeholder="Buscar...">
+                    <select class="form-control mb-2">
+                        <option>Categoría</option>
+                        <!-- Otras opciones -->
+                    </select>
+                    <button type="submit" class="btn btn-primary">Aplicar</button>
+                </form>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    {{#each product}}
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-dark">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{this.title}}</h5>
+                                <p class="card-text">{{this.category}}</p>
+                                <p class="card-text"><strong>$ {{this.price}}</strong></p>
+                                <p class="card-text"><strong>{{this.stock}} u.</strong></p>
+                                <div class="d-flex flex-wrap ">
+                                    <a href="#" class="btn btn-success m-2">Agregar al carrito</a>
+                                    <a href="/detail" class="btn btn-primary m-2">Ver detalle</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
