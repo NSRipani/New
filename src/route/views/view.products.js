@@ -6,4 +6,5 @@ const productView = Router()
 productView.get("/", prodController.showProducts)
 productView.get("/:id", prodController.detailProduct)
 
+
 export default productView
