@@ -9,7 +9,7 @@ class UserController{
       const response = await usersManager.read(role);
       return res.status(200).json({ 
         message: "USERS READ",
-        response 
+        response
       });
     } catch (error) {
       return next(error)
@@ -89,6 +89,18 @@ class UserController{
         throw error
       }
       return res.status(200).json(response);
+    } catch (error) {
+      return next(error)
+    }
+  }
+
+  async AllUsers(req, res, next) {
+    try {
+      const { role } = req.query;
+      const usersAll = await usersManager.read(role);
+      if (usersAll.length > 0){
+        return res.render("users", {users: usersAll});
+      }
     } catch (error) {
       return next(error)
     }
