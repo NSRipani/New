@@ -1,32 +1,32 @@
-<h2 class="text-black text-left  mb-3">Productos destacados</h2>
-<section class="d-flex flex-wrap">
-    <div class="container">
+<h2 class="text-black text-left mb-3">Productos destacados</h2>
+<section class="d-flex flex-wrap p-5">
+    <div class="container ">
         <div class="row">
             <div class="col-md-3">
-                <!-- Aquí puedes agregar tu filtro -->
-                <h5>Filtrar por:</h5>
-                <!-- Ejemplo de filtro -->
-                <form>
-                    <input type="text" class="form-control mb-2" placeholder="Buscar...">
+                <h5 class="text-primary">Filtrar por:</h5>
+                <form class="bg-light p-4 rounded shadow-sm">
+                    <input type="text" class="form-control mb-2" placeholder="Buscar..." aria-label="Buscar">
                     <select class="form-control mb-2">
-                        <option>Categoría</option>
+                        <option value="">Categoría</option>
+                        <option value="categoria1">Categoría 1</option>
+                        <option value="categoria2">Categoría 2</option>
                         <!-- Otras opciones -->
                     </select>
-                    <button type="submit" class="btn btn-primary">Aplicar</button>
+                    <button type="submit" class="btn btn-primary btn-block">Aplicar</button>
                 </form>
             </div>
             <div class="col-md-9">
                 <div class="row">
                     {{#each product}}
                     <div class="col-md-3 mb-4">
-                        <div class="card border-dark">
-                            <img src="..." class="card-img-top" alt="...">
+                        <div class="card border-dark shadow-sm" style="background-color: #e7f1ff;">
+                            <img src="..." class="card-img-top" alt="..." style="max-height: 200px; object-fit: cover;">
                             <div class="card-body">
                                 <h5 class="card-title">{{this.title}}</h5>
-                                <p class="card-text">{{this.category}}</p>
+                                <p class="card-text text-muted">{{this.category}}</p>
                                 <p class="card-text"><strong>$ {{this.price}}</strong></p>
                                 <p class="card-text"><strong>{{this.stock}} u.</strong></p>
-                                <div class="d-flex flex-wrap ">
+                                <div class="d-flex justify-content-center flex-wrap">
                                     <a href="/cart/{{this.id}}" class="btn btn-success m-2">Agregar al carrito</a>
                                     <a href="/products/{{this.id}}" class="btn btn-primary m-2">Ver detalle</a>
                                 </div>

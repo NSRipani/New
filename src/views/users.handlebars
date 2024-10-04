@@ -15,12 +15,12 @@
             {{#each users}}
             <tr style="font-size: 15px;">
                 <td class="align-middle">
-                    <a href="/users/register/{{this.id}}" title="User register">
-                        <img src="{{this.photo}}" alt="Foto de {{this.email}}" class="img-fluid rounded-circle" style="width: 200px; height: 170px;">
-                    </a></td>
+                  <a href="/users/{{this.id}}" title="User register">
+                    <img src="{{this.photo}}" alt="Foto de {{this.email}}" class="img-fluid rounded-circle" style="width: 200px; height: 170px;">
+                  </a></td>
                 <td class="align-middle" style="white-space: nowrap;">{{this.email}}</td>
                 <td class="align-middle">
-                    <input type="password" value="{{this.password}}" readonly class="form-control-plaintext" style="border: none; background: transparent; width: 100px;">
+                  <input type="password" value="{{this.password}}" readonly class="form-control-plaintext" style="border: none; background: transparent; width: 100px;">
                 </td>
                 <td class="align-middle" style="white-space: nowrap;">{{this.role}}</td>
                 <td class="align-middle" style="white-space: nowrap;">{{this.id}}</td>
@@ -33,33 +33,3 @@
         {{/if}}
     </div>
 </div>
-
-{{!-- <table class="table"></table>
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table> --}}

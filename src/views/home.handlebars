@@ -1,4 +1,48 @@
-<h1>
-    SITIO WEB
-</h1>
-<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur incidunt deleniti vitae odit debitis optio, eveniet autem a, totam voluptatibus molestiae alias dolorem error consequatur distinctio quibusdam, nulla quos! Pariatur.</p>
+<section id="banner" class="jumbotron text-center" style="background-color: #f8f9fa; border-radius: 0; padding: 60px 20px; position: relative;">
+    <h2 class="display-4" style="font-weight: bold; color: #007bff;">¡Bienvenido a nuestra tienda!</h2>
+    <p class="lead" style="font-size: 1.25rem; color: #6c757d;">Las mejores ofertas del año te esperan.</p>
+    <a href="#ofertas" class="btn btn-success btn-lg" style="padding: 10px 30px; font-size: 1.2rem;">Ver Ofertas</a>
+    <div style="position: absolute; bottom: 20px; right: 20px; opacity: 0.1;">
+        <img src="ruta/a/tu/imagen-de-fondo.png" alt="Fondo" style="max-width: 100%; height: auto;">
+    </div>
+</section>
+
+
+<section id="productos" class="container my-5">
+    <h2 class="text-center mb-4">Productos Destacados</h2>
+    <div class="row">
+        {{#each productos}}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{this.imagen}}" class="card-img-top" alt="{{this.nombre}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.nombre}}</h5>
+                        <p class="card-text">Precio: {{this.precio}} €</p>
+                        <a href="#comprar" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</section>
+
+<section id="ofertas" class="bg-light py-5">
+    <h2 class="text-center mb-4">Ofertas Especiales</h2>
+    <div class="container">
+        <div class="row">
+            {{#each ofertas}}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{this.imagen}}" class="card-img-top" alt="{{this.nombre}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.nombre}}</h5>
+                            <p class="card-text">Precio Original: <del>{{this.precioOriginal}} €</del></p>
+                            <p class="card-text">Precio con Descuento: <strong>{{this.precioDescuento}} €</strong></p>
+                            <a href="#comprar" class="btn btn-warning">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

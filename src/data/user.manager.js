@@ -91,6 +91,7 @@ class UsersManager {
       throw error;
     }
   }
+  
 }
 
 const usersManager = new UsersManager("src/data/file/users.json");
