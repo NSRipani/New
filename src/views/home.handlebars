@@ -3,7 +3,7 @@
     <p class="lead" style="font-size: 1.25rem; color: #6c757d;">Las mejores ofertas del año te esperan.</p>
     <a href="#ofertas" class="btn btn-success btn-lg" style="padding: 10px 30px; font-size: 1.2rem;">Ver Ofertas</a>
     <div style="position: absolute; bottom: 20px; right: 20px; opacity: 0.1;">
-        <img src="ruta/a/tu/imagen-de-fondo.png" alt="Fondo" style="max-width: 100%; height: auto;">
+        {{!-- <img src="../../public/assets/banner.png" alt="banner" style="max-width: 100%; height: auto;"> --}}
     </div>
 </section>
 
@@ -11,13 +11,13 @@
 <section id="productos" class="container my-5">
     <h2 class="text-center mb-4">Productos Destacados</h2>
     <div class="row">
-        {{#each productos}}
+        {{#each product}}
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{this.imagen}}" class="card-img-top" alt="{{this.nombre}}">
+                    <img src="{{product.imagen}}" class="card-img-top" alt="{{product.nombre}}">
                     <div class="card-body">
-                        <h5 class="card-title">{{this.nombre}}</h5>
-                        <p class="card-text">Precio: {{this.precio}} €</p>
+                        <h5 class="card-title">{{product.nombre}}</h5>
+                        <p class="card-text">Precio: {{product.precio}} €</p>
                         <a href="#comprar" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
@@ -30,14 +30,14 @@
     <h2 class="text-center mb-4">Ofertas Especiales</h2>
     <div class="container">
         <div class="row">
-            {{#each ofertas}}
+            {{#each product}}
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="{{this.imagen}}" class="card-img-top" alt="{{this.nombre}}">
+                        <img src="{{product.imagen}}" class="card-img-top" alt="{{product.nombre}}">
                         <div class="card-body">
-                            <h5 class="card-title">{{this.nombre}}</h5>
-                            <p class="card-text">Precio Original: <del>{{this.precioOriginal}} €</del></p>
-                            <p class="card-text">Precio con Descuento: <strong>{{this.precioDescuento}} €</strong></p>
+                            <h5 class="card-title">{{product.nombre}}</h5>
+                            <p class="card-text">Precio Original: <del>{{product.precioOriginal}} €</del></p>
+                            <p class="card-text">Precio con Descuento: <strong>{{product.precioDescuento}} €</strong></p>
                             <a href="#comprar" class="btn btn-warning">Comprar</a>
                         </div>
                     </div>

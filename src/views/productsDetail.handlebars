@@ -1,0 +1,53 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Productos Destacados</h2>
+    <div class="row">
+        <!-- Columna para la tarjeta del producto -->
+        <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{prod.photo}}" class="card-img-top" alt="{{this.title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{prod.title}}</h5>
+                    <p class="card-text">{{prod.category}}</p>
+                    <p class="card-text"><strong>Precio: ${{prod.price}}</strong></p>
+                    <p class="card-text"><strong>Stock: {{prod.stock}} u.</strong></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="/cart/{{prod.id}}" class="btn btn-success">Agregar al carrito</a>
+                        <a href="/products" class="btn btn-primary">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna para la sección de sugerencias de compra -->
+        <div class="col-md-6 d-flex align-items-star">
+            <div class="p-4 mb-4 border rounded shadow-sm ">
+                <h4 class="mb-3">Recomendaciones para tu compra</h4>
+                <p>Este producto ha recibido excelentes valoraciones por su calidad y rendimiento.</p>
+                <p>Es uno de los más vendidos en su categoría y se agota rápidamente. Recomendamos completar tu compra pronto.</p>
+                <p>Si tienes preguntas sobre el producto o necesitas asesoría, nuestro equipo de atención al cliente está disponible para ayudarte.</p>
+                <p>Disfruta de envío gratuito en pedidos superiores a $100.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- <div class="container mt-5">
+    <h2 class="text-center mb-4">Productos Destacados</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{prod.photo}}" class="card-img-top" alt="{{this.title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{prod.title}}</h5>
+                    <p class="card-text">{{prod.category}}</p>
+                    <p class="card-text"><strong>Precio: ${{prod.price}}</strong></p>
+                    <p class="card-text"><strong>Stock: {{prod.stock}} u.</strong></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="/products" class="btn btn-primary">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}

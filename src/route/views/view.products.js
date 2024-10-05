@@ -7,4 +7,5 @@ productView.get("/", prodController.showProducts)
 productView.get("/:id", prodController.detailProduct)
 
 
+
 export default productView

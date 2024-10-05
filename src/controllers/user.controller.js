@@ -52,7 +52,8 @@ class UserController{
         photo, 
         email,
         password,
-        role 
+        role,
+        status: false
       };
       const response = await usersManager.create(userData);
       // RENDERIZR UNA VISTA DE USUARIO CREADO
@@ -131,7 +132,8 @@ class UserController{
   
   async userRegiter (req, res, next){
     try {
-      return res.render('userRegister');
+      const user = await usersManager.read()
+      return res.render('userRegister', { user });
     } catch (error) {
       next(error)
     }
@@ -147,34 +149,29 @@ class UserController{
 
   async controllerLogin (req, res, next) {
     try {
-      const { email, password } = req.body;
+      const { email, password} = req.body;
       // Verificar si existe un usuario con el email y contraseña proporcionados
-      const user = await usersManager.getAllUsers(
-        (user) => user.email === email && user.password === password
-      );
-    
+      const users = await usersManager.read(email, password);
+      const user = users.find((user) => user.email === email && user.password === password);
       if (!user) {
-        return res.send(`
-          <script>
-              Toastify({
-                  text: "Correo electrónico o contraseña incorrectos.",
-                  duration: 3000,
-                  gravity: "top", // "top" or "bottom"
-                  position: "center", // "left", "center" or "right"
-                  backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
-              }).showToast();
-              setTimeout(() => { window.location.href = '/login'; }, 3000); // Redirigir después de 3 segundos
-          </script>
-      `);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de autenticación',
+          text: 'Credenciales incorrectas'
+        });
+      }  else {
+        // Actualizar el estado del usuario a "online"
+        user.status = true;
+        await usersManager.updateUser(user.id, { isOnline: true });
+  
+        // Redirigir según el rol del usuario
+        if (user.role === 'admin') {
+          return res.render('admin', { user: user });
+        } 
       }
-      
     } catch (error) {
       next(error)
     }
-  
-  
-    // Si las credenciales son correctas, enviar un mensaje de éxito
-    return res.redirect('home')
   };
 }
 

@@ -15,12 +15,12 @@
             {{#each users}}
             <tr style="font-size: 15px;">
                 <td class="align-middle">
-                  <a href="/users/{{this.id}}" title="User register">
+                    <a href="/users/{{this.id}}" title="User register">
                     <img src="{{this.photo}}" alt="Foto de {{this.email}}" class="img-fluid rounded-circle" style="width: 200px; height: 170px;">
-                  </a></td>
+                    </a></td>
                 <td class="align-middle" style="white-space: nowrap;">{{this.email}}</td>
                 <td class="align-middle">
-                  <input type="password" value="{{this.password}}" readonly class="form-control-plaintext" style="border: none; background: transparent; width: 100px;">
+                    <input type="password" value="{{this.password}}" readonly class="form-control-plaintext" style="border: none; background: transparent; width: 100px;">
                 </td>
                 <td class="align-middle" style="white-space: nowrap;">{{this.role}}</td>
                 <td class="align-middle" style="white-space: nowrap;">{{this.id}}</td>

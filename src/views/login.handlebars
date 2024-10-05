@@ -1,11 +1,11 @@
-<div class="d-flex justify-content-center"></div>
-    <div class="container m-5 shadow p-4 rounded ">
+<div class="d-flex justify-content-center "></div>
+    <div class="container m-5 shadow p-4 rounded">
         <h1 class="text-center">Iniciar Sesión</h1>
-        <form action="/login" method="POST">
+        <form method="POST" action="/login">
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <label for="email" class="form-label">Correo Electrónico <small class="text-muted">(ejemplo@gmail.com)</small></label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" autocomplete="on">
                 </div>
             </div>
             <div class="row">
@@ -14,12 +14,11 @@
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
             </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-lg">Iniciar Sesión</button>
-            </div>
         </form>
+        <div class="text-center">
+            <a href="/users/admin" type="submit" class="btn btn-primary btn-lg">Iniciar Sesión</a>
+        </div>
         <div class="text-center mt-3">
-            <!-- Enlace para redirigir a la página de registro -->
             <a href="/users/register">¿No tienes una cuenta? Regístrate</a>
         </div>
     </div>

@@ -136,7 +136,7 @@ class ProductsManager{
       const prodID = await productsManager.readOne(id);
       // response es la respuesta que se espera del manager (para leer un producto)
       if (prodID) {
-        return res.render("detail", { prod: prodID});     
+        return res.render("productsDetail", { prod: prodID});     
       } else {
         const error = new Error(`Not found product with ID: ${id}`);
         error.statusCode = 404;

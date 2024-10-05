@@ -1,7 +1,7 @@
 [
   {
     "title": "Zapatillas deportivas Nike",
-    "photo": "nike_zapatillas.jpg",
+    "photo": "../../../public/assets/products/zapas_NIKE.png",
     "category": "Zapatillas",
     "price": 75,
     "stock": 50,
@@ -9,7 +9,7 @@
   },
   {
     "title": "Zapatillas Adidas Ultraboost",
-    "photo": "adidas_ultraboost.jpg",
+    "photo": "../../../public/assets/products/Zapatillas_Adidas_Ultraboost.png",
     "category": "Zapatillas",
     "price": 90,
     "stock": 30,
@@ -17,7 +17,7 @@
   },
   {
     "title": "Zapatillas Puma RS-X",
-    "photo": "puma_rsx.jpg",
+    "photo": "../../../public/assets/products/Zapatillas_Puma_RS-X.png",
     "category": "Zapatillas",
     "price": 80,
     "stock": 40,
@@ -25,7 +25,7 @@
   },
   {
     "title": "Zapatillas Reebok Classic",
-    "photo": "reebok_classic.jpg",
+    "photo": "../../../public/assets/products/reebok_classic.jpg",
     "category": "Zapatillas",
     "price": 70,
     "stock": 25,
@@ -33,7 +33,7 @@
   },
   {
     "title": "Zapatillas New Balance 574",
-    "photo": "new_balance_574.jpg",
+    "photo": "../../../public/assets/products/new_balance_574.jpg",
     "category": "Zapatillas",
     "price": 85,
     "stock": 20,
@@ -41,7 +41,7 @@
   },
   {
     "title": "Zapatillas Asics Gel-Kayano",
-    "photo": "asics_gel_kayano.jpg",
+    "photo": "../../../public/assets/products/asics_gel_kayano.png",
     "category": "Zapatillas",
     "price": 110,
     "stock": 15,
@@ -49,7 +49,7 @@
   },
   {
     "title": "Zapatillas Saucony Jazz",
-    "photo": "saucony_jazz.jpg",
+    "photo": "../../../public/assets/products/saucony_jazz.jpg",
     "category": "Zapatillas",
     "price": 65,
     "stock": 35,
@@ -57,7 +57,7 @@
   },
   {
     "title": "Zapatillas Hoka One One",
-    "photo": "hoka_one_one.jpg",
+    "photo": "../../../public/assets/products/hoka_one_one.jpg",
     "category": "Zapatillas",
     "price": 120,
     "stock": 10,
@@ -65,7 +65,7 @@
   },
   {
     "title": "Zapatillas Converse Chuck Taylor",
-    "photo": "converse_chuck_taylor.jpg",
+    "photo": "../../../public/assets/products/converse_chuck_taylor.jpg",
     "category": "Zapatillas",
     "price": 60,
     "stock": 45,
@@ -73,7 +73,7 @@
   },
   {
     "title": "Zapatillas Vans Old Skool",
-    "photo": "vans_old_skool.jpg",
+    "photo": "../../../public/assets/products/vans_old_skool.jpg",
     "category": "Zapatillas",
     "price": 55,
     "stock": 60,
@@ -81,7 +81,7 @@
   },
   {
     "title": "Camisa de algodón blanca",
-    "photo": "camisa_algodon_blanca.jpg",
+    "photo": "../../../public/assets/products/camisa_algodon_blanca.jpg",
     "category": "Camisas",
     "price": 30,
     "stock": 100,
@@ -89,7 +89,7 @@
   },
   {
     "title": "Camisa de cuadros",
-    "photo": "camisa_cuadros.jpg",
+    "photo": "../../../public/assets/products/camisa_algodon_cuadros.jpg",
     "category": "Camisas",
     "price": 35,
     "stock": 80,
@@ -97,7 +97,7 @@
   },
   {
     "title": "Camisa de denim",
-    "photo": "camisa_denim.jpg",
+    "photo": "../../../public/assets/products/camisa_denim.jpg",
     "category": "Camisas",
     "price": 40,
     "stock": 60,
@@ -105,7 +105,7 @@
   },
   {
     "title": "Camisa de manga larga",
-    "photo": "camisa_manga_larga.jpg",
+    "photo": "../../../public/assets/products/camisa_manga_larga.jpg",
     "category": "Camisas",
     "price": 45,
     "stock": 50,
@@ -113,7 +113,7 @@
   },
   {
     "title": "Camisa de rayas",
-    "photo": "camisa_rayada.jpg",
+    "photo": "../../../public/assets/products/camisa_rayada.jpg",
     "category": "Camisas",
     "price": 32,
     "stock": 70,
@@ -121,7 +121,7 @@
   },
   {
     "title": "Camisa de lino",
-    "photo": "camisa_lino.jpg",
+    "photo": "../../../public/assets/products/camisa_lino.jpg",
     "category": "Camisas",
     "price": 50,
     "stock": 40,
@@ -129,7 +129,7 @@
   },
   {
     "title": "Camisa de gala negra",
-    "photo": "camisa_gala_negra.jpg",
+    "photo": "../../../public/assets/products/camisa_gala_negra.jpg",
     "category": "Camisas",
     "price": 60,
     "stock": 30,
@@ -137,7 +137,7 @@
   },
   {
     "title": "Camisa estampada",
-    "photo": "camisa_estampada.jpg",
+    "photo": "../../../public/assets/products/camisa_estampada.jpg",
     "category": "Camisas",
     "price": 38,
     "stock": 55,
@@ -145,7 +145,7 @@
   },
   {
     "title": "Camisa de manga corta",
-    "photo": "camisa_manga_corta.jpg",
+    "photo": "../../../public/assets/products/camisa_manga_corta.jpg",
     "category": "Camisas",
     "price": 28,
     "stock": 90,
@@ -153,7 +153,7 @@
   },
   {
     "title": "Camisa de terciopelo",
-    "photo": "camisa_terciopelo.jpg",
+    "photo": "../../../public/assets/products/camisa_terciopelo.jpg",
     "category": "Camisas",
     "price": 75,
     "stock": 20,
@@ -161,7 +161,7 @@
   },
   {
     "title": "Pantalones vaqueros",
-    "photo": "pantalones_vaqueros.jpg",
+    "photo": "../../../public/assets/products/pantalones_vaqueros.jpg",
     "category": "Pantalones",
     "price": 50,
     "stock": 100,
@@ -169,7 +169,7 @@
   },
   {
     "title": "Pantalones deportivos",
-    "photo": "pantalones_deportivos.jpg",
+    "photo": "../../../public/assets/products/pantalones_deportivos.jpg",
     "category": "Pantalones",
     "price": 45,
     "stock": 80,
@@ -177,7 +177,7 @@
   },
   {
     "title": "Pantalones chinos",
-    "photo": "pantalones_chinos.jpg",
+    "photo": "../../../public/assets/products/pantalones_chinos.jpg",
     "category": "Pantalones",
     "price": 40,
     "stock": 70,
@@ -185,7 +185,7 @@
   },
   {
     "title": "Pantalones de vestir",
-    "photo": "pantalones_vestir.jpg",
+    "photo": "../../../public/assets/products/pantalones_vestir.jpg",
     "category": "Pantalones",
     "price": 60,
     "stock": 50,
@@ -193,7 +193,7 @@
   },
   {
     "title": "Pantalones cortos",
-    "photo": "pantalones_cortos.jpg",
+    "photo": "../../../public/assets/products/pantalones_cortos.jpg",
     "category": "Pantalones",
     "price": 30,
     "stock": 90,
@@ -201,7 +201,7 @@
   },
   {
     "title": "Pantalones de cuero",
-    "photo": "pantalones_cuero.jpg",
+    "photo": "../../../public/assets/products/pantalones_cuero.jpg",
     "category": "Pantalones",
     "price": 80,
     "stock": 30,
@@ -209,7 +209,7 @@
   },
   {
     "title": "Pantalones jogger",
-    "photo": "pantalones_jogger.jpg",
+    "photo": "../../../public/assets/products/pantalones_jogger.jpeg",
     "category": "Pantalones",
     "price": 55,
     "stock": 40,
@@ -217,7 +217,7 @@
   },
   {
     "title": "Pantalones cargo",
-    "photo": "pantalones_cargo.jpg",
+    "photo": "../../../public/assets/products/pantalones_cargo.jpg",
     "category": "Pantalones",
     "price": 50,
     "stock": 60,
@@ -225,7 +225,7 @@
   },
   {
     "title": "Pantalones de lana",
-    "photo": "pantalones_lana.jpg",
+    "photo": "../../../public/assets/products/pantalones_lana.jpg",
     "category": "Pantalones",
     "price": 70,
     "stock": 20,
@@ -233,7 +233,7 @@
   },
   {
     "title": "Pantalones de pijama",
-    "photo": "pantalones_pijama.jpg",
+    "photo": "../../../public/assets/products/pantalones_pijama.jpg",
     "category": "Pantalones",
     "price": 25,
     "stock": 100,
@@ -241,7 +241,7 @@
   },
   {
     "title": "Abrigo de lana",
-    "photo": "abrigo_lana.jpg",
+    "photo": "../../../public/assets/products/abrigo_lana.jpg",
     "category": "Abrigos",
     "price": 120,
     "stock": 30,
@@ -249,7 +249,7 @@
   },
   {
     "title": "Abrigo impermeable",
-    "photo": "abrigo_impermeable.jpg",
+    "photo": "../../../public/assets/products/abrigo_impermeable.jpg",
     "category": "Abrigos",
     "price": 110,
     "stock": 25,
@@ -257,7 +257,7 @@
   },
   {
     "title": "Abrigo de cuero",
-    "photo": "abrigo_cuero.jpg",
+    "photo": "../../../public/assets/products/abrigo_cuero.jpg",
     "category": "Abrigos",
     "price": 150,
     "stock": 20,
@@ -265,7 +265,7 @@
   },
   {
     "title": "Abrigo de plumas",
-    "photo": "abrigo_plumas.jpg",
+    "photo": "../../../public/assets/products/abrigo_plumas.jpg",
     "category": "Abrigos",
     "price": 130,
     "stock": 35,
@@ -273,7 +273,7 @@
   },
   {
     "title": "Abrigo de trench",
-    "photo": "abrigo_trench.jpg",
+    "photo": "../../../public/assets/products/abrigo_trench.jpg",
     "category": "Abrigos",
     "price": 90,
     "stock": 40,
@@ -281,7 +281,7 @@
   },
   {
     "title": "Abrigo impermeable",
-    "photo": "abrigo_piel_sintetica.jpg",
+    "photo": "../../../public/assets/products/abrigo_piel_sintetica.jpg",
     "category": "Abrigos",
     "price": 100,
     "stock": 15,
@@ -289,7 +289,7 @@
   },
   {
     "title": "Abrigo de mezcla de lana",
-    "photo": "abrigo_mezcla_lana.jpg",
+    "photo": "../../../public/assets/products/abrigo_mezcla_lana.jpg",
     "category": "Abrigos",
     "price": 140,
     "stock": 10,
@@ -297,7 +297,7 @@
   },
   {
     "title": "Abrigo ligero",
-    "photo": "abrigo_ligero.jpg",
+    "photo": "../../../public/assets/products/abrigo_ligero.jpg",
     "category": "Abrigos",
     "price": 70,
     "stock": 50,
@@ -305,7 +305,7 @@
   },
   {
     "title": "Parca",
-    "photo": "ruta/por/defecto.jpg",
+    "photo": "../../../public/assets/products/parca.jpg",
     "category": "Abrigos",
     "price": 100,
     "stock": 20,
@@ -313,7 +313,7 @@
   },
   {
     "title": "Polera",
-    "photo": "ruta/por/defecto.jpg",
+    "photo": "../../../public/assets/products/polera.jpg",
     "category": "Abrigos",
     "price": 50,
     "stock": 20,
