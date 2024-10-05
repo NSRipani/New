@@ -148,32 +148,27 @@ class UserController{
   }
 
   async controllerLogin (req, res, next) {
-    try {
-      const { email, password} = req.body;
-      // Verificar si existe un usuario con el email y contraseña proporcionados
-      const users = await usersManager.read(email, password);
-      const user = users.find((user) => user.email === email && user.password === password);
-      if (!user) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error de autenticación',
-          text: 'Credenciales incorrectas'
-        });
-      }  else {
-        // Actualizar el estado del usuario a "online"
-        user.status = true;
-        await usersManager.updateUser(user.id, { isOnline: true });
-  
-        // Redirigir según el rol del usuario
-        if (user.role === 'admin') {
-          return res.render('admin', { user: user });
+      try {
+        const { email, password } = req.body; // Asegúrate de que sea req.body
+        const users = await usersManager.read(email, password);
+        const user = users.find((user) => user.email === email && user.password === password);
+        if (user) {
+          user.status = true;
+          await usersManager.update(user.id, { isOnline: true });
+          if (req.params.role === 'admin') {
+            return res.render('admin', {user: user});
+          } else {
+            // Manejar otros roles o errores
+            return res.status(403).send('No tienes permiso para acceder a esta área.');
+          }
+        } else {
+            return res.status(401).send('Credenciales incorrectas.');
         } 
+      } catch (error) {
+        return next(error)
       }
-    } catch (error) {
-      next(error)
     }
-  };
-}
+  }
 
 const userController = new UserController()
 export default userController
