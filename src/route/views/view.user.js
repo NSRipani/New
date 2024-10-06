@@ -8,6 +8,6 @@ userView.get("/", userController.AllUsers)
 userView.get("/:id", userController.userProfile)
 userView.get("/register", userController.userRegiter)
 userView.get("/login", userController.login)
-userView.post("/admin", userController.controllerLogin)
+
 
 export default userView

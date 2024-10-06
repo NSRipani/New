@@ -1,11 +1,11 @@
-<div class="d-flex justify-content-start  ms-5">
+<div class="d-flex justify-content-start ms-5">
     <div class="container m-5 shadow p-4 w-50 rounded ">
         <h1 class="text-center">Registrar Usuario</h1>
-        <form method="POST" enctype="form-data">
+        <form method="POST" action="/login">
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Correo Electrónico</label>
-                    <input required type="email" class="form-control" id="email" name="email" autocomplete="on">
+                    <input required type="email" class="form-control" id="email" name="email" >
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="password" class="form-label">Contraseña</label>
@@ -22,21 +22,18 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <!-- Campo para subir la foto de perfil -->
                     <label for="profilePic" class="form-label">Foto de Perfil</label>
-                    <input required type="file" class="form-control" id="profilePic" name="profilePic" accept="image/*" >
+                    <input required type="file" class="form-control" id="profilePic" name="profilePic" accept="image/*">
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-success btn-lg"  id="register" >Registrar</button>
+                <button type="submit" class="btn btn-success btn-lg" id="register">Registrar</button>
             </div>
         </form>
         <div class="text-center mt-3">
             <a href="/users/login">¿Ya tienes una cuenta? Inicia sesión</a>
         </div>
     </div>
-    <div class="container m-5 shadow p-4 w-50 rounded ">
-        <h1>Usuario creado</h1>
-        <strong id="update"></strong>
-    </div>
+    <div class="container m-5 shadow p-4 w-50 rounded " id="update"></div>
+
 </div>

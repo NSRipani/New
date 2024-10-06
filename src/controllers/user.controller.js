@@ -40,21 +40,10 @@ class UserController{
   // Controladora para crear un nuevo usuario
   async createUser(req, res, next) {
     try {
-      const { photo, email, password, role } = req.body;
+      // const { photo, email, password, role } = req.body;
       
-      // Verificar si el usuario ya existe
-      // const existingUser = await usersManager.readOne({ email });
-      // if (existingUser) {
-      //   return res.status(400).send("El correo ya está registrado.");
-      // }
       // Asignar valores por defecto
-      const userData = {
-        photo, 
-        email,
-        password,
-        role,
-        status: false
-      };
+      let userData = req.body
       const response = await usersManager.create(userData);
       // RENDERIZR UNA VISTA DE USUARIO CREADO
       return res.status(201).json({ 
@@ -132,8 +121,8 @@ class UserController{
   
   async userRegiter (req, res, next){
     try {
-      const user = await usersManager.read()
-      return res.render('userRegister', { user });
+      // const user = await usersManager.read()
+      return res.render('userRegister');
     } catch (error) {
       next(error)
     }
@@ -147,28 +136,7 @@ class UserController{
     }
   }
 
-  async controllerLogin (req, res, next) {
-      try {
-        const { email, password } = req.body; // Asegúrate de que sea req.body
-        const users = await usersManager.read(email, password);
-        const user = users.find((user) => user.email === email && user.password === password);
-        if (user) {
-          user.status = true;
-          await usersManager.update(user.id, { isOnline: true });
-          if (req.params.role === 'admin') {
-            return res.render('admin', {user: user});
-          } else {
-            // Manejar otros roles o errores
-            return res.status(403).send('No tienes permiso para acceder a esta área.');
-          }
-        } else {
-            return res.status(401).send('Credenciales incorrectas.');
-        } 
-      } catch (error) {
-        return next(error)
-      }
-    }
-  }
 
+}
 const userController = new UserController()
 export default userController

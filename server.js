@@ -10,31 +10,28 @@ import __dirname from './utils.js';
 import socket from "./src/route/index.socket.js";
 import { createServer } from 'http';
 
-try {
-    const server = express();
-    const port = 8000;
-    const ready = () => console.log("server ready on port " + port);
-    const httpServer = createServer(server);
-    httpServer.listen(port, ready);
-    
-    const socketServer = new Server(httpServer);
-    socketServer.on("connection", socket);
+const server = express();
+const port = 8000;
+const ready = () => console.log("server ready on port " + port);
+const httpServer = createServer(server);
+httpServer.listen(port, ready);
 
-    server.engine("handlebars", engine())
-    server.set("view engine", "handlebars")
-    server.set("views", __dirname + "/src/views")
+const socketServer = new Server(httpServer);
+socketServer.on("connection", socket);
+export default socketServer
 
-    server.use(express.urlencoded({ extended: true }));
-    server.use(express.json());
-    server.use(morgan('dev'))
-    server.use(cors())
-    server.use('/public', express.static('public'));
-    
-    server.use(router)
-    
-    server.use(errorHandler);
-    server.use(pathHandler)
-    
-} catch (error) {
-    console.log(error)
-} 
+server.engine("handlebars", engine())
+server.set("view engine", "handlebars")
+server.set("views", __dirname + "/src/views")
+
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
+server.use(morgan('dev'))
+server.use(cors())
+server.use('/public', express.static('public'));
+
+server.use(router)
+
+server.use(errorHandler);
+server.use(pathHandler)
+

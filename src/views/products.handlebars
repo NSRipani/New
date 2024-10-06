@@ -4,21 +4,22 @@
         <div class="row">
             <div class="col-md-3">
                 <h5 class="text-primary">Filtrar por:</h5>
-                <form class="bg-light p-4 rounded shadow-sm">
-                    <input type="text" class="form-control mb-2" placeholder="Buscar..." aria-label="Buscar">
-                    <select class="form-control mb-2">
-                        <option value="">Categoría</option>
-                        <option value="categoria1">Categoría 1</option>
-                        <option value="categoria2">Categoría 2</option>
-                        <!-- Otras opciones -->
+                <form class="bg-light p-4 rounded shadow-sm" >
+                    {{!-- <input type="text" class="form-control mb-2" placeholder="Buscar..." aria-label="Buscar"> --}}
+                    <select name="category" class="form-control mb-2">
+                        <option value="" disabled selected >Seleccionar</option>
+                        <option value="abirgo">Abirgo</option>
+                        <option value="camisas">Camisas</option>
+                        <option value="pantalones">Pantalones</option>
+                        <option value="zapatillas">Zapatillas</option>
                     </select>
-                    <button type="submit" class="btn btn-primary btn-block">Aplicar</button>
+                    <button  type="submit" class="btn btn-primary btn-block">Aplicar</button>
                 </form>
             </div>
             <div class="col-md-9">
                 <div class="row">
                     {{#each product}}
-                    <div class="col-md-3 mb-4">
+                    <div id="filterProducts" class="col-md-3 mb-4">
                         <div class="card border-dark shadow-sm" style="background-color: #e7f1ff;">
                             <img src={{this.photo}} class="card-img-top" alt={{this.title}} style="max-height: 200px; object-fit: cover;">
                             <div class="card-body"> 
