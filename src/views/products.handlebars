@@ -27,7 +27,7 @@
                                 <p class="card-text"><strong>Sstock: {{this.stock}} u.</strong></p>
                                 <div class="d-flex justify-content-center flex-wrap">
                                     <a href="/cart/{{this.id}}" class="btn btn-success m-2">Agregar al carrito</a>
-                                    <a href="/products/{{this.id}}" class="btn btn-primary m-2">Ver detalle</a>
+                                    {{!-- <a href="/products/{{this.id}}" class="btn btn-primary m-2">Ver detalle</a> --}}
                                 </div>
                             </div>
                         </div>
@@ -38,5 +38,4 @@
         </div>
     </div>
 </section>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/public/js/socket.js"></script>
+

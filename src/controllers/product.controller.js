@@ -129,23 +129,23 @@ class ProductsManager{
     }
   }
 
-  async detailProduct(req, res, next) {
-    // res es el objeto de respuesta a enviar al cliente
-    try {
-      const { id } = req.params;
-      const prodID = await productsManager.readOne(id);
-      // response es la respuesta que se espera del manager (para leer un producto)
-      if (prodID) {
-        return res.render("productsDetail", { prod: prodID});     
-      } else {
-        const error = new Error(`Not found product with ID: ${id}`);
-        error.statusCode = 404;
-        throw error;
-      }
-    } catch (error) {
-      return next(error)
-    }
-  }
+  // async detailProduct(req, res, next) {
+  //   // res es el objeto de respuesta a enviar al cliente
+  //   try {
+  //     const { id } = req.params;
+  //     const prodID = await productsManager.readOne(id);
+  //     // response es la respuesta que se espera del manager (para leer un producto)
+  //     if (prodID) {
+  //       return res.render("productsDetail", { prod: prodID});     
+  //     } else {
+  //       const error = new Error(`Not found product with ID: ${id}`);
+  //       error.statusCode = 404;
+  //       throw error;
+  //     }
+  //   } catch (error) {
+  //     return next(error)
+  //   }
+  // }
   
   async productsAdmin (req, res, next){
     try {

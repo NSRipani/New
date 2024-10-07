@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarAdmin">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/admin/users">Gestionar Usuarios</a>
+                <a class="nav-link" href="/users/admin">Gestionar Usuarios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/admin/products">Gestionar Productos</a>
+                <a class="nav-link active" href="//admin">Gestionar Productos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/orders">Gestionar Órdenes</a>
+                <a class="nav-link" href="/orders/admin">Gestionar Órdenes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin/settings">Configuraciones</a>
@@ -21,7 +21,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Cerrar Sesión</a>
+                <a class="nav-link" href="/users/login">Cerrar Sesión</a>
             </li>
         </ul>
     </div>
@@ -38,7 +38,7 @@
             <h3>Agregar o Editar Producto</h3>
         </div>
         <div class="card-body">
-            <form id="product-form" method="POST" action="/admin/products">
+            <form id="product-form" method="POST" action="/products/admin">
                 <input type="hidden" name="productId" id="productId">
                 <div class="form-group">
                     <label for="productName">Nombre del Producto</label>
@@ -50,11 +50,7 @@
                 </div>
                 <div class="form-group">
                     <label for="productStock">Stock</label>
-                    <input type="number" class="form-control" id="productStock" name="productStock" required>
-                </div>
-                <div class="form-group">
-                    <label for="productDescription">Descripción</label>
-                    <textarea class="form-control" id="productDescription" name="productDescription" rows="3" required></textarea>
+                    <input type="number" class="form-control mb-2" id="productStock" name="productStock" required>
                 </div>
                 <button type="submit" class="btn btn-success">Guardar Producto</button>
                 <button type="reset" class="btn btn-secondary">Limpiar Formulario</button>
@@ -90,7 +86,7 @@
                         <td>
                             <button class="btn btn-primary btn-sm" onclick="editProduct({{this.id}}, '{{this.name}}', {{this.price}}, {{this.stock}}, '{{this.description}}')">Editar</button>
                             <form action="/admin/products/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm mb-10">Eliminar</button>
                             </form>
                         </td>
                     </tr>
