@@ -121,10 +121,9 @@ class UserController{
   
   async userRegiter (req, res, next){
     try {
-      // const user = await usersManager.read()
       return res.render('userRegister');
     } catch (error) {
-      next(error)
+      return next(error)
     }
   }
 
@@ -132,7 +131,7 @@ class UserController{
     try {
       return res.render('login');
     } catch (error) {
-      next(error)
+      return next(error)
     }
   }
 

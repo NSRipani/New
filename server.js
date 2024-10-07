@@ -18,7 +18,7 @@ httpServer.listen(port, ready);
 
 const socketServer = new Server(httpServer);
 socketServer.on("connection", socket);
-export default socketServer
+export {socketServer}
 
 server.engine("handlebars", engine())
 server.set("view engine", "handlebars")
@@ -28,7 +28,7 @@ server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(morgan('dev'))
 server.use(cors())
-server.use('/public', express.static('public'));
+server.use('/public', express.static(__dirname + '/public'));
 
 server.use(router)
 

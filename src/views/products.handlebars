@@ -1,23 +1,21 @@
 <h2 class="text-black text-left m-3">Productos destacados</h2>
-<section class="d-flex flex-wrap p-5">
+<section class="d-flex flex-wrap p-5 ">
     <div class="container ">
         <div class="row">
             <div class="col-md-3">
                 <h5 class="text-primary">Filtrar por:</h5>
-                <form class="bg-light p-4 rounded shadow-sm" >
                     {{!-- <input type="text" class="form-control mb-2" placeholder="Buscar..." aria-label="Buscar"> --}}
-                    <select name="category" class="form-control mb-2">
+                    <select id="selectFilter" name="category" class="form-control mb-2">
                         <option value="" disabled selected >Seleccionar</option>
-                        <option value="abirgo">Abirgo</option>
+                        <option value="abrigos">Abirgos</option>
                         <option value="camisas">Camisas</option>
                         <option value="pantalones">Pantalones</option>
                         <option value="zapatillas">Zapatillas</option>
                     </select>
-                    <button  type="submit" class="btn btn-primary btn-block">Aplicar</button>
-                </form>
+                    <button id="btnFilter" class="btn btn-primary btn-block">Aplicar</button>
             </div>
             <div class="col-md-9">
-                <div class="row">
+                <div id="productsList" class="row">
                     {{#each product}}
                     <div id="filterProducts" class="col-md-3 mb-4">
                         <div class="card border-dark shadow-sm" style="background-color: #e7f1ff;">
@@ -40,3 +38,5 @@
         </div>
     </div>
 </section>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/public/js/socket.js"></script>

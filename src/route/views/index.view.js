@@ -28,11 +28,6 @@ viewRouter.use("/products", productView);
 viewRouter.use("/users", userView);
 viewRouter.use("/carts", cartView);
 
-viewRouter.get('/register',()=>{ })
-viewRouter.get('/products',()=>{ })
-viewRouter.get('/new-product',()=>{ })
-viewRouter.get('/orders',()=>{ })
-
 viewRouter.get("/", (req, res, next) => {
     try {
         return res.render("home");

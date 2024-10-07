@@ -146,6 +146,14 @@ class ProductsManager{
       return next(error)
     }
   }
+  
+  async productsAdmin (req, res, next){
+    try {
+      return res.render('admin');
+    } catch (error) {
+      return next(error)
+    }
+  }
 }
 
 const prodController = new ProductsManager()

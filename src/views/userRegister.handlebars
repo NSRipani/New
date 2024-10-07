@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-start ms-5">
+<div class="d-flex justify-content-center ms-5">
     <div class="container m-5 shadow p-4 w-50 rounded ">
         <h1 class="text-center">Registrar Usuario</h1>
-        <form method="POST" action="/login">
+        <form method="POST" action="/">
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Correo Electrónico</label>
@@ -17,8 +17,8 @@
                     <label for="role" class="form-label">Rol</label>
                     <select required class="form-select" id="role" name="role">
                         <option value="">Selecciona un rol</option>
-                        <option value="user">Usuario</option>
-                        <option value="admin">Administrador</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -34,6 +34,6 @@
             <a href="/users/login">¿Ya tienes una cuenta? Inicia sesión</a>
         </div>
     </div>
-    <div class="container m-5 shadow p-4 w-50 rounded " id="update"></div>
-
 </div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/public/js/socket.js"></script>
