@@ -39,5 +39,15 @@ Para garantizar que las entradas de los usuarios sean válidas, se pueden utiliz
 # Manejo de Errores
 Es importante manejar errores de manera efectiva. Puedes crear un middleware de manejo de errores que capture cualquier error que ocurra en las rutas y devuelva una respuesta adecuada.
 
-# Rutas
-Asegúrate de definir las rutas adecuadamente y utilizar el middleware de validación y manejo de errores en las rutas correspondientes.
+## Preentrega n° 2
+- Se agrego imágenes en la carpeta /public/assests
+- Se agrego una carpeta /public/js/socket.js para manejar las emiciones del backend y enviar mensajes al front, las el filtado de productos 
+- En /controllers, se agragaron aluna funciones asincronicas para renderizar plantrillas y realizar lecturas de pructos como de usuarios.
+- En carpeta /route/views se usaron rutas para manejar metos GET para crear rutas de vistas de usuario y de productos.
+- En carpeta /route existe un index.soket.js para manejar las recepciones del front y emitir hancia el front.
+- En carpeta /views existen 'handlebars' (plantillas) que se rendecizarán, traducen en codigo html para que se crea un front. En cada una de ellas, tiene sus correspondiente funcionalidades.
+- En carpeta /views/latouts esta el 'handlebars' que se rendecizará en tomo momento que se utilice otros 'handlebars'
+
+- El unico uso de socket fue en el filtardo de productos.
+
+- Las vistas creería que estan realizadas segun la consigna.
