@@ -1,4 +1,6 @@
-import productsManager from "../data/products.manager.js";
+import Controller from "./controller.js";
+
+
 class ProductsManager{
   constructor() {}
 

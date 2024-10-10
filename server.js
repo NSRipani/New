@@ -1,3 +1,4 @@
+import "dotenv/config.js"
 import express from "express";
 import morgan from 'morgan';
 import cors from 'cors'
@@ -9,10 +10,14 @@ import router from './src/route/index.route.js';
 import __dirname from './utils.js';
 import socket from "./src/route/index.socket.js";
 import { createServer } from 'http';
+import dbConnect from "./src/utils/db.utils.js";
 
 const server = express();
-const port = 8000;
-const ready = () => console.log("server ready on port " + port);
+const port = process.env.PORT;
+const ready = () => {
+    console.log("server ready on port " + port);
+    dbConnect()
+}
 const httpServer = createServer(server);
 httpServer.listen(port, ready);
 
