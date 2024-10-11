@@ -1,5 +1,5 @@
 import Controller from "./controller.js";
-
+import productsMongoManager from "../data/mongo/manager/products.mongo.js";
 
 class ProductsManager{
   constructor() {}
@@ -18,7 +18,7 @@ class ProductsManager{
   async getAllProducts(req, res, next) {
     try {
       const { category } = req.query;
-      const data = await productsManager.read(category);
+      const data = await productsMongoManager.read(category);
       if (data.length > 0) {
         return res.status(200).json({ 
           message: "READ PRODUCTS", 
@@ -39,7 +39,7 @@ class ProductsManager{
     // res es el objeto de respuesta a enviar al cliente
     try {
       const { id } = req.params;
-      const prodID = await productsManager.readOne(id);
+      const prodID = await productsMongoManager.readOne(id);
       // response es la respuesta que se espera del manager (para leer un producto)
       if (!prodID) {
         const error = new Error(`Not found product with ID: ${id}`);
@@ -59,15 +59,15 @@ class ProductsManager{
   // usar 'body'
   async create(req, res, next) {
     try {
-      const { title, category, price, stock } = req.body;
-      const data = {
-        title,
-        photo: 'ruta/por/defecto.jpg',
-        category,
-        price: price || 1,
-        stock: stock || 1
-      }
-      const prod = await productsManager.create(data);
+      const data = req.body;
+      // const data = {
+      //   title,
+      //   photo: 'ruta/por/defecto.jpg',
+      //   category,
+      //   price: price || 1,
+      //   stock: stock || 1
+      // }
+      const prod = await productsMongoManager.create(data);
       return res.status(201).json({ 
         message: "PRODUCT CREATED", 
         id: prod
@@ -82,7 +82,7 @@ class ProductsManager{
     try {
       const { id } = req.params; 
       const newData = req.body; 
-      const updateProd = await productsManager.update(id, newData); 
+      const updateProd = await productsMongoManager.update(id, newData); 
       if (!updateProd){
         const error = new Error(`Product not found with id: ${req.params.id}`);
         error.statusCode = 404;
@@ -101,7 +101,7 @@ class ProductsManager{
   async deleteProduct(req, res, next) {
     try {
       const { id } = req.params; 
-      const dataProd = await productsManager.destroy(id); 
+      const dataProd = await productsMongoManager.destroy(id); 
       if (!dataProd){
         const error = new Error("Product not removed");
         error.statusCode = 404;
@@ -118,7 +118,7 @@ class ProductsManager{
   async showProducts(req, res, next){
     try {
       const { category } = req.query;
-      const data = await productsManager.read(category);
+      const data = await productsMongoManager.read(category);
       if (data.length > 0) {
         return res.render("products", {product: data});
       } else {

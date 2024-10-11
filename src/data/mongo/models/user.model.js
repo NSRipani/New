@@ -7,7 +7,7 @@ const schema = new Schema({
     photo: {
         type: String,
         default:
-        "https://economipedia.com/wp-content/uploads/Definicion-de-Producto-1.jpg",
+        "https://www.shutterstock.com/image-vector/silver-membership-icon-default-avatar-260nw-2499645557.jpg",
     },
     category: { type: String, default: "celulares" },
     price: { type: Number, default: 1, min: 0, max: 1000 },

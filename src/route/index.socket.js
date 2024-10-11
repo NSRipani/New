@@ -1,6 +1,8 @@
-import usersManager from "../data/user.manager.js"
-import productsManager from "../data/products.manager.js"
+// import usersManager from "../data/user.manager.js"
+
 import { socketServer } from "../../server.js";
+import productsManager from './../data/fs/products.manager.js';
+
 
 const socket = (socket) => {
     console.log(socket.id)

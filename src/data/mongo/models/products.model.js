@@ -8,11 +8,11 @@ const schema = new Schema({
     photo: {
         type: String,
         default:
-        "https://economipedia.com/wp-content/uploads/Definicion-de-Producto-1.jpg",
+        "https://www.shutterstock.com/image-vector/image-icon-trendy-flat-style-600nw-643080895.jpg",
     },
-    category: { type: String, default: "celulares" },
-    price: { type: Number, default: 1, min: 0, max: 1000 },
-    stock: { type: Number, default: 1, min: 0 },
+    category: { type: String, default: "Sin-catego, min: 0, ry" },
+    price: { type: Number, default: 1 },
+    stock: { type: Number, default: 1 },
 });
 
 const Product = model(collection, schema);

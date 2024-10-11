@@ -1,4 +1,4 @@
-import usersManager from "../data/user.manager.js";
+import usersManager from "../data/fs/user.manager.js";
 
 class UserController{
   constructor() {}

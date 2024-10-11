@@ -1,6 +1,9 @@
 import Cart from "../models/cart.model.js";
-import MongoManager from "./manager.mongo.js";
+// import MongoManager from "./manager.mongo.js";
 
+class CartMongoManager{
 
-const productsMongoManager = new MongoManager(Cart)
-export default productsMongoManager
+}
+
+const cartMongoManager = new CartMongoManager(Cart)
+export default cartMongoManager
