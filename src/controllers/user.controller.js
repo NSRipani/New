@@ -1,4 +1,4 @@
-import usersManager from "../data/fs/user.manager.js";
+import usersMongoManager from "../data/mongo/manager/user.mongo.js";
 
 class UserController{
   constructor() {}
@@ -6,11 +6,17 @@ class UserController{
   async getAllUsers(req, res, next) {
     try {
       const { role } = req.query;
-      const response = await usersManager.read(role);
-      return res.status(200).json({ 
+      const response = await usersMongoManager.read(role);
+      if (data.length > 0){
+        return res.status(200).json({ 
         message: "USERS READ",
         response
       });
+      } else {
+        const error = new Error("NOT FOUND USERS");
+        error.statusCode = 404;
+        throw error;
+      }
     } catch (error) {
       return next(error)
     }
@@ -20,7 +26,7 @@ class UserController{
   async getUser(req, res, next) {
     try {
       const { id } = req.params;
-      const dataUser = await usersManager.readOne(id);
+      const dataUser = await usersMongoManager.readOne(id);
       if (!dataUser) {
         // Si no hay usuarios con ese 'role', devolvemos un error 404
         const error = new Error(`No user found with ID: ${id}`);
@@ -40,11 +46,9 @@ class UserController{
   // Controladora para crear un nuevo usuario
   async createUser(req, res, next) {
     try {
-      // const { photo, email, password, role } = req.body;
-      
       // Asignar valores por defecto
       let userData = req.body
-      const response = await usersManager.create(userData);
+      const response = await usersMongoManager.create(userData);
       // RENDERIZR UNA VISTA DE USUARIO CREADO
       return res.status(201).json({ 
         message: "USER CREATED", 
@@ -60,7 +64,7 @@ class UserController{
     try {
       const { id } = req.params;
       const newData = req.body;
-      const response = await usersManager.update(id, newData);
+      const response = await usersMongoManager.update(id, newData);
       if (!response){
         const error = new Error(`User not found with id: ${req.params.id}`)
         error.statusCode = 404
@@ -79,7 +83,7 @@ class UserController{
   async deleteUser(req, res, next) {
     try {
       const { id } = req.params;
-      const response = await usersManager.destroy(id);
+      const response = await usersMongoManager.destroy(id);
       if (!response){
         const error = new Error(`User not found with id: ${id}`)
         error.statusCode = 404
@@ -94,7 +98,7 @@ class UserController{
   async AllUsers(req, res, next) {
     try {
       const { role } = req.query;
-      const usersAll = await usersManager.read(role);
+      const usersAll = await usersMongoManager.read(role);
       if (usersAll.length > 0){
         return res.render("users", {users: usersAll});
       }
@@ -105,7 +109,7 @@ class UserController{
   async userProfile (req, res, next){
     try {
       const { id } = req.params;
-      const userID = await usersManager.readOne(id);
+      const userID = await usersMongoManager.readOne(id);
       // response es la respuesta que se espera del manager (para leer un producto)
       if (userID) {
         return res.render("userDetalle", {user: userID});     
