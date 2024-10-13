@@ -5,7 +5,7 @@ const productView = Router()
 
 productView.get("/", prodController.showProducts)
 // productView.get("/:id", prodController.detailProduct)
-productView.get("/products", prodController.getAllProducts)
+// productView.get("/products", prodController.getAllProducts)
 productView.get("/admin", prodController.productsAdmin)
 
 

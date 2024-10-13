@@ -2,27 +2,46 @@
     <h2 class="display-4" style="font-weight: bold; color: #007bff;">¡Bienvenido a nuestra tienda!</h2>
     <p class="lead" style="font-size: 1.25rem; color: #6c757d;">Las mejores ofertas del año te esperan.</p>
     <a href="#ofertas" class="btn btn-success btn-lg" style="padding: 10px 30px; font-size: 1.2rem;">Ver Ofertas</a>
-    <div style="position: absolute; bottom: 20px; right: 20px; opacity: 0.1;">
-        {{!-- <img src="../../public/assets/banner.png" alt="banner" style="max-width: 100%; height: auto;"> --}}
-    </div>
 </section>
 
-
-<section id="productos" class="container my-5">
-    <h2 class="text-center mb-4">Productos Destacados</h2>
-    <div class="row">
-        {{#each product}}
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{product.imagen}}" class="card-img-top" alt="{{product.nombre}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{product.nombre}}</h5>
-                        <p class="card-text">Precio: {{product.precio}} €</p>
-                        <a href="#comprar" class="btn btn-primary">Comprar</a>
+<h2 class="text-black text-left m-3">Productos destacados</h2>
+<section class="d-flex flex-wrap p-5 ">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-3">
+                <h5 class="text-primary">Filtrar por:</h5>
+                    {{!-- <input type="text" class="form-control mb-2" placeholder="Buscar..." aria-label="Buscar"> --}}
+                    <select id="selectFilter" name="category" class="form-control mb-2">
+                        <option value="" disabled selected >Seleccionar</option>
+                        <option value="abrigos">Abirgos</option>
+                        <option value="camisas">Camisas</option>
+                        <option value="pantalones">Pantalones</option>
+                        <option value="zapatillas">Zapatillas</option>
+                    </select>
+                    <button id="btnFilter" class="btn btn-primary btn-block">Aplicar</button>
+            </div>
+            <div class="col-md-9">
+                <div id="productsList" class="row">
+                    {{#each product}}
+                    <div id="filterProducts" class="col-md-3 mb-4">
+                        <div class="card border-dark shadow-sm" style="background-color: #e7f1ff;">
+                            <img src={{this.photo}} class="card-img-top" alt={{this.title}} style="max-height: 200px; object-fit: cover;">
+                            <div class="card-body"> 
+                                <h5 class="card-title">{{this.title}}</h5>
+                                <p class="card-text text-muted">{{this.category}}</p>
+                                <p class="card-text mb-0"><strong>Precio: $ {{this.price}}</strong></p>
+                                <p class="card-text"><strong>Sstock: {{this.stock}} u.</strong></p>
+                                <div class="d-flex justify-content-center flex-wrap">
+                                    <a href="/cart/{{this.id}}" class="btn btn-success m-2">Agregar al carrito</a>
+                                    {{!-- <a href="/products/{{this.id}}" class="btn btn-primary m-2">Ver detalle</a> --}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    {{/each}}
                 </div>
             </div>
-        {{/each}}
+        </div>
     </div>
 </section>
 

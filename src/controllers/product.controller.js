@@ -1,5 +1,6 @@
 import Controller from "./controller.js";
 import productsMongoManager from "../data/mongo/manager/products.mongo.js";
+import productsManager from './../data/fs/products.manager.js';
 
 class ProductsManager{
   constructor() {}
@@ -18,7 +19,8 @@ class ProductsManager{
   async getAllProducts(req, res, next) {
     try {
       const { category } = req.query;
-      const data = await productsMongoManager.read(category);
+      // const data = await productsMongoManager.read(category);
+      const data = await productsManager.read(category);
       if (data.length > 0) {
         return res.status(200).json({ 
           message: "READ PRODUCTS", 
@@ -118,9 +120,10 @@ class ProductsManager{
   async showProducts(req, res, next){
     try {
       const { category } = req.query;
-      const data = await productsMongoManager.read(category);
+      // const data = await productsMongoManager.read(category);
+      const data = await productsManager.read(category);
       if (data.length > 0) {
-        return res.render("products", {product: data});
+        return res.render("home", {product: data});
       } else {
         const error = new Error("NOT FOUND PRODUCTS");
         error.statusCode = 404;
@@ -151,7 +154,7 @@ class ProductsManager{
   
   async productsAdmin (req, res, next){
     try {
-      return res.render('admin');
+      return res.render('panel');
     } catch (error) {
       return next(error)
     }

@@ -16,6 +16,16 @@ const socket = (socket) => {
         socketServer.emit("producs filtered", products)
     })
 
+    socket.on('login', async ({ email, password }) => {
+        // Aquí verifica las credenciales
+        const user = await authenticateUser(email, password); // Implementa tu lógica de autenticación
+
+        if (user) {
+            socket.emit('loginSuccess');
+        } else {
+            socket.emit('loginError', 'Credenciales incorrectas');
+        }
+    });
 }
 
 export default socket

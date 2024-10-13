@@ -35,3 +35,4 @@ socket.on("producs filtered", (data) => {
     document.querySelector("#productsList").innerHTML = contenido;
 });                        
 //<a href="/products/${each.id}" class="btn btn-primary m-2">Ver detalle</a>
+

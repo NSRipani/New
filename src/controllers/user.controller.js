@@ -1,4 +1,5 @@
 import usersMongoManager from "../data/mongo/manager/user.mongo.js";
+import usersManager from './../data/fs/user.manager.js';
 
 class UserController{
   constructor() {}
@@ -94,11 +95,12 @@ class UserController{
       return next(error)
     }
   }
-
+///////////////////////////////
   async AllUsers(req, res, next) {
     try {
       const { role } = req.query;
-      const usersAll = await usersMongoManager.read(role);
+      // const usersAll = await usersMongoManager.read(role);
+      const usersAll = await usersManager.read(role);
       if (usersAll.length > 0){
         return res.render("users", {users: usersAll});
       }
@@ -106,22 +108,40 @@ class UserController{
       return next(error)
     }
   }
-  async userProfile (req, res, next){
+
+  async loginUser(req, res, next) {
     try {
-      const { id } = req.params;
-      const userID = await usersMongoManager.readOne(id);
-      // response es la respuesta que se espera del manager (para leer un producto)
-      if (userID) {
-        return res.render("userDetalle", {user: userID});     
-      } else {
-        const error = new Error(`Not found product with ID: ${id}`);
+      const { email, password } = req.query;
+      // const dataUser = await usersMongoManager.readOne(email, password);
+      const dataUser = await usersManager.readOne(email, password);
+      if (!dataUser) {
+        // Si no hay usuarios con ese 'role', devolvemos un error 404
+        const error = new Error(`No user found with ID: ${id}`);
         error.statusCode = 404;
         throw error;
+      } else {
+        return res.render("/", {users: dataUser});
       }
     } catch (error) {
-      next()
+      return next(error)
     }
   }
+  // async userProfile (req, res, next){
+  //   try {
+  //     const { id } = req.params;
+  //     const userID = await usersMongoManager.readOne(id);
+  //     // response es la respuesta que se espera del manager (para leer un producto)
+  //     if (userID) {
+  //       return res.render("userDetalle", {user: userID});     
+  //     } else {
+  //       const error = new Error(`Not found product with ID: ${id}`);
+  //       error.statusCode = 404;
+  //       throw error;
+  //     }
+  //   } catch (error) {
+  //     next()
+  //   }
+  // }
   
   async userRegiter (req, res, next){
     try {
