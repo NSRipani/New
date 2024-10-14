@@ -109,23 +109,41 @@ class UserController{
     }
   }
 
-  async loginUser(req, res, next) {
-    try {
-      const { email, password } = req.query;
-      // const dataUser = await usersMongoManager.readOne(email, password);
-      const dataUser = await usersManager.readOne(email, password);
-      if (!dataUser) {
-        // Si no hay usuarios con ese 'role', devolvemos un error 404
-        const error = new Error(`No user found with ID: ${id}`);
-        error.statusCode = 404;
-        throw error;
-      } else {
-        return res.render("/", {users: dataUser});
-      }
-    } catch (error) {
-      return next(error)
-    }
-  }
+  // async loginFilter(req, res, next) {
+  //   try {
+  //     const { email, role } = req.params;
+  //     const usersAll = await usersManager.read();
+      
+  //     // Filtrar usuarios por rol
+  //     const user = usersAll.find(user => user.role === role && user.email === email);
+      
+  //     if (user) {
+  //         return res.status(401).send('Contraseña incorrecta');
+  //       } else {
+  //       return res.status(404).send('Usuario no encontrado');
+  //     }
+  //   } catch (error) {
+  //     return next(error)
+  //   }
+  // }
+
+  // async loginUser(req, res, next) {
+  //   try {
+        // const { email, password } = req.query;
+        // // const dataUser = await usersMongoManager.readOne(email, password);
+        // const dataUser = await usersManager.readOne(email, password);
+        // if (!dataUser) {
+        //   // Si no hay usuarios con ese 'role', devolvemos un error 404
+        //   const error = new Error(`No user found with ID: ${id}`);
+        //   error.statusCode = 404;
+        //   throw error;
+        // } else {
+        //   return res.render("/", {users: dataUser});
+        // }
+  //   } catch (error) {
+  //     return next(error)
+  //   }
+  // }
   // async userProfile (req, res, next){
   //   try {
   //     const { id } = req.params;
@@ -143,6 +161,24 @@ class UserController{
   //   }
   // }
   
+
+
+  async admin (req, res, next){
+    try {
+      return res.render('panelAdmin');
+    } catch (error) {
+      return next(error)
+    }
+  }
+
+  async userAdmin (req, res, next){
+    try {
+      return res.render('panelUser');
+    } catch (error) {
+      return next(error)
+    }
+  }
+
   async userRegiter (req, res, next){
     try {
       return res.render('userRegister');

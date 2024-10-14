@@ -31,6 +31,7 @@ class UsersManager {
     }
   }
 
+
   async readOne(id) {
     try {
       const allUsers = await this.read();
@@ -49,7 +50,7 @@ class UsersManager {
       allUsers.push(userData);
       // const stringAll = JSON.stringify(allUsers, null, 2)
       await fs.promises.writeFile(this.path, JSON.stringify(allUsers, null, 2));
-      return userData.id; // return userData.id;
+      return userData.id;
     } catch (error) {
       console.log(error);
       throw error;

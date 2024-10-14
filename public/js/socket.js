@@ -1,6 +1,8 @@
 // conectar el front
 const socket = io();
 
+socket.emit("products filter", "");
+
 const btnFilter = document.querySelector('#btnFilter');
 
 btnFilter.addEventListener("click", () => {
@@ -14,7 +16,7 @@ btnFilter.addEventListener("click", () => {
 
 socket.on("producs filtered", (data) => {
 
-    const contenido = data
+    const filterProducts = data
     .map((each) =>
         `<div id="filterProducts" class="col-md-3 mb-4">
             <div class="card border-dark shadow-sm" style="background-color: #e7f1ff;">
@@ -32,7 +34,7 @@ socket.on("producs filtered", (data) => {
         </div>`
     )
     .join("");
-    document.querySelector("#productsList").innerHTML = contenido;
+    document.querySelector("#productsList").innerHTML = filterProducts;
 });                        
 //<a href="/products/${each.id}" class="btn btn-primary m-2">Ver detalle</a>
 

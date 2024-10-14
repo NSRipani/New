@@ -154,7 +154,7 @@ class ProductsManager{
   
   async productsAdmin (req, res, next){
     try {
-      return res.render('panel');
+      return res.render('panelproducts');
     } catch (error) {
       return next(error)
     }

@@ -2,11 +2,11 @@
     <div class="m-5 shadow p-4 rounded" style="max-width: 500px; width: 100%;">
         <h1 class="text-center">Iniciar Sesión</h1>
         <!-- Formulario de inicio de sesión -->
-        <form id="formLogin">
+        <form id="formLogin" >
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <label for="email" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="example@hotmail.com" required>
                 </div>
             </div>
             <div class="row">
@@ -27,6 +27,15 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{{!-- <script src="/socket.io/socket.io.js"></script>
-<script src="/public/js/socket.js"></script> --}}
+
+Aquí tienes el CDN de Toastify para incluir en tu proyecto:
+
+html
+Copiar código
+<!-- Enlazar CSS de Toastify -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<!-- Enlazar JS de Toastify -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/public/js/login.js"></script>

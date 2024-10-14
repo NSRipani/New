@@ -1,35 +1,41 @@
 const socket = io();
 
-document.getElementById('#formLogin').addEventListener('submit', function(event) {
+const btnlogin = document.querySelector('#btn-login');
+
+btnlogin.addEventListener("click", (event) => {
     event.preventDefault();
-    const email = document.getElementById('#email').value;
-    const password = document.getElementById('#password').value;
-
+    
+    const email = document.querySelector('#email').value.trim();
+    const password = document.querySelector('#password').value.trim();
+    const data = { email, password };
+    console.log(data)
+    
     // Emitir evento de inicio de sesión
-    socket.emit('login', { email, password });
+    socket.emit('login', data);
 });
 
-socket.on('loginSuccess', () => {
-    document.getElementById('status').style.display = 'block';
-    document.getElementById('online-status').innerText = 'online';
-    // Redirigir a otra vista
-    window.location.href = '/products/admin'; // Cambia esto a la ruta deseada
-});
-
-socket.on('loginError', (error) => {
-    Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: error,
-    });
-});
-
-document.getElementById('"btn-logout').addEventListener('click', function() {
-    socket.emit('logout');
-    window.location.href = '/home'; // Redirigir a la página de inicio
-});
-
-socket.on('logoutSuccess', () => {
-    document.getElementById('status').style.display = 'none';
-    document.getElementById('online-status').innerText = 'offline';
+// Escuchar la respuesta del servidor
+socket.on('loginResponse', function(response) {
+    if (response.success) {
+        // Si el inicio de sesión fue exitoso
+        Toastify({
+            text: "Inicio de sesión exitoso",
+            duration: 3000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "#4CAF50",
+        }).showToast();
+        
+        // Redirigir o realizar otra acción
+        window.location.href = "/";
+    } else {
+        // Si hubo un error
+        Toastify({
+            text: `Error: ${response.message}`,
+            duration: 3000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "#F44336",
+        }).showToast();
+    }
 });
