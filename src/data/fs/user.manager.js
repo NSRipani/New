@@ -31,6 +31,16 @@ class UsersManager {
     }
   }
 
+  async readByCredentials(email, password) {
+    try {
+      const allUsers = await this.read();
+      const oneUsers = allUsers.find((user) => user.email === email && user.password === password)
+      return oneUsers
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }  
 
   async readOne(id) {
     try {
