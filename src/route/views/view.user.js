@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import userController from './../../controllers/user.controller.js';
+// import userController from './../../controllers/user.controller.js';
 
 const userView = Router()
 
-userView.get("/", userController.AllUsers)
-userView.get("/register", userController.userRegiter)
-userView.get("/login", userController.login)
-userView.get("/admin", userController.userAdmin)
-userView.get("/paneladmin", userController.admin)
+// userView.get("/", AllUsers)
+// userView.get("/register", userRegiter)
+// userView.get("/login", login)
+// userView.get("/admin", userAdmin)
+// userView.get("/paneladmin", admin)
 
 
 

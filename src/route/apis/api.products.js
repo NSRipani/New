@@ -1,13 +1,13 @@
 import { Router } from "express";
-import prodController from './../../controllers/product.controller.js';
-import isValidatorProduct from './../../middleware/isValidatorProduct.js';
+import {create, read, readAll, update, destroy} from './../../controllers/product.controller.js';
+// import isValidatorProduct from './../../middleware/isValidatorProduct.js';
 
 const prodRouter = Router()
 
-prodRouter.get("/", prodController.getAllProducts)
-prodRouter.get("/:id", prodController.getProduct)
-prodRouter.post("/", isValidatorProduct, prodController.create)
-prodRouter.put("/:id", prodController.updateProduct)
-prodRouter.delete("/:id", prodController.deleteProduct)
+prodRouter.post("/", create)
+prodRouter.get("/:id", read)
+prodRouter.get("/", readAll)
+prodRouter.put("/:id", update)
+prodRouter.delete("/:id", destroy)
 
 export default prodRouter;

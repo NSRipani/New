@@ -1,14 +1,14 @@
 import { Router } from "express";
-import userController from "../../controllers/user.controller.js";
-import isValidatorUser from "../../middleware/isValidatorUser.js";
+import {create, read, readAll, update, destroy} from "../../controllers/user.controller.js";
+// import isValidatorUser from "../../middleware/isValidatorUser.js";
 
 
-const userRoute = Router()
+const userRouter = Router()
 
-userRoute.get("/", userController.getAllUsers)
-userRoute.get("/:id",userController.getUser)
-userRoute.post("/", isValidatorUser, userController.createUser)
-userRoute.put("/:id", userController.updateUser)
-userRoute.delete("/:id", userController.deleteUser)
+userRouter.post("/", create)
+userRouter.get("/:id",read)
+userRouter.get("/", readAll)
+userRouter.put("/:id", update)
+userRouter.delete("/:id", destroy)
 
-export default userRoute;
+export default userRouter;
