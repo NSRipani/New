@@ -28,6 +28,33 @@ const readAll = async (req, res, next) => {
         return next(error)
     }
 }
+const paginate = async (req, res, next) => {
+    try {
+    // const filter = req.query
+        const { page, limit } = req.query
+        const response = await productsMongoManager.paginate({}, { page, limit })
+    // paginate acepta dos argumentos
+    // el primero es para el filtro
+    // y el segundo es para la paginacion
+    // console.log(response);    
+    if (response.docs.length > 0) {
+        return res.status(200).json({
+            message: "PRODUCTS READ",
+            response: response.docs,
+            prevPage: response.prevPage,
+            hasPrevPage: response.hasPrevPage,
+            nextPage: response.nextPage,
+            hasNextPage: response.hasNextPage
+        });
+    } else {
+        const error = new Error("PRODUCTS NOT FOUND");
+        error.statusCode = 404;
+        throw error;
+    }
+    } catch (error) {
+        return next(error)
+    }
+}
 const read = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -79,7 +106,41 @@ const destroy = async (req, res, next) => {
     }
 }
 
-export  {create, read, readAll, update, destroy}
+const showProducts = async (req, res, next) => {
+    try {
+    const { category } = req.query;
+    // const data = await productsMongoManager.read(category);
+    const data = await productsMongoManager.read(category);
+    if (data.length > 0) {
+        return res.render("home", {product: data});
+    } else {
+        const error = new Error("NOT FOUND PRODUCTS");
+        error.statusCode = 404;
+        throw error;
+    }
+    } catch (error) {
+    next(error)
+    }
+}
+// const detailProduct = async (req, res, next) => {
+//     // res es el objeto de respuesta a enviar al cliente
+//     try {
+//     const { id } = req.params;
+//     const prodID = await productsMongoManager.read(id);
+//     // response es la respuesta que se espera del manager (para leer un producto)
+//     if (prodID) {
+//         return res.render("productsDetail", { prod: prodID});     
+//     } else {
+//         const error = new Error(`Not found product with ID: ${id}`);
+//         error.statusCode = 404;
+//         throw error;
+//     }
+//     } catch (error) {
+//     return next(error)
+//     }
+// }
+
+export  {create, read, readAll, update, destroy, showProducts, paginate}
 
 // class ProductsManager{
 //   constructor() {}
@@ -213,23 +274,23 @@ export  {create, read, readAll, update, destroy}
 //     }
 //   }
 
-//   // async detailProduct(req, res, next) {
-//   //   // res es el objeto de respuesta a enviar al cliente
-//   //   try {
-//   //     const { id } = req.params;
-//   //     const prodID = await productsManager.readOne(id);
-//   //     // response es la respuesta que se espera del manager (para leer un producto)
-//   //     if (prodID) {
-//   //       return res.render("productsDetail", { prod: prodID});     
-//   //     } else {
-//   //       const error = new Error(`Not found product with ID: ${id}`);
-//   //       error.statusCode = 404;
-//   //       throw error;
-//   //     }
-//   //   } catch (error) {
-//   //     return next(error)
-//   //   }
-//   // }
+//   async detailProduct(req, res, next) {
+//     // res es el objeto de respuesta a enviar al cliente
+//     try {
+//       const { id } = req.params;
+//       const prodID = await productsManager.readOne(id);
+//       // response es la respuesta que se espera del manager (para leer un producto)
+//       if (prodID) {
+//         return res.render("productsDetail", { prod: prodID});     
+//       } else {
+//         const error = new Error(`Not found product with ID: ${id}`);
+//         error.statusCode = 404;
+//         throw error;
+//       }
+//     } catch (error) {
+//       return next(error)
+//     }
+//   }
   
 //   async productsAdmin (req, res, next){
 //     try {
