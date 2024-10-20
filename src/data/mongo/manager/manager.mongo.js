@@ -12,7 +12,7 @@ class MongoManager {
     };
     readAll = async (filter) => {
         try {
-            const all = await this.model.find(filter, "-__v").lean();
+            const all = await this.model.find(filter, "-__v")//.lean();
             return all;
         } catch (error) {
             throw error;
@@ -22,9 +22,6 @@ class MongoManager {
         // paginate va a devolver los documentos paginados
         try {
             opts.lean = true
-            // el segundo parametro del paginate NO ES SOLO PARA PAGINAR
-            // es para configuraciones en general
-            // por eso es aqui donde es necesario definir tmb "lean", ordenar, popular (si la hago manual), etc ,etc
             const all = await this.model.paginate(filter, opts)
             return all
         } catch (error) {

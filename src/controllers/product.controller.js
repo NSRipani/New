@@ -37,20 +37,20 @@ const paginate = async (req, res, next) => {
     // el primero es para el filtro
     // y el segundo es para la paginacion
     // console.log(response);    
-    if (response.docs.length > 0) {
-        return res.status(200).json({
-            message: "PRODUCTS READ",
-            response: response.docs,
-            prevPage: response.prevPage,
-            hasPrevPage: response.hasPrevPage,
-            nextPage: response.nextPage,
-            hasNextPage: response.hasNextPage
-        });
-    } else {
-        const error = new Error("PRODUCTS NOT FOUND");
-        error.statusCode = 404;
-        throw error;
-    }
+        if (response.docs.length > 0) {
+            return res.status(200).json({
+                message: "PRODUCTS READ",
+                response: response.docs,
+                prevPage: response.prevPage,
+                hasPrevPage: response.hasPrevPage,
+                nextPage: response.nextPage,
+                hasNextPage: response.hasNextPage
+            });
+        } else {
+            const error = new Error("PRODUCTS NOT FOUND");
+            error.statusCode = 404;
+            throw error;
+        }
     } catch (error) {
         return next(error)
     }

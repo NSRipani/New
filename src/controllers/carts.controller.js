@@ -29,7 +29,7 @@ const readAll = async (req, res, next) => {
 }
 const read = async (req, res, next) => {
     try {
-        const { id } = req.params.id;
+        const { id } = req.params;
         const response = await cartMongoManager.read(id);
         if (response) {
             return res.status(200).json({ message: "CART READ", response });

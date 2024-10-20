@@ -6,18 +6,23 @@ const collection = "carts";
 const schema = new Schema({
     user_id: {type: Types.ObjectId, ref: "users", required: true},
     products_id: {type: Types.ObjectId, ref: "products", required: true},
-    quantity: { type: String, required: true },
-    state: { type: String, default: "reserved", enum: ["reserved", "paid", "delivered"] }
+    quantity: { type: Number, required: true },
+    state: { type: String, enum: ["reserved", "paid", "delivered"], default: "reserved" }
 });
 
 schema.pre("find", function(){
+    this.populate("user_id", "email").populate("products_id", "price stock")
+})
+schema.pre("findOne", function(){
     this.populate("user_id", "email").populate("products_id", "price stock")
 })
 
 schema.pre("findOneAndUpdate", function(){
     this.populate("user_id", "email").populate("products_id", "price stock")
 })
-
+schema.pre("findOneAndDelete", function(){
+    this.populate("user_id", "email").populate("products_id", "price stock")
+})
 
 schema.plugin(mongoosePaginator)
 
