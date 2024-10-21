@@ -12,7 +12,7 @@ class MongoManager {
     };
     readAll = async (filter) => {
         try {
-            const all = await this.model.find(filter, "-__v")//.lean();
+            const all = await this.model.find(filter, "-__v").lean();
             return all;
         } catch (error) {
             throw error;

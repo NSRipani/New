@@ -33,18 +33,16 @@ const paginate = async (req, res, next) => {
     // const filter = req.query
         const { page, limit } = req.query
         const response = await productsMongoManager.paginate({}, { page, limit })
-    // paginate acepta dos argumentos
-    // el primero es para el filtro
-    // y el segundo es para la paginacion
-    // console.log(response);    
         if (response.docs.length > 0) {
             return res.status(200).json({
                 message: "PRODUCTS READ",
-                response: response.docs,
-                prevPage: response.prevPage,
+                docs: response.docs,
+                limit: response.limit,
+                page: response.page,
                 hasPrevPage: response.hasPrevPage,
-                nextPage: response.nextPage,
-                hasNextPage: response.hasNextPage
+                hasNextPage: response.hasNextPage,
+                prevPage: response.prevPage,
+                nextPage: response.nextPage
             });
         } else {
             const error = new Error("PRODUCTS NOT FOUND");
@@ -108,11 +106,20 @@ const destroy = async (req, res, next) => {
 
 const showProducts = async (req, res, next) => {
     try {
-    const { category } = req.query;
-    // const data = await productsMongoManager.read(category);
-    const data = await productsMongoManager.read(category);
+        // const {all} = req.params;
+        const { page = 1, limit = 10 } = req.query;  // Página 1 por defecto y límite de 10
+        const data = await productsMongoManager.paginate({} , { page, limit });
+        // const data = await productsMongoManager.read(category);
     if (data.length > 0) {
-        return res.render("home", {product: data});
+        // return res.render("home", {product: data});
+        return res.render("home", { 
+            products: data.docs,  // Los productos paginados
+            currentPage: data.page,
+            totalPages: data.totalPages,
+            hasPrevPage: data.hasPrevPage,
+            hasNextPage: data.hasNextPage,
+            prevPage: data.prevPage,
+            nextPage: data.nextPage});
     } else {
         const error = new Error("NOT FOUND PRODUCTS");
         error.statusCode = 404;
