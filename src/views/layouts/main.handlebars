@@ -22,16 +22,18 @@
                     <ul class="navbar-nav me-auto mx-auto align-self-center">
                         <li class="nav-item m-2">
                             <a class="nav-link active" aria-current="page" href="/">Inicio</a>
-                        </li> 
+                        </li>
+                        <li id="admin">
+                        </li>
                         {{!-- <li class="nav-item m-2">
                             <a class="nav-link" href="/">Home</a>
                         </li> --}}
                         {{!-- <li class="nav-item m-2">
                             <a class="nav-link" href="/users">Usuarios</a>
                         </li> --}}
-                        {{!-- <li class="nav-item m-2">
-                            <a class="nav-link" href="/products/admin">Ir al Gestor de Productos
-                        </li> --}}
+                        {{!-- <li id="admin" class="nav-item m-2">
+                            <a class="nav-link" href="/products/admin">Administrador
+                        </li>  --}}
                     </ul>
                     <ul class="navbar-nav"></ul>
                         <li class="nav-item list-unstyled m-2"></li>
@@ -39,16 +41,16 @@
                                 <i class="fas fa-user-plus"></i> Registrar Usuario
                             </a>
                         </li>
-                        <li class="nav-item list-unstyled m-2" >
+                        <li class="nav-item list-unstyled m-2" id="nav-item">
                             <a class="nav-link active" href="/users/login">
                                 <i class="fas fa-user"></i> Iniciar Sesión
                             </a>
                         </li>
-                        {{!-- <li class="nav-item list-unstyled m-2">products
-                            <a class="nav-link active" href="/cart">
+                        <li class="nav-item list-unstyled m-2">
+                            <a class="nav-link active" href="/carts/view">
                                 <i class="fas fa-shopping-cart"></i> Carrito
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
                 </div>
             </div>

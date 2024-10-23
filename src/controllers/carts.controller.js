@@ -78,4 +78,12 @@ const destroy = async (req, res, next) => {
     }
 }
 
-export  {create, read, readAll, update, destroy}
+const cart = (req, res, next) => {
+    try {
+        return res.render('cart');
+    } catch (error) {
+        return next(error)
+    }
+}
+
+export  {create, read, readAll, update, destroy, cart}

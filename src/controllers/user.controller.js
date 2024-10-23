@@ -78,6 +78,24 @@ const destroy = async (req, res, next) => {
     }
 }
 
+// const loginFilter = async (req, res, next) => {
+//     try {
+//         const { email, role } = req.params;
+//         const usersAll = await usersMongoManager.read();
+        
+//         // Filtrar usuarios por rol
+//         const user = usersAll.find(user => user.role === role && user.email === email);
+        
+//         if (user) {
+//             return res.status(401).send('Contraseña incorrecta');
+//         } else {
+//         return res.status(404).send('Usuario no encontrado');
+//         }
+//     } catch (error) {
+//         return next(error)
+//     }
+// }
+
 const userRegiter = (req, res, next) => {
     try {
         return res.render('userRegister');
@@ -92,7 +110,16 @@ const login = (req, res, next) => {
         return next(error)
     }
 }
-export  {create, read, readAll, update, destroy, userRegiter, login}
+
+const admin = (req, res, next) => {
+    try {
+        return res.render('panelAdmin');
+    } catch (error) {
+        return next(error)
+    }
+}
+
+export  {create, read, readAll, update, destroy, userRegiter, login, admin}
 
 // class UserController{
 //   constructor() {}

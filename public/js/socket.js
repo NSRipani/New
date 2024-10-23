@@ -28,6 +28,7 @@ socket.on("producs filtered", (data) => {
                     <p class="card-text"><strong>Sstock: ${each.stock} u.</strong></p>
                     <div class="d-flex justify-content-center flex-wrap">
                         <a href="/cart/${each.id}" class="btn btn-success m-2">Agregar al carrito</a>
+                        <a href="/products/${each.id}" class="btn btn-primary m-2">Ver detalle</a>
                     </div>
                 </div>
             </div>
@@ -36,5 +37,4 @@ socket.on("producs filtered", (data) => {
     .join("");
     document.querySelector("#productsList").innerHTML = filterProducts;
 });                        
-//<a href="/products/${each.id}" class="btn btn-primary m-2">Ver detalle</a>
 

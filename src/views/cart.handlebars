@@ -1,0 +1,37 @@
+<div class="container mt-5">
+<h2 class="text-center">Tu Carrito de Compras</h2>
+<div class="text-right mb-3">
+    <a href="/" class="btn btn-primary">Volver al Inicio</a>
+</div>{{#if items.length}}
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each items}}
+            <tr>
+            <td>{{this.name}}</td>
+            <td>${{this.price}}</td>
+            <td>{{this.quantity}}</td>
+            <td>
+                <button class="btn btn-danger remove-item" data-id="{{this.id}}">Eliminar</button>
+            </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    <h3 class="text-right">Total: ${{total}}</h3>
+    <div class="text-right">
+        <button id="checkout" class="btn btn-success">Proceder al Pago</button>
+    </div>
+    </div>
+{{else}}
+    <p class="text-center">No hay artículos en tu carrito.</p>
+{{/if}}
+</div>

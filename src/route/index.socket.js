@@ -22,10 +22,9 @@ const socket = (socket) => {
         try {
             const { email, password } = data; // Obtener el email y la contraseña del cliente
             // Llamar a la función que valida las credenciales
-            const dataUser = await usersMongoManager.readByCredentials(email, password);
+            const dataUser = await usersMongoManager.readLogin(email, password);
             
             if (dataUser) {
-                console.log(dataUser)
                 socket.emit('loginResponse', { success: true, user: dataUser });
             } else {
                 socket.emit('loginResponse', { success: false, message: 'Credenciales incorrectas' });
@@ -34,6 +33,12 @@ const socket = (socket) => {
             console.error("Error durante el login: ", error);
             socket.emit('loginResponse', { success: false, message: 'Error en el servidor' });
         }
+    });
+
+    socket.on('logout', () => {
+        // Aquí puedes realizar cualquier limpieza necesaria
+        console.log('Usuario desconectado: ' + socket.id);
+        // Si estás usando sesiones en el servidor, puedes invalidar la sesión aquí
     });
 }
 

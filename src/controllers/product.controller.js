@@ -1,5 +1,4 @@
 import productsMongoManager from "../data/mongo/manager/products.manager.js";
-// import productsManager from './../data/fs/products.manager.js';
 
 const create = async (req, res, next) => {
     try {
@@ -107,47 +106,34 @@ const destroy = async (req, res, next) => {
 const showProducts = async (req, res, next) => {
     try {
         // const {all} = req.params;
-        const { page = 1, limit = 10 } = req.query;  // Página 1 por defecto y límite de 10
-        const data = await productsMongoManager.paginate({} , { page, limit });
-        // const data = await productsMongoManager.read(category);
+        const { category } = req.query
+        const data = await productsMongoManager.read(category);
     if (data.length > 0) {
-        // return res.render("home", {product: data});
-        return res.render("home", { 
-            products: data.docs,  // Los productos paginados
-            currentPage: data.page,
-            totalPages: data.totalPages,
-            hasPrevPage: data.hasPrevPage,
-            hasNextPage: data.hasNextPage,
-            prevPage: data.prevPage,
-            nextPage: data.nextPage});
+        return res.render("home", {product: data});
     } else {
         const error = new Error("NOT FOUND PRODUCTS");
         error.statusCode = 404;
         throw error;
     }
     } catch (error) {
-    next(error)
+        return next(error)
     }
 }
-// const detailProduct = async (req, res, next) => {
-//     // res es el objeto de respuesta a enviar al cliente
-//     try {
-//     const { id } = req.params;
-//     const prodID = await productsMongoManager.read(id);
-//     // response es la respuesta que se espera del manager (para leer un producto)
-//     if (prodID) {
-//         return res.render("productsDetail", { prod: prodID});     
-//     } else {
-//         const error = new Error(`Not found product with ID: ${id}`);
-//         error.statusCode = 404;
-//         throw error;
-//     }
-//     } catch (error) {
-//     return next(error)
-//     }
-// }
+const detailProduct = async (req, res, next) => {
+    try {
+    //     const {id} = req.params; // Obtén el ID del producto de los parámetros de la solicitud
+    //     const product = await productsMongoManager.readAll(id); // Usa el método read para obtener el producto
+    //     console.log(product);
+        
+    //     if (!product) {
+        // return res.status(404).render("notFound"); // Renderiza una vista de no encontrado si el producto no existe
+        return res.render("productsDetail");
+    } catch (error) {
+        return next(error)
+    }
+}
 
-export  {create, read, readAll, update, destroy, showProducts, paginate}
+export  {create, read, readAll, update, destroy, showProducts, detailProduct ,paginate}
 
 // class ProductsManager{
 //   constructor() {}

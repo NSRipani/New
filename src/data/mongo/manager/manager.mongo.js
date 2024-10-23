@@ -36,6 +36,15 @@ class MongoManager {
             throw error;
         }
     };
+    readLogin = async (email,password) => {
+        try {
+            const one = await this.model.findOne({ email: email, password: password });
+            return one;
+        } catch (error) {
+            throw error;
+        }
+    };
+
     update = async (id, data) => {
         try {
         const opts = { new: true };
