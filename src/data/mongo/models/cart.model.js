@@ -1,6 +1,6 @@
 // se crea el model de como se guardan los datos
 import { Schema, model, Types} from "mongoose";
-import mongoosePaginator from 'mongoose-paginate-v2'
+import mongoosePaginate from 'mongoose-paginate-v2'
 
 const collection = "carts";
 const schema = new Schema({
@@ -24,7 +24,7 @@ schema.pre("findOneAndDelete", function(){
     this.populate("user_id", "email").populate("products_id", "price stock")
 })
 
-schema.plugin(mongoosePaginator)
+schema.plugin(mongoosePaginate)
 
 const Cart = model(collection, schema);
 export default Cart;

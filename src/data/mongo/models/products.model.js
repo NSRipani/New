@@ -1,7 +1,7 @@
 // se crea el model de como se guardan los datos
 
 import { Schema, model } from "mongoose";
-import  mongoosePaginator from 'mongoose-paginate-v2'
+import  mongoosePaginate from 'mongoose-paginate-v2'
 
 
 const collection = "products";
@@ -13,7 +13,7 @@ const schema = new Schema({
     stock: { type: Number, default: 1 }
 });
 
-schema.plugin(mongoosePaginator)
+schema.plugin(mongoosePaginate)
 
 const Product = model(collection, schema);
 export default Product;

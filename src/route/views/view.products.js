@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { showProducts, detailProduct } from "../../controllers/product.controller.js";
+import { prodAdmin, showProducts } from "../../controllers/product.controller.js";
 
 const productView = Router()
 
 productView.get("/", showProducts)
-productView.get("/:id", detailProduct)
+productView.get("/admin", prodAdmin)
 
 export default productView
