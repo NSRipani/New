@@ -4,21 +4,31 @@ const btnlogin = document.querySelector('#btn-login');
 
 btnlogin.addEventListener("click", (event) => {
     event.preventDefault();
-    
+
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value.trim();
+
+    if (!email || !password) {
+        Toastify({
+            text: "Por favor, complete todos los campos",
+            duration: 3000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "#F44336",
+        }).showToast();
+        return;
+    }
+
     const data = { email, password };
-    
-    // Emitir evento de inicio de sesión
+
     socket.emit('login', data);
 });
 
-// Escuchar la respuesta del servidor
 socket.on('loginResponse', function(response) {
     if (response.success) {
-        // Almacena el token en local storage
         localStorage.setItem('sessionToken', response.token);
-        // Si el inicio de sesión fue exitoso
+        localStorage.setItem('role', response.role);
+
         Toastify({
             text: "Inicio de sesión exitoso",
             duration: 3000,
@@ -26,16 +36,16 @@ socket.on('loginResponse', function(response) {
             position: "center",
             backgroundColor: "#4CAF50",
         }).showToast();
-        
-        // Cambiar el ítem del navbar
-        const navItem = document.querySelector('#nav-item'); // Cambia esto al selector correcto
-        navItem.textContent = 'Online'; // Cambia el texto del ítem
-        // navItem.href = "/users/panelAdmin" // Cambia esto si necesitas redirigir a otra parte
 
-        // Redirigir o realizar otra acción
-        window.location.href = "/";
+        window.location.href = '/users/panelAdmin'
+        const navItem = document.querySelector('#nav-item a');
+        navItem.textContent = 'Online';
+        
+        if (response.role === 'admin') {
+            const adminLink = document.querySelector('#admin-link');
+            adminLink.style.display = 'block';
+        }
     } else {
-        // Si hubo un error
         Toastify({
             text: `Error: ${response.message}`,
             duration: 3000,
@@ -44,8 +54,20 @@ socket.on('loginResponse', function(response) {
             backgroundColor: "#F44336",
         }).showToast();
     }
-    // Función para verificar si el usuario está logueado
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (isLoggedIn()) {
+        
+        if (localStorage.getItem('role') === 'admin') {
+            const adminLink = document.querySelector('#admin-link');
+            adminLink.style.display = 'block';
+        }
+    }
+});
+
 function isLoggedIn() {
     return localStorage.getItem('sessionToken') !== null;
 }
+
+

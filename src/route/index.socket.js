@@ -1,11 +1,6 @@
-// import usersManager from "../data/user.manager.js"
-
 import { socketServer } from "../../server.js";
 import productsMongoManager from "../data/mongo/manager/products.manager.js";
-// import productsMongoManager from "../data/mongo/manager/products.manager.js";
 import usersMongoManager from "../data/mongo/manager/user.manager.js";
-
-
 
 const socket = (socket) => {
     console.log(socket.id)
@@ -18,28 +13,44 @@ const socket = (socket) => {
     })
 
     socket.on('login', async (data) => {
-    
         try {
-            const { email, password } = data; // Obtener el email y la contraseña del cliente
-            // Llamar a la función que valida las credenciales
+            const { email, password } = data;
+            // Validar las credenciales del usuario
             const dataUser = await usersMongoManager.readLogin(email, password);
-            
+
             if (dataUser) {
-                socket.emit('loginResponse', { success: true, user: dataUser });
+                const sessionToken = generateSessionToken(dataUser._id);
+
+                socket.emit('loginResponse', {
+                    success: true,
+                    token: sessionToken,
+                    role: dataUser.role,
+                    message: 'Inicio de sesión exitoso'
+                });
             } else {
-                socket.emit('loginResponse', { success: false, message: 'Credenciales incorrectas' });
+                socket.emit('loginResponse', { 
+                    success: false, 
+                    message: 'Credenciales incorrectas' 
+                });
             }
         } catch (error) {
             console.error("Error durante el login: ", error);
-            socket.emit('loginResponse', { success: false, message: 'Error en el servidor' });
+            socket.emit('loginResponse', { 
+                success: false, 
+                message: 'Error en el servidor' 
+            });
         }
     });
 
     socket.on('logout', () => {
-        // Aquí puedes realizar cualquier limpieza necesaria
         console.log('Usuario desconectado: ' + socket.id);
-        // Si estás usando sesiones en el servidor, puedes invalidar la sesión aquí
+        
+        socket.emit('logoutResponse', { success: true, message: 'Sesión cerrada correctamente' });
     });
+};
+
+function generateSessionToken(userId) {
+    return `session_${userId}_${Date.now()}`;
 }
 
 export default socket

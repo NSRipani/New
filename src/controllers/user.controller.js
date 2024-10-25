@@ -78,23 +78,22 @@ const destroy = async (req, res, next) => {
     }
 }
 
-// const loginFilter = async (req, res, next) => {
-//     try {
-//         const { email, role } = req.params;
-//         const usersAll = await usersMongoManager.read();
+const loginFilter = async (req, res, next) => {
+    try {
+        const { email, role } = req.query; 
+        const users = await usersMongoManager.readLogin({email, role});
         
-//         // Filtrar usuarios por rol
-//         const user = usersAll.find(user => user.role === role && user.email === email);
+        const user = users.find(user => user.role === role && user.email === email);
         
-//         if (user) {
-//             return res.status(401).send('Contraseña incorrecta');
-//         } else {
-//         return res.status(404).send('Usuario no encontrado');
-//         }
-//     } catch (error) {
-//         return next(error)
-//     }
-// }
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        } else {
+            return res.status(200).json({ message: 'User found', data: user });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
 
 const userRegiter = (req, res, next) => {
     try {
@@ -125,5 +124,5 @@ const userAdmin = (req, res, next) => {
         return next(error)
     }
     }
-export  {create, read, readAll, update, destroy, userRegiter, userAdmin, login, admin}
+export  {create, read, readAll, update, destroy, userRegiter,loginFilter, userAdmin, login, admin}
 

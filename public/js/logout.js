@@ -3,14 +3,15 @@ const socket = io();
 const btnLogout = document.querySelector('#btn-logout');
 
 btnLogout.addEventListener("click", (event) => {
-    event.preventDefault(); // Evitar la acción por defecto del enlace
-    // Emitir el evento de cierre de sesión
+    event.preventDefault(); 
+
     socket.emit('logout');
 
-    // Eliminar el token de sesión local
     localStorage.removeItem('sessionToken');
+    localStorage.removeItem('userRole');
 
-    // Mostrar mensaje de confirmación
+    removeAdminLink();
+
     Toastify({
         text: "Has cerrado sesión exitosamente",
         duration: 3000,
@@ -19,6 +20,12 @@ btnLogout.addEventListener("click", (event) => {
         backgroundColor: "#FF5722",
     }).showToast();
 
-    // Redirigir al usuario a la página de inicio o login
-    window.location.href = "/login"; // Cambia esto a la URL deseadaseada
+    window.location.href = "/users/login";
 });
+
+function removeAdminLink() {
+    const adminLink = document.querySelector('#admin-link');
+    if (adminLink) {
+        adminLink.remove();
+    }
+}
