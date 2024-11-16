@@ -1,13 +1,16 @@
 // se crea el model de como se guardan los datos
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 import mongoosePaginate from 'mongoose-paginate-v2'
 
 const collection = "users";
 const schema = new Schema({
-    photo: { type: String, default: "https://www.shutterstock.com/image-vector/silver-membership-icon-default-avatar-260nw-2499645557.jpg" },
+    first_name: {type: String, require: true},
+    last_name: {type: String, require: true},
     email: { type: String, required: true, index: true },
+    age: {type: Number, require: true},
     password: { type: Number, require: true },
-    role: { type: String, required: true, index: true}
+    cart_id: {type: Types.ObjectId, ref: "carts", required: true},
+    role: { type: String, default: "user", index: true}
 });
 
 schema.plugin(mongoosePaginate)

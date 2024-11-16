@@ -11,6 +11,7 @@ import __dirname from './utils.js';
 import socket from "./src/route/index.socket.js";
 import { createServer } from 'http';
 import dbConnect from "./src/utils/db.utils.js";
+import cookieParser from "cookie-parser";
 
 const server = express();
 const port = process.env.PORT;
@@ -29,6 +30,7 @@ server.engine("handlebars", engine())
 server.set("view engine", "handlebars")
 server.set("views", __dirname + "/src/views")
 
+server.use(cookieParser())
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(morgan('dev'))

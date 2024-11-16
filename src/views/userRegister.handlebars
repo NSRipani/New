@@ -4,15 +4,29 @@
         <form method="POST" action="/">
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="email" class="form-label">Correo Electrónico</label>
-                    <input required type="email" class="form-control" id="email" name="email" >
+                    <label for="first_name" class="form-label">Nombre</label>
+                    <input required type="text" class="form-control" id="first_name" name="first_name">
                 </div>
+                <div class="col-md-6 mb-3">
+                    <label for="last_name" class="form-label">Apellido</label>
+                    <input required type="text" class="form-control" id="last_name" name="last_name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input required type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="age" class="form-label">Edad</label>
+                    <input required type="number" class="form-control" id="age" name="age">
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="password" class="form-label">Contraseña</label>
                     <input required type="password" class="form-control" id="password" name="password">
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="role" class="form-label">Rol</label>
                     <select required class="form-select" id="role" name="role">
@@ -20,10 +34,6 @@
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                     </select>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="profilePic" class="form-label">Foto de Perfil</label>
-                    <input required type="file" class="form-control" id="profilePic" name="profilePic" accept="image/*">
                 </div>
             </div>
             <div class="text-center">
@@ -35,5 +45,6 @@
         </div>
     </div>
 </div>
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="/public/js/socket.js"></script>
