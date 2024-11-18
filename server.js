@@ -7,7 +7,7 @@ import { Server } from "socket.io";
 import errorHandler from "./src/middleware/errorHandler.js";
 import pathHandler from "./src/middleware/pathHandler.js";
 import router from './src/route/index.route.js';
-import __dirname from './utils.js';
+import { __dirname } from './utils.js';
 import socket from "./src/route/index.socket.js";
 import { createServer } from 'http';
 import dbConnect from "./src/utils/db.utils.js";

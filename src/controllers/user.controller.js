@@ -1,9 +1,9 @@
-import usersMongoManager from "../data/mongo/manager/user.manager.js";
+import usersDao from "../data/mongo/dao/dao.user.js";
     
 const create = async (req, res, next) => {
 try {
     const data = req.body
-    const response = await usersMongoManager.create(data)
+    const response = await usersDao.create(data)
     return res.status(201).json({
         message: "USERS CREATED",
         response: response._id
@@ -15,7 +15,7 @@ try {
 const readAll = async (req, res, next) => {
 try {
     const filter = req.query
-    const response = await usersMongoManager.readAll(filter)
+    const response = await usersDao.readAll(filter)
     if (response.length > 0) {
         return res.status(200).json({ message: "USERS READ", response });
     } else {
@@ -30,7 +30,7 @@ try {
 const read = async (req, res, next) => {
 try {
     const { id } = req.params;
-    const response = await usersMongoManager.read(id);
+    const response = await usersDao.read(id);
     if (response) {
         return res.status(200).json({ message: "USER READ", response });
     } else {
@@ -46,7 +46,7 @@ const update = async (req, res, next) => {
 try {
     const { id } = req.params;
     const data = req.body;
-    const response = await usersMongoManager.update(id, data);
+    const response = await usersDao.update(id, data);
     if (response) {
         return res
             .status(200)
@@ -63,7 +63,7 @@ try {
 const destroy = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const response = await usersMongoManager.destroy(id);
+        const response = await usersDao.destroy(id);
         if (response) {
             return res
                 .status(200)
@@ -81,7 +81,7 @@ const destroy = async (req, res, next) => {
 const loginFilter = async (req, res, next) => {
     try {
         const { email, role } = req.query; 
-        const users = await usersMongoManager.readLogin({email, role});
+        const users = await usersDao.readLogin({email, role});
         
         const user = users.find(user => user.role === role && user.email === email);
         

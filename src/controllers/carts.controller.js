@@ -1,9 +1,9 @@
-import cartMongoManager from "../data/mongo/manager/cart.manager.js";
+import cartsDao from "../data/mongo/dao/dao.carts.js";
 
 const create = async (req, res, next) => {
     try {
         const data = req.body
-        const response = await cartMongoManager.create(data)
+        const response = await cartsDao.create(data)
         return res.status(201).json({
             message: "CART CREATED",
             response: response._id
@@ -15,7 +15,7 @@ const create = async (req, res, next) => {
 const readAll = async (req, res, next) => {
     try {
         const filter = req.query
-        const response = await cartMongoManager.readAll(filter)
+        const response = await cartsDao.readAll(filter)
         if (response.length > 0) {
             return res.status(200).json({ message: "CARTS READ", response });
         } else {
@@ -30,7 +30,7 @@ const readAll = async (req, res, next) => {
 const read = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const response = await cartMongoManager.read(id);
+        const response = await cartsDao.read(id);
         if (response) {
             return res.status(200).json({ message: "CART READ", response });
         } else {
@@ -46,7 +46,7 @@ const update = async (req, res, next) => {
     try {
         const { id } = req.params;
         const data = req.body;
-        const response = await cartMongoManager.update(id, data);
+        const response = await cartsDao.update(id, data);
         if (response) {
             return res
                 .status(200)
@@ -63,7 +63,7 @@ const update = async (req, res, next) => {
 const destroy = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const response = await cartMongoManager.destroy(id);
+        const response = await cartsDao.destroy(id);
         if (response) {
             return res
                 .status(200)

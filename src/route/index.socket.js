@@ -1,6 +1,6 @@
 import { socketServer } from "../../server.js";
-import productsMongoManager from "../data/mongo/manager/products.manager.js";
-import usersMongoManager from "../data/mongo/manager/user.manager.js";
+import productsMongoManager from "../data/mongo/dao/dao.product.js";
+import usersMongoManager from "../data/mongo/dao/dao.user.js";
 
 const socket = (socket) => {
     console.log(socket.id)

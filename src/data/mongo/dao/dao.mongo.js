@@ -1,4 +1,4 @@
-class MongoManager {
+class MongoDao {
     constructor(model) {
         this.model = model;
     }
@@ -66,4 +66,4 @@ class MongoManager {
     
 }
 
-export default MongoManager;
+export default MongoDao;

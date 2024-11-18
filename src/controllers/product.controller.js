@@ -1,9 +1,9 @@
-import productsMongoManager from "../data/mongo/manager/products.manager.js";
+import productsDao from "../data/mongo/dao/dao.product.js";
 
 const create = async (req, res, next) => {
     try {
         const data = req.body
-        const response = await productsMongoManager.create(data)
+        const response = await productsDao.create(data)
         return res.status(201).json({
             message: "PRODUCTS CREATED",
             response: response._id
@@ -15,7 +15,7 @@ const create = async (req, res, next) => {
 const readAll = async (req, res, next) => {
     try {
         const filter = req.query
-        const response = await productsMongoManager.readAll(filter)
+        const response = await productsDao.readAll(filter)
         if (response.length > 0) {
             return res.status(200).json({ message: "PRODUCTS READ", response });
         } else {
@@ -32,7 +32,7 @@ const paginate = async (req, res, next) => {
         // const filter = req.query
         const { page, limit } = req.query;
 
-        const response = await productsMongoManager.paginate({}, { page, limit })
+        const response = await productsDao.paginate({}, { page, limit })
         if (response.docs.length > 0) {
             return res.status(200).json({
                 message: "PRODUCTS READ",
@@ -57,7 +57,7 @@ const paginate = async (req, res, next) => {
 const read = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const response = await productsMongoManager.read(id);
+        const response = await productsDao.read(id);
         if (response) {
             return res.status(200).json({ message: "PRODUCTS READ", response });
         } else {
@@ -73,7 +73,7 @@ const update = async (req, res, next) => {
     try {
         const { id } = req.params;
         const data = req.body;
-        const response = await productsMongoManager.update(id, data);
+        const response = await productsDao.update(id, data);
         if (response) {
             return res
                 .status(200)
@@ -90,7 +90,7 @@ const update = async (req, res, next) => {
 const destroy = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const response = await productsMongoManager.destroy(id);
+        const response = await productsDao.destroy(id);
         if (response) {
             return res
                 .status(200)
@@ -109,7 +109,7 @@ const showProducts = async (req, res, next) => {
     try {
     const { category } = req.query;
     // const data = await productsMongoManager.read(category);
-    const data = await productsMongoManager.readAll(category);
+    const data = await productsDao.readAll(category);
     if (data.length > 0) {
         return res.render("home", {product: data});
     } else {

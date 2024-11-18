@@ -1,5 +1,5 @@
 import Users from "../models/user.model.js";
-import MongoManager from "./manager.mongo.js";
+import MongoDao from "./dao.mongo.js";
 
 // class UsersMongoManager {
 //     async create(data) {
@@ -47,5 +47,5 @@ import MongoManager from "./manager.mongo.js";
 // }
 
 
-const usersMongoManager = new MongoManager(Users);
-export default usersMongoManager;
+const usersDao = new MongoDao(Users);
+export default usersDao;

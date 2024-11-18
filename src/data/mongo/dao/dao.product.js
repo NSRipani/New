@@ -1,5 +1,5 @@
 import Product from "../models/products.model.js";
-import MongoManager from "./manager.mongo.js";
+import MongoDao from "./dao.mongo.js";
 
 // class ProductsMongoManager {
 //     create = async (data) => {
@@ -46,5 +46,5 @@ import MongoManager from "./manager.mongo.js";
 //     }
 // }
 
-const productsMongoManager = new MongoManager(Product);
-export default productsMongoManager;
+const productsDao = new MongoDao(Product);
+export default productsDao;
