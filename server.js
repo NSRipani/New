@@ -12,6 +12,7 @@ import socket from "./src/route/index.socket.js";
 import { createServer } from 'http';
 import dbConnect from "./src/utils/db.utils.js";
 import cookieParser from "cookie-parser";
+import session from "express-session";
 
 const server = express();
 const port = process.env.PORT;
@@ -30,9 +31,15 @@ server.engine("handlebars", engine())
 server.set("view engine", "handlebars")
 server.set("views", __dirname + "/src/views")
 
-server.use(cookieParser())
-server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+
+server.use(cookieParser())
+server.use(session())
+
+server.use(passport.initialize());
+server.use(passport.session());
+
 server.use(morgan('dev'))
 server.use(cors())
 server.use('/public', express.static(__dirname + '/public'));

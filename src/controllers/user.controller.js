@@ -77,32 +77,45 @@ const destroy = async (req, res, next) => {
         return next(error)
     }
 }
-
-const loginFilter = async (req, res, next) => {
+const registerResponse = async (req, res, next) => {
     try {
-        const { email, role } = req.query; 
-        const users = await usersDao.readLogin({email, role});
+        res.json({
+            message: 'Register OK',
+            session: req.session
+        })
+        } catch (error) {
+        next(error);
+    }
+};
+const login = async (req, res, next) => {
+    try {
+        //req.session.passport.user
+        const id = req.session.passport.user || null;
+        const user = await services.getUserById(id);
+        res.json(user);
+        // const { email, role } = req.query; 
+        // const users = await usersDao.readLogin({email, role});
         
-        const user = users.find(user => user.role === role && user.email === email);
+        // const user = users.find(user => user.role === role && user.email === email);
         
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        } else {
-            return res.status(200).json({ message: 'User found', data: user });
-        }
+        // if (!user) {
+        //     return res.status(404).json({ message: 'User not found' });
+        // } else {
+        //     return res.status(200).json({ message: 'User found', data: user });
+        // }
     } catch (error) {
         next(error);
     }
 };
 
-const userRegiter = (req, res, next) => {
+const regiterView = (req, res, next) => {
     try {
         return res.render('userRegister');
     } catch (error) {
         return next(error)
     }
 }
-const login = (req, res, next) => {
+const loginView = (req, res, next) => {
     try {
         return res.render('login');
     } catch (error) {
@@ -124,5 +137,5 @@ const userAdmin = (req, res, next) => {
         return next(error)
     }
     }
-export  {create, read, readAll, update, destroy, userRegiter,loginFilter, userAdmin, login, admin}
+export  {create, read, readAll, update, destroy, regiterView,registerResponse,login, userAdmin, loginView, admin}
 
