@@ -1,6 +1,13 @@
 import Product from "../models/products.model.js";
 import MongoDao from "./dao.mongo.js";
 
+class ProductDaoMongo extends MongoDao {
+    constructor(){
+        super(Product);
+    }
+};
+
+export const prodDao = new ProductDaoMongo();
 // class ProductsMongoManager {
 //     create = async (data) => {
 //         try {
@@ -46,5 +53,5 @@ import MongoDao from "./dao.mongo.js";
 //     }
 // }
 
-const productsDao = new MongoDao(Product);
-export default productsDao;
+// const productsDao = new MongoDao(Product);
+// export default productsDao;

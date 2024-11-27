@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import * as services from "../services/user.services.js";
+import * as userService from "../services/user.services.js";
 
 const strategyConfig = {
     usernameField: "email",
@@ -10,7 +10,7 @@ const strategyConfig = {
 
 const register = async (req, email, password, done) => {
     try {
-        const user = await services.getUserByEmail(email);
+        const user = await userService.getUserByEmail(email);
         if (user) return done(null, false, { message: "User already exists" });
         const newUser = await services.register(req.body);
         return done(null, newUser);
@@ -21,7 +21,7 @@ const register = async (req, email, password, done) => {
 
 const login = async (req, email, password, done) => {
     try {
-        const userLogin = await services.login(email, password);
+        const userLogin = await userService.login(email, password);
         if (userLogin) return done(null, userLogin);
     } catch (error) {
         done(error);

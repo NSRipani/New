@@ -6,11 +6,11 @@ const collection = "users";
 const schema = new Schema({
     first_name: {type: String, require: true},
     last_name: {type: String, require: true},
-    email: { type: String, required: true, index: true },
+    email: { type: String, required: true, unique: true },
     age: {type: Number, require: true},
-    password: { type: Number, require: true },
+    password: { type: Number, require: true, default: ' ' },
     cart_id: {type: Types.ObjectId, ref: "carts", required: true},
-    role: { type: String, default: "user", index: true}
+    role: { type: String, default: "user"}
 });
 
 schema.plugin(mongoosePaginate)

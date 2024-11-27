@@ -47,7 +47,7 @@ class MongoDao {
 
     update = async (id, data) => {
         try {
-        const opts = { new: true };
+            const opts = { new: true };
             //para devolver el objeto luego de la modifiacion
             const one = await this.model.findOneAndUpdate({_id: id}, data, opts);
             return one;
