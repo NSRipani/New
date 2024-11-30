@@ -1,14 +1,17 @@
-import { userDao } from "../data/mongo/dao/dao.user.js";
-import Controllers from './controller';
+import Controllers from './controller.js';
+import { userService } from './../service/user.service.js';
 
 class UserController extends Controllers {
     constructor(){
-        super(userDao)
+        super(userService)
     }
+
+    // agregar funciones 'login', 'regitrer' y 'private'
+
     create = async (req, res, next) => {
         try {
             const data = req.body
-            const response = await usersDao.create(data)
+            const response = await this.service.create(data)
             return res.status(201).json({
                 message: "USERS CREATED",
                 response: response._id
@@ -20,7 +23,7 @@ class UserController extends Controllers {
     readAll = async (req, res, next) => {
         try {
             const filter = req.query
-            const response = await usersDao.readAll(filter)
+            const response = await this.service.readAll(filter)
             if (response.length > 0) {
                 return res.status(200).json({ message: "USERS READ", response });
             } else {
@@ -35,7 +38,7 @@ class UserController extends Controllers {
     read = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await usersDao.read(id);
+            const response = await this.service.read(id);
             if (response) {
                 return res.status(200).json({ message: "USER READ", response });
             } else {
@@ -51,7 +54,7 @@ class UserController extends Controllers {
         try {
             const { id } = req.params;
             const data = req.body;
-            const response = await usersDao.update(id, data);
+            const response = await this.service.update(id, data);
             if (response) {
                 return res
                     .status(200)
@@ -68,7 +71,7 @@ class UserController extends Controllers {
     destroy = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await usersDao.destroy(id);
+            const response = await this.service.destroy(id);
             if (response) {
                 return res
                     .status(200)
@@ -113,28 +116,5 @@ class UserController extends Controllers {
     }
 }
 
-export default UserController;
-
-// export  {create, read, readAll, update, destroy, regiterView,registerResponse,login, userAdmin, loginView, admin}
-
-// const registerResponse = async (req, res, next) => {
-//     try {
-//     res.json({
-//         message: 'Register OK',
-//         session: req.session
-//     })
-//     } catch (error) {
-//     next(error);
-// }
-// const login = async (req, res, next) => {
-//     try {
-//         //req.session.passport.user
-//         const id = req.session.passport.user || null;
-//         const user = await services.getUserById(id);
-//         res.json(user);
-//     } catch (error) {
-//         next(error);
-//     }
-// };
-
-
+const usersController = new UserController();
+export default usersController;

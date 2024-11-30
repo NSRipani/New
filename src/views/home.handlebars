@@ -41,6 +41,15 @@
                     {{/each}}
                 </div>
             </div>
+            <div class="pagination">
+                {{#if hasPrevPage}}
+                    <a href="?page={{prevPage}}">Anterior</a>
+                {{/if}}
+                Página {{currentPage}} de {{totalPages}}
+                {{#if hasNextPage}}
+                    <a href="?page={{nextPage}}">Siguiente</a>
+                {{/if}}
+            </div>
         </div>
     </div>
 </section>
