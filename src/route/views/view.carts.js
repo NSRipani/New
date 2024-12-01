@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { cart } from "../../controllers/carts.controller.js";
+// import { cart } from "../../controllers/carts.controller.js";
 
 const cartView = Router()
 
-cartView.get("/view", cart)
+// cartView.get("/view", cart)
 
 export default cartView

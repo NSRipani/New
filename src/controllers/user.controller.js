@@ -8,6 +8,19 @@ class UserController extends Controllers {
 
     // agregar funciones 'login', 'regitrer' y 'private'
 
+    // Ejemplo: Autenticar usuario
+    authenticateUser = async (email, password) => {
+        try {
+            const user = await this.dao.findByEmail(email);
+            if (user && user.password === password) {
+                return user;
+            }
+            throw new Error('Invalid credentials');
+        } catch (error) {
+            throw error;
+        }
+    };
+
     create = async (req, res, next) => {
         try {
             const data = req.body

@@ -1,16 +1,16 @@
-// import { socketServer } from "../../server.js";
-// import productsMongoManager from "../data/mongo/dao/dao.product.js";
+import { socketServer } from "../../server.js";
 // import usersMongoManager from "../data/mongo/dao/dao.user.js";
+import { prodDao } from './../dao/mongo/dao.product.js';
 
-// const socket = (socket) => {
+const socket = (socket) => {
 //     console.log(socket.id)
 
-//     socket.on("products filter", async category => {
-//         const data = await  productsMongoManager.readAll();
-//         const products = category ? data.filter(product => product.category.toLowerCase() === category.toLowerCase()) : data;
+    socket.on("products filter", async category => {
+        const data = await prodDao.readAll();
+        const products = category ? data.filter(product => product.category.toLowerCase() === category.toLowerCase()) : data;
 
-//         socketServer.emit("producs filtered", products)
-//     })
+        socketServer.emit("producs filtered", products)
+    })
 
 //     socket.on('login', async (data) => {
 //         try {
@@ -51,6 +51,6 @@
 
 // function generateSessionToken(userId) {
 //     return `session_${userId}_${Date.now()}`;
-// }
+}
 
-// export default socket
+export default socket

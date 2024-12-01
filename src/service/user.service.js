@@ -1,8 +1,8 @@
-import Services from "./ servicemanager.js";
-import { userDao } from "../data/mongo/dao/dao.user.js";
-import { createHash, isValidPassword } from "../utils.js";
+import Services from './serverServices.js'
+// import { createHash, isValidPassword } from "../utils.js";
 import jwt from 'jsonwebtoken'
 import "dotenv/config";
+import { userDao } from './../dao/mongo/dao.user.js';
 
 class UserService extends Services {
     constructor() {
@@ -28,7 +28,18 @@ class UserService extends Services {
             throw new Error(error);
         }
     };
-
+    // Ejemplo: Autenticar usuario
+    // authenticateUser = async (email, password) => {
+    //     try {
+    //         const user = await this.dao.findByEmail(email);
+    //         if (user && user.password === password) {
+    //             return user;
+    //         }
+    //         throw new Error('Invalid credentials');
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // };
     register = async (user) => {
         try {
             const { email, password, isGithub } = user;

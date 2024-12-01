@@ -25,7 +25,7 @@ class UserDaoMongo extends MongoDao {
 
     async getByEmail(email) {
         try {
-            return await this.model.findOne({ email });
+            return await this.model.findOne({ email }).lean(true);
         } catch (error) {
             throw new Error(error);
         }
@@ -48,6 +48,18 @@ class UserDaoMongo extends MongoDao {
             throw error;
         }
     }
+    // Ejemplo: Cambiar contraseña
+    updatePassword = async (id, newPassword) => {
+        try {
+            return await this.model.findOneAndUpdate(
+                { _id: id },
+                { password: newPassword },
+                { new: true }
+            );
+        } catch (error) {
+            throw error;
+        }
+    };
 }
 
 export const userDao = new UserDaoMongo();

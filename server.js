@@ -34,11 +34,11 @@ server.set("views", __dirname + "/src/views")
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-server.use(cookieParser())
-server.use(session())
+// server.use(cookieParser())
+// server.use(session())
 
-server.use(passport.initialize());
-server.use(passport.session());
+// server.use(passport.initialize());
+// server.use(passport.session());
 
 server.use(morgan('dev'))
 server.use(cors())
