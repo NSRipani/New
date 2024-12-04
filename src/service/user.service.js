@@ -11,6 +11,7 @@ class UserService extends Services {
 
     generateToken = (user) => {
         const payload = {
+            id: user._id,
             first_name: user.first_name,
             last_name: user.last_name,
             email: user.email,
@@ -42,13 +43,10 @@ class UserService extends Services {
     // };
     register = async (user) => {
         try {
-            const { email, password, isGithub } = user;
+            const { email, password } = user;
             const existUser = await this.getUserByEmail(email);
             if (existUser) throw new Error("User already exists");
-            if (isGithub) {
-                const newUser = await this.dao.register(user);
-                return newUser;
-            }
+            
             const newUser = await this.dao.register({
                 ...user,
                 password: createHash(password),

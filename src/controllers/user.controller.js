@@ -7,6 +7,17 @@ class UserController extends Controllers {
     }
 
     // agregar funciones 'login', 'regitrer' y 'private'
+    privateData = (req, res, next) => {
+        try {
+            if (!req.user)
+                throw new Error("No se puede acceder a los datos del usuario");
+            res.json({
+                user: req.user,
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
 
     // Ejemplo: Autenticar usuario
     authenticateUser = async (email, password) => {
@@ -36,7 +47,7 @@ class UserController extends Controllers {
     readAll = async (req, res, next) => {
         try {
             const filter = req.query
-            const response = await this.service.readAll(filter)
+            const response = await this.service.readAll()
             if (response.length > 0) {
                 return res.status(200).json({ message: "USERS READ", response });
             } else {
