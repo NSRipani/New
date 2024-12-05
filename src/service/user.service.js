@@ -1,5 +1,5 @@
 import Services from './serverServices.js'
-// import { createHash, isValidPassword } from "../utils.js";
+// import { createHash } from "../utils.js";
 import jwt from 'jsonwebtoken'
 import "dotenv/config";
 import { userDao } from './../dao/mongo/dao.user.js';
@@ -22,13 +22,13 @@ class UserService extends Services {
         return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "20m" });
     };
 
-    getUserByEmail = async (email) => {
-        try {
-            return await this.dao.getByEmail(email);
-        } catch (error) {
-            throw new Error(error);
-        }
-    };
+    // getUserByEmail = async (email) => {
+    //     try {
+    //         return await this.getByEmail(email); // apunta al dao.user.js
+    //     } catch (error) {
+    //         throw new Error(error);
+    //     }
+    // };
     // Ejemplo: Autenticar usuario
     // authenticateUser = async (email, password) => {
     //     try {
@@ -41,7 +41,7 @@ class UserService extends Services {
     //         throw error;
     //     }
     // };
-    register = async (user) => {
+    registerUser = async (user) => {
         try {
             const { email, password } = user;
             const existUser = await this.getUserByEmail(email);
@@ -49,7 +49,7 @@ class UserService extends Services {
             
             const newUser = await this.dao.register({
                 ...user,
-                password: createHash(password),
+                password: createHash (password),
             });
             return newUser;
         } catch (error) {

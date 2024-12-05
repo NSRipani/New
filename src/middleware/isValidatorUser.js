@@ -1,8 +1,8 @@
 function isValidatorUser (req, res, next){
     try {
-        let { email, password} = req.body;
-        if (!email || !password){
-            const error = new Error("Error: The email, password are required");
+        let { first_name, last_name, email, age, password} = req.body;
+        if (!first_name || !last_name || !email || !age || !password){
+            const error = new Error("Error: The email, password are required (Middleware)");
             error.statusCode = 404;
             throw error;
         }

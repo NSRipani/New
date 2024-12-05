@@ -1,10 +1,10 @@
 import { Router } from "express";
 import productController from './../../controllers/product.controller.js';
-// import isValidatorProduct from './../../middleware/isValidatorProduct.js';
+import isValidatorProduct from './../../middleware/isValidatorProduct.js';
 
 const prodRouter = Router()
 
-prodRouter.post("/", productController.create)
+prodRouter.post("/", isValidatorProduct, productController.create)
 prodRouter.get("/", productController.readAll)
 prodRouter.get("/paginate", productController.paginate)
 prodRouter.get("/:id", productController.read)

@@ -22,7 +22,7 @@ class UserController extends Controllers {
     // Ejemplo: Autenticar usuario
     authenticateUser = async (email, password) => {
         try {
-            const user = await this.dao.findByEmail(email);
+            const user = await userService.getUserByEmail(email);
             if (user && user.password === password) {
                 return user;
             }
@@ -34,8 +34,8 @@ class UserController extends Controllers {
 
     create = async (req, res, next) => {
         try {
-            const data = req.body
-            const response = await this.service.create(data)
+        //     const data = req.body
+        //     const response = await this.service.create(data)
             return res.status(201).json({
                 message: "USERS CREATED",
                 response: response._id
@@ -47,7 +47,7 @@ class UserController extends Controllers {
     readAll = async (req, res, next) => {
         try {
             const filter = req.query
-            const response = await this.service.readAll()
+            const response = await this.service.getAll()
             if (response.length > 0) {
                 return res.status(200).json({ message: "USERS READ", response });
             } else {

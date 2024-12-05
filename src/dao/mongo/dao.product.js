@@ -21,6 +21,16 @@ class ProductDaoMongo extends MongoDao {
             throw error;
         }
     }
+    paginate = async (filter, opts) => {
+        // paginate va a devolver los documentos paginados
+        try {
+            opts.lean = true
+            const all = await this.model.paginate(filter, opts)
+            return all
+        } catch (error) {
+            throw error
+        }
+    }
     findByCategory = async (category) => {
         try {
             return await this.model.find({ category }).lean();

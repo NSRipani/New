@@ -8,7 +8,7 @@ const schema = new Schema({
     last_name: {type: String, require: true},
     email: { type: String, required: true, unique: true },
     age: {type: Number, require: true},
-    password: { type: Number, require: true, default: ' ' },
+    password: { type: Number, require: true},
     // cart_id: {type: Types.ObjectId, ref: "carts", required: true},""
     role: { type: String, default: "user"}
 });

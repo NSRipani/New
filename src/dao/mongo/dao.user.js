@@ -14,7 +14,13 @@ class UserDaoMongo extends MongoDao {
             throw new Error(error);
         }
     }
-
+    async getAll() {
+        try {
+            return await this.model.readAll();
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
     async getById(id) {
         try {
             return await this.model.findById(id);

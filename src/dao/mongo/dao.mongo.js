@@ -10,33 +10,24 @@ class MongoDao {
             throw error;
         }
     };
-    readAll = async (filter) => {
+    readAll = async () => {
         try {
-            const all = await this.model.find(filter, "-__v").lean();
+            const all = await this.model.find()//, "-__v").lean();
             return all;
         } catch (error) {
             throw error;
         }
     };
-    paginate = async (filter, opts) => {
-        // paginate va a devolver los documentos paginados
-        try {
-            opts.lean = true
-            const all = await this.model.paginate(filter, opts)
-            return all
-        } catch (error) {
-            throw error
-        }
-    }
+
     read = async (id) => {
         try {
-            const one = await this.model.findOne({ _id: id});
+            const one = await this.model.findOne({ _id: id });
             return one;
         } catch (error) {
             throw error;
         }
     };
-    readLogin = async (email,password) => {
+    readLogin = async (email, password) => {
         try {
             const one = await this.model.findOne({ email: email, password: password });
             return one;
@@ -49,7 +40,7 @@ class MongoDao {
         try {
             const opts = { new: true };
             //para devolver el objeto luego de la modifiacion
-            const one = await this.model.findOneAndUpdate({_id: id}, data, opts);
+            const one = await this.model.findOneAndUpdate({ _id: id }, data, opts);
             return one;
         } catch (error) {
             throw error;
@@ -63,7 +54,7 @@ class MongoDao {
             throw error;
         }
     };
-    
+
 }
 
 export default MongoDao;

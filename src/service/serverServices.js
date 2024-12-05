@@ -11,6 +11,15 @@ export default class Services {
             throw error;
         }
     }
+    async getById(id) {
+        try {
+            const response = await this.dao.getById(id);
+            if (!response) throw new Error("Error getById");
+            return response;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
     async create(obj) {
         try {
             const response = await this.dao.create(obj);
@@ -33,15 +42,6 @@ export default class Services {
         try {
             const response = await this.dao.delete(id);
             if (!response) throw new Error("Error delete");
-            return response;
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-    async getById(id) {
-        try {
-            const response = await this.dao.getById(id);
-            if (!response) throw new Error("Error getById");
             return response;
         } catch (error) {
             throw new Error(error);
