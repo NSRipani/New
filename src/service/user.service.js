@@ -1,8 +1,8 @@
 import Services from './serverServices.js'
-// import { createHash } from "../utils.js";
 import jwt from 'jsonwebtoken'
 import "dotenv/config";
 import { userDao } from './../dao/mongo/dao.user.js';
+import { isValidPassword, createHash } from './../../utils.js';
 
 class UserService extends Services {
     constructor() {
@@ -22,13 +22,18 @@ class UserService extends Services {
         return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "20m" });
     };
 
-    // getUserByEmail = async (email) => {
-    //     try {
-    //         return await this.getByEmail(email); // apunta al dao.user.js
-    //     } catch (error) {
-    //         throw new Error(error);
-    //     }
-    // };
+    // Obtener todos los usuarios
+    async getAllUsers() {
+        try {
+            const users = await this.dao.getAll()// .dao.findAll();
+            if (!users || users.length === 0) {
+                throw new Error('No se encontraron usuarios.');
+            }
+            return users;
+        } catch (error) {
+            throw new Error(`Error obteniendo usuarios: ${error.message}`);
+        }
+    }
     // Ejemplo: Autenticar usuario
     // authenticateUser = async (email, password) => {
     //     try {
@@ -44,12 +49,12 @@ class UserService extends Services {
     registerUser = async (user) => {
         try {
             const { email, password } = user;
-            const existUser = await this.getUserByEmail(email);
+            const existUser = await this.getUserByEmail(email)// getByEmail(email);
             if (existUser) throw new Error("User already exists");
             
             const newUser = await this.dao.register({
                 ...user,
-                password: createHash (password),
+                password: createHash(password),
             });
             return newUser;
         } catch (error) {
@@ -60,7 +65,7 @@ class UserService extends Services {
     login = async (user) => {
         try {
             const { email, password } = user;
-            const userExist = await this.getUserByEmail(email);
+            const userExist = await this.dao.getUserByEmail(email);
             if (!userExist) throw new Error("User not found");
                 const passValid = isValidPassword(password, userExist);
             if (!passValid) throw new Error("incorrect credentials");

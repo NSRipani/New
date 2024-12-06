@@ -5,33 +5,41 @@ class UserDaoMongo extends MongoDao {
     constructor() {
         super(Users)
     }
-
+    
+    // Registrar un nuevo usuario
     async register(user) {
         try {
-            const regUser = await this.model.create(user);
+            const regUser = await this.create(user);
             return regUser
         } catch (error) {
             throw new Error(error);
         }
     }
+
+    // Buscar todos los usuarios
     async getAll() {
         try {
-            return await this.model.readAll();
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-    async getById(id) {
-        try {
-            return await this.model.findById(id);
+            return await this.readAll();
         } catch (error) {
             throw new Error(error);
         }
     }
 
+    // Buscar usuario por ID
+    async getById(id) {
+        try {
+            const user = await this.readById(id)//model.findById(id);
+            if (!user) throw new Error(`Usuario con ID ${id} no encontrado.`);
+            return user;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    // Buscar usuario por Email
     async getByEmail(email) {
         try {
-            return await this.model.findOne({ email }).lean(true);
+            return await this.findByEmail(email)//model.findOne({ email })
         } catch (error) {
             throw new Error(error);
         }
@@ -40,15 +48,15 @@ class UserDaoMongo extends MongoDao {
         try {
             const opts = { new: true };
             //para devolver el objeto luego de la modifiacion
-            const one = await this.model.findOneAndUpdate(id, data, opts);
+            const one = await this.update(id, data, opts);//model.findOneAndUpdate(id, data, opts);
             return one;
         } catch (error) {
             throw error;
         }
     }
-    async destroy(id) {
+    async delete(id) {
         try {
-            const one = await this.model.findOneAndDelete(id);
+            const one = await this.destroy(id)//model.findOneAndDelete(id);
             return one;
         } catch (error) {
             throw error;

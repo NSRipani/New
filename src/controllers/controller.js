@@ -6,7 +6,7 @@ export default class Controllers {
     async getAll(req, res, next) {
         try {
             const response = await this.service.getAll();
-            res.json(response);
+            res.status(200).json(response);
         } catch (error) {
             next(error);
         }
@@ -16,6 +16,21 @@ export default class Controllers {
         try {
             const { id } = req.params;
             const response = await this.service.getById(id);
+            if (!response) {
+                return res.status(404).json({ message: "Documento no encontrado" });
+            }
+            res.json(response);
+        } catch (error) {
+            next(error);
+        }
+    }
+    async getByEmail(req, res, next) {
+        try {
+            const { email } = req.params;
+            const response = await this.service.getUserByEmail(email);
+            if (!response) {
+                return res.status(404).json({ message: "Documento no encontrado" });
+            }
             res.json(response);
         } catch (error) {
             next(error);
@@ -24,7 +39,7 @@ export default class Controllers {
     async create(req, res, next) {
         try {
             const response = await this.service.create(req.body);
-            res.json(response);
+            res.status(201).json(response);
         } catch (error) {
             next(error);
         }
@@ -34,7 +49,10 @@ export default class Controllers {
         try {
             const { id } = req.params;
             const response = await this.service.update(id, req.body);
-            res.json(response);
+            if (!response) {
+                return res.status(404).json({ message: "Documento no encontrado" });
+            }
+            res.status(200).json(response);
         } catch (error) {
             next(error);
         }
@@ -43,7 +61,10 @@ export default class Controllers {
         try {
             const { id } = req.params;
             const response = await this.service.delete(id);
-            res.json(response);
+            if (!response) {
+                return res.status(404).json({ message: "Documento no encontrado" });
+            }
+            res.status(200).json(response);
         } catch (error) {
             next(error);
         }

@@ -4,7 +4,7 @@ export default class Services {
     }
     async getAll() {
         try {
-            const response = await this.dao.getAll();
+            const response = await this.dao.readAll();
             if (!response) throw new Error("Error get all");
             return response;
         } catch (error) {
@@ -13,13 +13,20 @@ export default class Services {
     }
     async getById(id) {
         try {
-            const response = await this.dao.getById(id);
+            const response = await this.dao.readById(id);
             if (!response) throw new Error("Error getById");
             return response;
         } catch (error) {
             throw new Error(error);
         }
     }
+    async getUserByEmail (email) {
+        try {
+            return await this.dao.findByEmail(email); // apunta al dao.user.js
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
     async create(obj) {
         try {
             const response = await this.dao.create(obj);

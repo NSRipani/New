@@ -19,7 +19,7 @@ class MongoDao {
         }
     };
 
-    read = async (id) => {
+    readById = async (id) => {
         try {
             const one = await this.model.findOne({ _id: id });
             return one;
@@ -27,14 +27,14 @@ class MongoDao {
             throw error;
         }
     };
-    readLogin = async (email, password) => {
+    // Método específico para encontrar usuario por email
+    findByEmail = async (email) => {
         try {
-            const one = await this.model.findOne({ email: email, password: password });
-            return one;
+            return await this.model.findOne({ email });
         } catch (error) {
-            throw error;
+            throw new Error(`Error buscando usuario por email: ${error.message}`);
         }
-    };
+    }
 
     update = async (id, data) => {
         try {

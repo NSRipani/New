@@ -6,6 +6,7 @@ function isValidatorUser (req, res, next){
             error.statusCode = 404;
             throw error;
         }
+        next()
     } catch (error) {
         return next(error)
     }

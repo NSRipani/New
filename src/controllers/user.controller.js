@@ -34,8 +34,8 @@ class UserController extends Controllers {
 
     create = async (req, res, next) => {
         try {
-        //     const data = req.body
-        //     const response = await this.service.create(data)
+            const data = req.body
+            const response = await this.service.create(data)
             return res.status(201).json({
                 message: "USERS CREATED",
                 response: response._id
@@ -46,7 +46,7 @@ class UserController extends Controllers {
     }
     readAll = async (req, res, next) => {
         try {
-            const filter = req.query
+            // const filter = req.query
             const response = await this.service.getAll()
             if (response.length > 0) {
                 return res.status(200).json({ message: "USERS READ", response });
@@ -62,7 +62,7 @@ class UserController extends Controllers {
     read = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await this.service.read(id);
+            const response = await this.service.getById({_id: id});
             if (response) {
                 return res.status(200).json({ message: "USER READ", response });
             } else {
