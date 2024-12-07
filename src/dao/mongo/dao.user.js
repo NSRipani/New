@@ -9,7 +9,7 @@ class UserDaoMongo extends MongoDao {
     // Registrar un nuevo usuario
     async register(user) {
         try {
-            const regUser = await this.create(user);
+            const regUser = await this.model.create(user);
             return regUser
         } catch (error) {
             throw new Error(error);
@@ -19,7 +19,7 @@ class UserDaoMongo extends MongoDao {
     // Buscar todos los usuarios
     async getAll() {
         try {
-            return await this.readAll();
+            return await this.model.readAll();
         } catch (error) {
             throw new Error(error);
         }
@@ -28,7 +28,7 @@ class UserDaoMongo extends MongoDao {
     // Buscar usuario por ID
     async getById(id) {
         try {
-            const user = await this.readById(id)//model.findById(id);
+            const user = await this.model.readById(id)
             if (!user) throw new Error(`Usuario con ID ${id} no encontrado.`);
             return user;
         } catch (error) {
@@ -39,24 +39,27 @@ class UserDaoMongo extends MongoDao {
     // Buscar usuario por Email
     async getByEmail(email) {
         try {
-            return await this.findByEmail(email)//model.findOne({ email })
+            return await this.model.findByEmail(email)
         } catch (error) {
             throw new Error(error);
         }
     }
+
+    // Actualizar por ID
     async update(id, data) {
         try {
-            const opts = { new: true };
             //para devolver el objeto luego de la modifiacion
-            const one = await this.update(id, data, opts);//model.findOneAndUpdate(id, data, opts);
+            const one = await this.model.update(id, data);
             return one;
         } catch (error) {
             throw error;
         }
     }
+    
+    // Eliminar por ID
     async delete(id) {
         try {
-            const one = await this.destroy(id)//model.findOneAndDelete(id);
+            const one = await this.model.destroy(id)
             return one;
         } catch (error) {
             throw error;

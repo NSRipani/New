@@ -8,7 +8,7 @@ export default class Controllers {
             const response = await this.service.getAll();
             res.status(200).json(response);
         } catch (error) {
-            next(error);
+            this.handleError(error, res, next);
         }
     }
 
@@ -21,7 +21,7 @@ export default class Controllers {
             }
             res.json(response);
         } catch (error) {
-            next(error);
+            this.handleError(error, res, next);
         }
     }
     async getByEmail(req, res, next) {
@@ -33,7 +33,7 @@ export default class Controllers {
             }
             res.json(response);
         } catch (error) {
-            next(error);
+            this.handleError(error, res, next);
         }
     }
     async create(req, res, next) {
@@ -41,7 +41,7 @@ export default class Controllers {
             const response = await this.service.create(req.body);
             res.status(201).json(response);
         } catch (error) {
-            next(error);
+            this.handleError(error, res, next);
         }
     }
 
@@ -54,7 +54,7 @@ export default class Controllers {
             }
             res.status(200).json(response);
         } catch (error) {
-            next(error);
+            this.handleError(error, res, next);
         }
     }
     async delete(req, res, next) {
@@ -66,7 +66,7 @@ export default class Controllers {
             }
             res.status(200).json(response);
         } catch (error) {
-            next(error);
+            this.handleError(error, res, next);
         }
     }
 }

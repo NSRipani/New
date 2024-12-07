@@ -2,6 +2,7 @@ class MongoDao {
     constructor(model) {
         this.model = model;
     }
+    // Crear usuario
     create = async (data) => {
         try {
             const one = await this.model.create(data);
@@ -10,15 +11,17 @@ class MongoDao {
             throw error;
         }
     };
+    // Leer todos los usuarios
     readAll = async () => {
         try {
-            const all = await this.model.find()//, "-__v").lean();
+            const all = await this.model.find({})
             return all;
         } catch (error) {
             throw error;
         }
     };
 
+    // Leer por ID
     readById = async (id) => {
         try {
             const one = await this.model.findOne({ _id: id });
@@ -30,12 +33,13 @@ class MongoDao {
     // Método específico para encontrar usuario por email
     findByEmail = async (email) => {
         try {
-            return await this.model.findOne({ email });
+            return await this.model.findOne({ email: email });
         } catch (error) {
             throw new Error(`Error buscando usuario por email: ${error.message}`);
         }
     }
 
+    // Actualizar por ID
     update = async (id, data) => {
         try {
             const opts = { new: true };
@@ -46,6 +50,8 @@ class MongoDao {
             throw error;
         }
     };
+    
+    // Eliminar por ID
     destroy = async (id) => {
         try {
             const one = await this.model.findOneAndDelete({ _id: id });

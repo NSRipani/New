@@ -34,27 +34,14 @@ class UserService extends Services {
             throw new Error(`Error obteniendo usuarios: ${error.message}`);
         }
     }
-    // Ejemplo: Autenticar usuario
-    // authenticateUser = async (email, password) => {
-    //     try {
-    //         const user = await this.dao.findByEmail(email);
-    //         if (user && user.password === password) {
-    //             return user;
-    //         }
-    //         throw new Error('Invalid credentials');
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // };
     registerUser = async (user) => {
         try {
             const { email, password } = user;
-            const existUser = await this.getUserByEmail(email)// getByEmail(email);
-            if (existUser) throw new Error("User already exists");
-            
-            const newUser = await this.dao.register({
+            const existUser = await this.getUserByEmail(email);
+            if (existUser) throw new Error("User already exists (122535)");
+            const newUser = await userDao.register({
                 ...user,
-                password: createHash(password),
+                password: createHash(password)
             });
             return newUser;
         } catch (error) {
@@ -65,9 +52,9 @@ class UserService extends Services {
     login = async (user) => {
         try {
             const { email, password } = user;
-            const userExist = await this.dao.getUserByEmail(email);
+            const userExist = await this.dao.findByEmail(email);
             if (!userExist) throw new Error("User not found");
-                const passValid = isValidPassword(password, userExist);
+            const passValid = isValidPassword(password, userExist);
             if (!passValid) throw new Error("incorrect credentials");
             return this.generateToken(userExist);
         } catch (error) {
@@ -77,46 +64,16 @@ class UserService extends Services {
 }
 
 export const userService = new UserService();
-// export const getUserByEmail = async (email) => {
-//     try {
-//         return await userDao.getByEmail(email);
-//     } catch (error) {
-//         throw new Error(error);
-//     }
-// };
 
-// const getUserById = async (id) => {
+// // Ejemplo: Autenticar usuario
+// authenticateUser = async (email, password) => {
 //     try {
-//         return await userDao.getById(id);
+//         const user = await userDao.getUserByEmail(email);
+//         if (user && user.password === password) {
+//             return user;
+//         }
+//         throw new Error('Invalid credentials');
 //     } catch (error) {
-//         throw new Error(error);
-//     }
-// };
-
-// const register = async (user) => {
-//     try {
-//         const { email, password } = user;
-//         const existUser = await getUserByEmail(email);
-//         if(existUser) throw new Error('User already exists');
-//             const newUser = await userDao.register({
-//             ...user,
-//             password: createHash(password),
-//         });
-//         return newUser;
-//     } catch (error) {
-//         throw new Error(error);
-//     }
-// };
-
-// export const login = async (email, password) => {
-//     try {
-//         // const { email, password } = user;
-//         const userExist = await getUserByEmail(email);
-//         if (!userExist) throw new Error('User not found');
-//         const passValid = isValidPassword(password, userExist);
-//         if (!passValid) throw new Error('incorrect credentials');
-//         return userExist;
-//     } catch (error) {
-//         throw new Error(error);
+//         throw error;
 //     }
 // };

@@ -8,5 +8,3 @@ class CartDaoMongo  extends MongoDao {
 };
 
 export const cartsDao = new CartDaoMongo();
-// const cartsDao = new MongoDao(Cart)
-// export default cartsDao

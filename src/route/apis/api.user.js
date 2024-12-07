@@ -11,4 +11,10 @@ userRouter.get("/", usersController.readAll)
 userRouter.put("/:id", usersController.update)
 userRouter.delete("/:id", usersController.destroy)
 
+// router.post("/register", userController.register); ver para usar en '/'
+// router.post("/login", userController.login);
+// router.get("/private-headers", passportCall('jwt'), userController.privateData);
+// router.get("/private-cookies", [passportCall('jwtCookies'), roleAuth('user')], userController.privateData);
+// router.get("/private-cookies-admin", [passportCall('jwtCookies'), roleAuth('admin')], userController.privateData);
+
 export default userRouter;

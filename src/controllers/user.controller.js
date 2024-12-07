@@ -19,36 +19,37 @@ class UserController extends Controllers {
         }
     };
 
-    // Ejemplo: Autenticar usuario
-    authenticateUser = async (email, password) => {
+    login = async (req, res, next) => {
         try {
-            const user = await userService.getUserByEmail(email);
-            if (user && user.password === password) {
-                return user;
-            }
-            throw new Error('Invalid credentials');
+            const token = await this.service.login(req.body);
+            res
+                .cookie('token', token, { httpOnly: true })
+                .json({ message: 'Login OK', token });
         } catch (error) {
-            throw error;
+            next(error);
         }
     };
 
+    // Crear usuario = register
     create = async (req, res, next) => {
         try {
             const data = req.body
-            const response = await this.service.create(data)
+            const response = await userService.registerUser(data)
             return res.status(201).json({
                 message: "USERS CREATED",
-                response: response._id
+                response: response
             })
         } catch (error) {
             return next(error)
         }
     }
+    
+    // Leer todos los usuarios
     readAll = async (req, res, next) => {
         try {
             // const filter = req.query
-            const response = await this.service.getAll()
-            if (response.length > 0) {
+            const response = await userService.getAllUsers()//this.service.getAll()
+            if (response) {//.length > 0
                 return res.status(200).json({ message: "USERS READ", response });
             } else {
                 const error = new Error("USERS NOT FOUND");
@@ -59,10 +60,12 @@ class UserController extends Controllers {
             return next(error)
         }
     }
+
+    // Leer por ID
     read = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await this.service.getById({_id: id});
+            const response = await userService.getById(id);
             if (response) {
                 return res.status(200).json({ message: "USER READ", response });
             } else {
@@ -74,11 +77,13 @@ class UserController extends Controllers {
             return next(error)
         }
     }
+
+    // Actualizar por ID
     update = async (req, res, next) => {
         try {
             const { id } = req.params;
             const data = req.body;
-            const response = await this.service.update(id, data);
+            const response = await userService.update(id, data);
             if (response) {
                 return res
                     .status(200)
@@ -92,10 +97,12 @@ class UserController extends Controllers {
             return next(error)
         }
     }
+
+    // Eliminar por ID
     destroy = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await this.service.destroy(id);
+            const response = await userService.delete(id);
             if (response) {
                 return res
                     .status(200)
@@ -109,7 +116,7 @@ class UserController extends Controllers {
             return next(error)
         }
     }
-    regiterView = (req, res, next) => {
+    registerView = (req, res, next) => {
         try {
             return res.render('userRegister');
         } catch (error) {

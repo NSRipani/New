@@ -20,7 +20,7 @@ export default class Services {
             throw new Error(error);
         }
     }
-    async getUserByEmail (email) {
+    async getUserByEmail(email) {
         try {
             return await this.dao.findByEmail(email); // apunta al dao.user.js
         } catch (error) {
