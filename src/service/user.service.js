@@ -21,11 +21,11 @@ class UserService extends Services {
 
         return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: "20m" });
     };
-
+    
     // Obtener todos los usuarios
     async getAllUsers() {
         try {
-            const users = await this.dao.getAll()// .dao.findAll();
+            const users = await this.getAll()// .dao.findAll();
             if (!users || users.length === 0) {
                 throw new Error('No se encontraron usuarios.');
             }
@@ -52,7 +52,7 @@ class UserService extends Services {
     login = async (user) => {
         try {
             const { email, password } = user;
-            const userExist = await this.dao.findByEmail(email);
+            const userExist = await userDao.findByEmail(email);
             if (!userExist) throw new Error("User not found");
             const passValid = isValidPassword(password, userExist);
             if (!passValid) throw new Error("incorrect credentials");

@@ -14,7 +14,7 @@ class MongoDao {
     // Leer todos los usuarios
     readAll = async () => {
         try {
-            const all = await this.model.find({})
+            const all = await this.model.find()
             return all;
         } catch (error) {
             throw error;

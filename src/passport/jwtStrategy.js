@@ -2,7 +2,7 @@ import passport from "passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import "dotenv/config";
 import { userService } from "../services/user.services.js";
-import { userDao } from "../dao/mongo/dao.user.js";
+// import { userDao } from "../dao/mongo/dao.user.js";
 
 
 const strategyConfig  = {
@@ -20,7 +20,7 @@ const verifyToken = async (payload, done) => {
     }
 };
 
-passport.use("jwt", new Strategy(strategyConfig, verifyToken));
+passport.use("currernt", new Strategy(strategyConfig, verifyToken));
 
 const cookieExtractor = (req) => {
     return req.cookies.token;
@@ -31,7 +31,7 @@ const strategyCookiesConfig = {
     secretOrKey: process.env.SECRET_KEY,
 };
   
-passport.use('jwtCookies', new Strategy(strategyCookiesConfig, verifyToken));
+passport.use('currernt', new Strategy(strategyCookiesConfig, verifyToken));
 
 passport.serializeUser((user, done) => {
     try {

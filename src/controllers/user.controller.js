@@ -21,7 +21,7 @@ class UserController extends Controllers {
 
     login = async (req, res, next) => {
         try {
-            const token = await this.service.login(req.body);
+            const token = await userService.login(req.body);
             res
                 .cookie('token', token, { httpOnly: true })
                 .json({ message: 'Login OK', token });

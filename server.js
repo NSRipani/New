@@ -13,8 +13,23 @@ import { createServer } from 'http';
 import dbConnect from "./src/utils/db.utils.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import passport from "passport";
+import MongoStore from "connect-mongo";
 
 const server = express();
+
+const storeConfig = {
+    store: MongoStore.create({
+        mongoUrl: process.env.LINK_MONGO,
+        crypto: { secret: process.env.SECRET_KEY },
+        ttl: 180,
+    }),
+    secret: process.env.SECRET_KEY,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 180000 }
+};
+
 const port = process.env.PORT;
 const ready = () => {
     console.log("server ready on port " + port);
@@ -34,11 +49,11 @@ server.set("views", __dirname + "/src/views")
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-// server.use(cookieParser())
-// server.use(session())
+server.use(cookieParser())
+server.use(session(storeConfig))
 
-// server.use(passport.initialize());
-// server.use(passport.session());
+server.use(passport.initialize());
+server.use(passport.session());
 
 server.use(morgan('dev'))
 server.use(cors())
