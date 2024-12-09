@@ -10,24 +10,9 @@ Las siguientes dependencias fueron utilizadas en el backend:
 - nodemon: Herramienta para reiniciar automáticamente la aplicación cuando se detectan cambios en el código.
 - http: Módulo para realizar solicitudes HTTP (puede ser un riesgo de seguridad, usar con precaución).
 - morgan: Middleware para registrar solicitudes HTTP en la consola.
-- multer: Middleware para manejar la carga de archivos.
-- cros: Middleware para habilitar CORS (Cross-Origin Resource Sharing).
 
 ## DevDependencies:
 - nodemon: Herramienta para reiniciar automáticamente la aplicación cuando se detectan cambios en el código.
-
-## Rutas Utilizadas
-- GET /api/products: Obtiene la lista de productos.
-- GET /api/products/:id: Obtiene un producto específico por su ID.
-- POST /api/products: Crea un nuevo producto.
-- PUT /api/products/:id: Actualiza un producto existente.
-- DELETE /api/products/:id: Elimina un producto.
-
-## API de Usuarios
-- GET /api/users: Obtiene la lista de productos.
-- GET /api/users/:id: Obtiene la información de un usuario específico por su ID.
-- PUT /api/users/:id: Actualiza la información de un usuario existente.
-- DELETE /api/users/:id: Elimina un usuario.
 
 ## Uso
 Uso del servidor con nodemon permite que el servidor se reinicie automáticamente cada vez que realices cambios en el código.
@@ -109,7 +94,7 @@ La entrega la realizaré con rutas realizas en Postman.
 #### GET all USERS
 
 ```http
-  GET localhost:8000/api/users
+  GET http://localhost:8000/api/users/register
 ```
 #### GET por ':id'
 
@@ -121,21 +106,31 @@ La entrega la realizaré con rutas realizas en Postman.
 ```http
   GET http://localhost:8000/api/users?role=user
 ```
-#### POST 
-
-```http
-  POST http://localhost:8000/api/users
-```
 #### PUT por ':id'
 
 ```http
   PUT http://localhost:8000/api/users/:id
 ```
+
 #### DELETE por ':id'
 
 ```http
   DELETE http://localhost:8000/api/users/:id
 ```
+#### POST por LOGIN
+
+```http
+  POST http://localhost:8000/api/users/login
+```
+#### METODOS DE TOKEN
+```http
+http://localhost:8000/api/users/current
+```
+
+```http
+http://localhost:8000/api/users/current-admin
+```
+
 #### METODOS DEL CARRITO
 #### GET all CARTS
 
@@ -163,3 +158,6 @@ La entrega la realizaré con rutas realizas en Postman.
 ```http
   DELETE http://localhost:8000/api/carts/:id
 ```
+# Estrategia de login
+
+Se utilizo para login la que nos proporciona PASSPORT. En este caso se utilizo la estrategia de `bash passport-jwt `.
