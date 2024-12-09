@@ -38,7 +38,7 @@ class UserService extends Services {
         try {
             const { email, password } = user;
             const existUser = await this.getUserByEmail(email);
-            if (existUser) throw new Error("User already exists (122535)");
+            if (existUser) throw new Error("User already exists");
             const newUser = await userDao.register({
                 ...user,
                 password: createHash(password)

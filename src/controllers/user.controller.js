@@ -145,6 +145,13 @@ class UserController extends Controllers {
             return next(error)
         }
     }
+    userDetail = (req, res, next) => {
+        try {
+            return res.render('userDetalle');
+        } catch (error) {
+            return next(error)
+        }
+    }
 }
 
 const usersController = new UserController();

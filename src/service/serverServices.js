@@ -5,7 +5,7 @@ export default class Services {
     async getAll() {
         try {
             const response = await this.dao.readAll();
-            if (!response) throw new Error("Error get all");
+            if (!response) throw new Error("Error in the search");
             return response;
         } catch (error) {
             throw error;
@@ -14,7 +14,7 @@ export default class Services {
     async getById(id) {
         try {
             const response = await this.dao.readById(id);
-            if (!response) throw new Error("Error getById");
+            if (!response) throw new Error("Error: ID not found");
             return response;
         } catch (error) {
             throw new Error(error);

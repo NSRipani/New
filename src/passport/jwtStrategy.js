@@ -1,14 +1,8 @@
 import passport from "passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import "dotenv/config";
-import { userService } from "../services/user.services.js";
+import { userService } from "../service/user.service.js";
 // import { userDao } from "../dao/mongo/dao.user.js";
-
-
-const strategyConfig  = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Extrae el token del encabezado Authorization
-    secretOrKey: process.env.SECRET_KEY
-};
 
 const verifyToken = async (payload, done) => {
     try {
@@ -20,18 +14,16 @@ const verifyToken = async (payload, done) => {
     }
 };
 
-passport.use("currernt", new Strategy(strategyConfig, verifyToken));
-
 const cookieExtractor = (req) => {
     return req.cookies.token;
 };
-  
+
 const strategyCookiesConfig = {
     jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
     secretOrKey: process.env.SECRET_KEY,
 };
-  
-passport.use('currernt', new Strategy(strategyCookiesConfig, verifyToken));
+
+passport.use('current', new Strategy(strategyCookiesConfig, verifyToken));
 
 passport.serializeUser((user, done) => {
     try {

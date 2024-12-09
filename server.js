@@ -15,6 +15,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 import MongoStore from "connect-mongo";
+import './src/passport/jwtStrategy.js'
 
 const server = express();
 

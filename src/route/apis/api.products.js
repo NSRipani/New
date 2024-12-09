@@ -7,7 +7,7 @@ const prodRouter = Router()
 prodRouter.post("/", isValidatorProduct, productController.create)
 prodRouter.get("/", productController.readAll)
 prodRouter.get("/paginate", productController.paginate)
-prodRouter.get("/:id", productController.read)
+prodRouter.get("/:id", productController.readIdProduct)
 prodRouter.put("/:id", productController.update)
 prodRouter.delete("/:id", productController.destroy)
 

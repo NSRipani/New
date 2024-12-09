@@ -1,6 +1,10 @@
-import {prodService} from '../service/products.service.js'
+import { prodService } from '../service/products.service.js';
+import Controllers from './controller.js';
 
-class ProductController {
+class ProductController extends Controllers {
+    constructor() {
+        super(prodService)
+    }
     async create(req, res, next) {
         try {
             const data = req.body;
@@ -16,8 +20,8 @@ class ProductController {
 
     async readAll(req, res, next) {
         try {
-            const filter = req.query;
-            const response = await prodService.readAll(filter);
+            // const filter = req.query;
+            const response = await prodService.readAllProducts();
             if (response.length > 0) {
                 return res.status(200).json({ message: "PRODUCTS READ", response });
             } else {
@@ -60,7 +64,7 @@ class ProductController {
         }
     }
 
-    async read(req, res, next) {
+    async readIdProduct(req, res, next) {
         try {
             const { id } = req.params;
             const response = await prodService.read(id);
@@ -138,6 +142,7 @@ const productController = new ProductController();
 export default productController;
 
 // import productsDao from "../data/mongo/dao/dao.product.js";
+// import { prodService } from './../service/products.service';
 
 // const create = async (req, res, next) => {
 //     try {
