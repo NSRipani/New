@@ -38,7 +38,6 @@ class MongoDao {
             throw new Error(`Error buscando usuario por email: ${error.message}`);
         }
     }
-
     // Actualizar por ID
     update = async (id, data) => {
         try {

@@ -1,5 +1,6 @@
 import Services from './serverServices.js'
 import { cartsDao } from './../dao/mongo/dao.carts.js';
+import Users from '../dao/models/user.model.js';
 
 class CartService extends Services {
     constructor() {
@@ -27,13 +28,21 @@ class CartService extends Services {
     // Crear un nuevo carrito
     async createCart() {
         try {
-            const newCart = await this.create({});
+            const newCart = await this.create({...newCart, user_id: Users._id});
             return newCart;
         } catch (error) {
             throw new Error('Error al crear el carrito: ' + error.message);
         }
     }
-
+    // Eliminar un producto
+    deleteCart = async (Id) => {
+        try {
+            const result = await this.delete(Id);
+            return result;
+        } catch (error) {
+            throw new Error(`Error deleting cart: ${error.message}`);
+        }
+    };
     // // Agregar un producto al carrito
     // async addProductToCart(cartId, productId) {
     //     try {

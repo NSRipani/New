@@ -9,7 +9,7 @@ import loginCheck from './../../middleware/loginCheck.js';
 const userRouter = Router()
 
 userRouter.post("/register", isValidatorUser, usersController.create)
-userRouter.post("/login", loginCheck, usersController.login);
+userRouter.post("/session", loginCheck, usersController.login);
 userRouter.get("/current", [passportCall('current'), roleAuth('user')], usersController.privateData);
 userRouter.get("/current-admin", [passportCall('current'), roleAuth('admin')], usersController.privateData);
 userRouter.get("/:id",usersController.read)

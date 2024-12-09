@@ -9,8 +9,8 @@ const schema = new Schema({
     email: { type: String, required: true, unique: true },
     age: {type: Number, require: true},
     password: { type: String, require: true},
-    role: { type: String, default: "user"}
-    // cart_id: {type: Types.ObjectId, ref: "carts", required: true},
+    role: { type: String, default: "user", require: true},
+    // cart_id: {type: Types.ObjectId, ref: "carts", require: true}
 });
 
 schema.plugin(mongoosePaginate)

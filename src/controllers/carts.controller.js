@@ -47,6 +47,21 @@ class CartController extends Controllers {
             return next(error)
         }
     }
+    async deleteID(req, res, next){
+        try {
+            const { id } = req.params;
+            const response = await cartService.deleteCart(id);
+            if (response) {
+                return res.status(200).json({ message: "CART DELETED", response });
+            } else {
+                const error = new Error("CART NOT FOUND");
+                error.statusCode = 404;
+                throw error;
+            }
+        } catch (error) {
+            return next(error)
+        }
+    }
 }
 const cartsController = new CartController();
 export default cartsController;

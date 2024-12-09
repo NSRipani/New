@@ -44,7 +44,7 @@ class UserDaoMongo extends MongoDao {
             throw new Error(error);
         }
     }
-
+    
     // Actualizar por ID
     async update(id, data) {
         try {

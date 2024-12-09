@@ -120,7 +120,7 @@ La entrega la realizaré con rutas realizas en Postman.
 #### POST por LOGIN
 
 ```http
-  POST http://localhost:8000/api/users/login
+  POST http://localhost:8000/api/users/session
 ```
 #### METODOS DE TOKEN
 ```http
@@ -160,4 +160,4 @@ http://localhost:8000/api/users/current-admin
 ```
 # Estrategia de login
 
-Se utilizo para login la que nos proporciona PASSPORT. En este caso se utilizo la estrategia de `bash passport-jwt `.
+Se utilizo para login la que nos proporciona PASSPORT. En este caso se utilizo la estrategia de ` passport-jwt `.
