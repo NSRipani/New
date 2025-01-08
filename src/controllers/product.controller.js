@@ -8,7 +8,7 @@ class ProductController extends Controllers {
     async create(req, res, next) {
         try {
             const data = req.body;
-            const response = await prodService.create(data);
+            const response = await this.service.create(data);
             return res.status(201).json({
                 message: "PRODUCT CREATED",
                 response: response._id,
@@ -67,7 +67,7 @@ class ProductController extends Controllers {
     async readIdProduct(req, res, next) {
         try {
             const { id } = req.params;
-            const response = await prodService.read(id);
+            const response = await prodService.readID(id);
             if (response) {
                 return res.status(200).json({ message: "PRODUCT READ", response });
             } else {

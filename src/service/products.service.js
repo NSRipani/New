@@ -15,6 +15,15 @@ class ProductService extends Services {
         }
     };
 
+    // Leer por ID
+    readID = async (id) => {
+        try {
+            return await prodDao.read(id);
+        } catch (error) {
+            throw new Error(`Error reading products: ${error.message}`);
+        }
+    };
+
     // Crear un nuevo producto
     createProduct = async (productData) => {
         try {
