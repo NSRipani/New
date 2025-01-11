@@ -1,6 +1,6 @@
 import Services from './serverServices.js'
 import { userDao } from './../dao/mongo/dao.user.js';
-import { isValidPassword, createHash } from '../utils.js';
+import { isValidPassword, createHash } from '../../utils.js';
 
 class UserService extends Services {
     constructor() {

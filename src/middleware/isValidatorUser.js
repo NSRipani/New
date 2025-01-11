@@ -1,5 +1,5 @@
-import Joi from "joi";
-
+import joi from 'joi';
+import Joi from 'joi';
 const registerSchema = Joi.object({
     first_name: Joi.string().pattern(/^[a-zA-Z\s]+$/).required().messages({
         'string.base': 'El título solo puede contener letras.'

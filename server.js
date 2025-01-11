@@ -4,17 +4,18 @@ import morgan from 'morgan';
 import cors from 'cors'
 // import { engine } from 'express-handlebars'
 // import { Server } from "socket.io";
-import errorHandler from "./middleware/errorHandler.js";
-import pathHandler from "./middleware/pathHandler.js";
-import router from './route/index.route.js';
-import { __dirname } from './utils.js';
+// import router from '.src/route/index.route.js';
+import { __dirname } from './utils.js'
 import { createServer } from 'http';
-import dbConnect from "./utils/db.utils.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 import MongoStore from "connect-mongo";
-import './passport/jwtStrategy.js'
+import './src/passport/jwtStrategy.js'
+import errorHandler from './src/middleware/errorHandler.js';
+import router from './src/route/index.route.js';
+import pathHandler from './src/middleware/pathHandler.js';
+import dbConnect from './src/utils/db.utils.js';
 
 const server = express();
 
