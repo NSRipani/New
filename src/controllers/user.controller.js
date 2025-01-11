@@ -1,19 +1,21 @@
+import { generateToken } from '../auth/auth.js'
 import Controllers from './controller.js';
 import { userService } from './../service/user.service.js';
+// import { jwt } from 'jsonwebtoken';
 
 class UserController extends Controllers {
-    constructor(){
+    constructor() {
         super(userService)
     }
 
     // agregar funciones 'login', 'regitrer' y 'private'
     privateData = (req, res, next) => {
         try {
-            if (!req.user)
-                throw new Error("No se puede acceder a los datos del usuario");
-            res.json({
-                user: req.user,
-            });
+            if (!req.user) {
+                return res.status(401).json({ error: "No se puede acceder a los datos del usuario" });
+            } else {
+                res.json({ user: req.user });
+            }
         } catch (error) {
             next(error);
         }
@@ -21,10 +23,14 @@ class UserController extends Controllers {
 
     login = async (req, res, next) => {
         try {
-            const token = await userService.login(req.body);
-            res
-                .cookie('token', token, { httpOnly: true })
-                .json({ message: 'Login OK', token });
+            // Validar la entrada
+            const user = await userService.login(req.body);
+            const token = generateToken(user)  
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: process.env.HTTP === 'token',
+                sameSite: 'Strict'
+            }).json({ message: 'Login OK', token });//
         } catch (error) {
             next(error);
         }
@@ -35,21 +41,19 @@ class UserController extends Controllers {
         try {
             const data = req.body
             const response = await userService.registerUser(data)
-            return res.status(201).json({
-                message: "USERS CREATED",
-                response: response
-            })
+            console.log(response)
+            return res.status(201).json({ message: "USERS CREATED", response })
         } catch (error) {
             return next(error)
         }
     }
-    
+
     // Leer todos los usuarios
     readAll = async (req, res, next) => {
         try {
             // const filter = req.query
-            const response = await userService.getAllUsers()//this.service.getAll()
-            if (response) {//.length > 0
+            const response = await userService.findAll() //getAll()//userService.getAllUsers()//this.service.getAll()
+            if (response.length > 0) {//.length > 0
                 return res.status(200).json({ message: "USERS READ", response });
             } else {
                 const error = new Error("USERS NOT FOUND");
@@ -62,10 +66,10 @@ class UserController extends Controllers {
     }
 
     // Leer por ID
-    read = async (req, res, next) => {
+    readID = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await userService.getById(id);
+            const response = await userService.getById(id)//userService.getById(id);
             if (response) {
                 return res.status(200).json({ message: "USER READ", response });
             } else {
@@ -78,12 +82,46 @@ class UserController extends Controllers {
         }
     }
 
+    //Leer por Email
+    readByemail = async (req, res, next) => {
+        try {
+            const { role } = req.params;
+            const response = await this.findUserByEmail(email) //getRole(role);
+            if (response) {
+                return res.status(200).json({ message: "USERS READ", response });
+            } else {
+                const error = new Error("USERs NOT FOUND");
+                error.statusCode = 404;
+                throw error;
+            }
+        } catch (error) {
+            return next(error)
+        }
+    }
+
+    //Leer por Role
+    readByRole = async (req, res, next) => {
+        try {
+            const { role } = req.params;
+            const response = await this.findAllByRole(role) //getRole(role);
+            if (response) {
+                return res.status(200).json({ message: "USERS ROLE", response });
+            } else {
+                const error = new Error("USERS ROLE NOT FOUND");
+                error.statusCode = 404;
+                throw error;
+            }
+        } catch (error) {
+            return next(error)
+        }
+    }
+    
     // Actualizar por ID
     update = async (req, res, next) => {
         try {
             const { id } = req.params;
             const data = req.body;
-            const response = await userService.update(id, data);
+            const response = await userService.update(id, data) // userService.update(id, data);
             if (response) {
                 return res
                     .status(200)
@@ -102,52 +140,16 @@ class UserController extends Controllers {
     destroy = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const response = await userService.delete(id);
+            const response = await userService.delete(id) //userService.delete(id);
             if (response) {
                 return res
                     .status(200)
                     .json({ message: "USER DELETED", response });
-                } else {
-                    const error = new Error("USER NOT FOUND");
-                    error.statusCode = 404;
-                    throw error;
-                }
-        } catch (error) {
-            return next(error)
-        }
-    }
-    registerView = (req, res, next) => {
-        try {
-            return res.render('userRegister');
-        } catch (error) {
-            return next(error)
-        }
-    }
-    loginView = (req, res, next) => {
-        try {
-            return res.render('login');
-        } catch (error) {
-            return next(error)
-        }
-    }
-    
-    admin = (req, res, next) => {
-        try {
-            return res.render('panelAdmin');
-        } catch (error) {
-            return next(error)
-        }
-    }
-    userAdmin = (req, res, next) => {
-        try {
-            return res.render('panelUser');
-        } catch (error) {
-            return next(error)
-        }
-    }
-    userDetail = (req, res, next) => {
-        try {
-            return res.render('userDetalle');
+            } else {
+                const error = new Error("USER NOT FOUND");
+                error.statusCode = 404;
+                throw error;
+            }
         } catch (error) {
             return next(error)
         }

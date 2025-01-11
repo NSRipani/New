@@ -2,22 +2,28 @@ import "dotenv/config.js"
 import express from "express";
 import morgan from 'morgan';
 import cors from 'cors'
-import { engine } from 'express-handlebars'
-import { Server } from "socket.io";
-import errorHandler from "./src/middleware/errorHandler.js";
-import pathHandler from "./src/middleware/pathHandler.js";
-import router from './src/route/index.route.js';
+// import { engine } from 'express-handlebars'
+// import { Server } from "socket.io";
+import errorHandler from "./middleware/errorHandler.js";
+import pathHandler from "./middleware/pathHandler.js";
+import router from './route/index.route.js';
 import { __dirname } from './utils.js';
-import socket from "./src/route/index.socket.js";
 import { createServer } from 'http';
-import dbConnect from "./src/utils/db.utils.js";
+import dbConnect from "./utils/db.utils.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 import MongoStore from "connect-mongo";
-import './src/passport/jwtStrategy.js'
+import './passport/jwtStrategy.js'
 
 const server = express();
+
+// Configuración de CORS
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, 
+};
 
 const storeConfig = {
     store: MongoStore.create({
@@ -27,8 +33,7 @@ const storeConfig = {
     }),
     secret: process.env.SECRET_KEY,
     resave: true,
-    saveUninitialized: true,
-    cookie: { maxAge: 180000 }
+    saveUninitialized: true
 };
 
 const port = process.env.PORT;
@@ -39,14 +44,15 @@ const ready = () => {
 const httpServer = createServer(server);
 httpServer.listen(port, ready);
 
-const socketServer = new Server(httpServer);
-socketServer.on("connection", socket);
-export {socketServer}
+// const socketServer = new Server(httpServer);
+// socketServer.on("connection", socket);
+// export {socketServer}
 
-server.engine("handlebars", engine())
-server.set("view engine", "handlebars")
-server.set("views", __dirname + "/src/views")
+// server.engine("handlebars", engine())
+// server.set("view engine", "handlebars")
+// server.set("views", __dirname + "/src/views")
 
+server.use(cors(corsOptions))
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
@@ -57,11 +63,11 @@ server.use(passport.initialize());
 server.use(passport.session());
 
 server.use(morgan('dev'))
-server.use(cors())
-server.use('/public', express.static(__dirname + '/public'));
+// server.use('/public', express.static(__dirname + '/public'));
 
 server.use(router)
 
 server.use(errorHandler);
 server.use(pathHandler)
+
 

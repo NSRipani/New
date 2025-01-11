@@ -2,11 +2,10 @@ import passport from "passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import "dotenv/config";
 import { userService } from "../service/user.service.js";
-// import { userDao } from "../dao/mongo/dao.user.js";
 
 const verifyToken = async (payload, done) => {
     try {
-        const user = await userService.getById(payload.id); // Asegúrate de que el ID esté en el payload
+        const user = await userService.getById(payload.id); 
         if (!user) return done(null, false, { messages: "Usuario inexistente" });
         return done(null, user);
     } catch (error) {
@@ -35,7 +34,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     try {
-        const user = await services.getById(id);
+        const user = await userService.getById(id)
         return done(null, user);
     } catch (error) {
         done(error);

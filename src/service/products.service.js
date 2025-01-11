@@ -5,39 +5,48 @@ class ProductService extends Services {
     constructor(){
         super(prodDao);
     }
-
-    // Leer todos los productos
-    readAllProducts = async () => {
-        try {
-            return await this.dao.readAll();
-        } catch (error) {
-            throw new Error(`Error reading products: ${error.message}`);
-        }
-    };
-
-    // Leer por ID
-    readID = async (id) => {
-        try {
-            return await prodDao.read(id);
-        } catch (error) {
-            throw new Error(`Error reading products: ${error.message}`);
-        }
-    };
-
     // Crear un nuevo producto
-    createProduct = async (productData) => {
+    create = async (data) => {
         try {
-            const newProduct = await this.dao.create(productData);
-            return newProduct;
+            const product = await prodDao.create(data);
+            return product;
         } catch (error) {
             throw new Error(`Error creating product: ${error.message}`);
         }
     };
 
-    // Actualizar un producto existente
-    updateProduct = async (productId, productData) => {
+    // Leer todos los productos
+    readAllProducts = async () => {
         try {
-            const updatedProduct = await this.dao.update(productId, productData);
+            return await prodDao.readAll();
+        } catch (error) {
+            throw new Error(`Error reading products: ${error.message}`);
+        }
+    };
+    // Leer por ID
+    readProductId = async (id) => {
+        try {
+            return await prodDao.readID(id)
+        } catch (error) {
+            throw new Error(`Error reading products: ${error.message}`);
+        }
+    };
+
+    // Leer por categoria
+    findByCategory = async (category) => {
+        try {
+            const response = await prodDao.findByCategory(category);
+            if (!response || response.length === 0) throw new Error(`No results for category: ${category}`);
+        } catch (error) {
+            throw error;//(`Error finding products by category: ${error.message}`);
+        }
+    };
+
+    // Actualizar un producto existente
+    update = async (id, productData) => {
+        try {
+            const opts = { new: true };
+            const updatedProduct = await this.dao.update(id, productData,opts);
             return updatedProduct;
         } catch (error) {
             throw new Error(`Error updating product: ${error.message}`);
@@ -45,22 +54,16 @@ class ProductService extends Services {
     };
 
     // Eliminar un producto
-    deleteProduct = async (productId) => {
-        try {
-            const result = await this.dao.delete(productId);
-            return result;
-        } catch (error) {
-            throw new Error(`Error deleting product: ${error.message}`);
-        }
-    };
+    // delete = async (id) => {
+    //     try {
+    //         const result = await this.delete(id);
+    //         return result;
+    //     } catch (error) {
+    //         throw new Error(`Error deleting product: ${error.message}`);
+    //     }
+    // };
 
-    findByCategory = async (category) => {
-        try {
-            return await this.dao.readAll({ category });
-        } catch (error) {
-            throw new Error(`Error finding products by category: ${error.message}`);
-        }
-    };
 }
 
 export const prodService = new ProductService();
+

@@ -17,9 +17,9 @@ class UserDaoMongo extends MongoDao {
     }
 
     // Buscar todos los usuarios
-    async getAll() {
+    async allUsers() {
         try {
-            return await this.readAll();
+            return await this.find();
         } catch (error) {
             throw new Error(error);
         }
@@ -28,7 +28,7 @@ class UserDaoMongo extends MongoDao {
     // Buscar usuario por ID
     async getById(id) {
         try {
-            const user = await this.readById(id)
+            const user = await this.findById(id)
             if (!user) throw new Error(`Usuario con ID ${id} no encontrado.`);
             return user;
         } catch (error) {
@@ -37,9 +37,18 @@ class UserDaoMongo extends MongoDao {
     }
 
     // Buscar usuario por Email
-    async getByEmail(email) {
+    async findByEmail(email) {
         try {
-            return await this.findByEmail(email)
+            return await this.findByEmail({ email });
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    // Buscar usuario por ROL
+    async findByRole(role) {
+        try {
+            return await this.model.findByRole({ role });
         } catch (error) {
             throw new Error(error);
         }
@@ -48,8 +57,8 @@ class UserDaoMongo extends MongoDao {
     // Actualizar por ID
     async update(id, data) {
         try {
-            //para devolver el objeto luego de la modifiacion
-            const one = await this.update(id, data);
+            const opts = { new: true };
+            const one = await this.update(id, data, opts);
             return one;
         } catch (error) {
             throw error;
@@ -59,7 +68,7 @@ class UserDaoMongo extends MongoDao {
     // Eliminar por ID
     async delete(id) {
         try {
-            const one = await this.destroy(id)
+            const one = await this.delete(id)
             return one;
         } catch (error) {
             throw error;
@@ -68,7 +77,7 @@ class UserDaoMongo extends MongoDao {
     // Ejemplo: Cambiar contraseña
     updatePassword = async (id, newPassword) => {
         try {
-            return await this.findOneAndUpdate(
+            return await this.update(
                 { _id: id },
                 { password: newPassword },
                 { new: true }

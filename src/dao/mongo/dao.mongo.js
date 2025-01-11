@@ -1,3 +1,6 @@
+import { Types } from "mongoose";
+import Tickets from './../models/ticket.model.js';
+
 class MongoDao {
     constructor(model) {
         this.model = model;
@@ -12,7 +15,7 @@ class MongoDao {
         }
     };
     // Leer todos los usuarios
-    readAll = async () => {
+    find = async () => {
         try {
             const all = await this.model.find()
             return all;
@@ -20,9 +23,28 @@ class MongoDao {
             throw error;
         }
     };
+    
+    async paginate(filter = {}, options = {}) {
+        try {
+            const result = await this.model.paginate(filter, options);
+            return result;
+        } catch (error) {
+            throw new Error(`Error en la paginación: ${error.message}`);
+        }
+    }
+    
+    // Leer para categoria
+    findByCategory = async (category) => {
+        try {
+            const all = await this.model.find({category: category})
+            return all;
+        } catch (error) {
+            throw error;
+        }
+    };
 
     // Leer por ID
-    readById = async (id) => {
+    findById = async (id) => {
         try {
             const one = await this.model.findOne({ _id: id });
             return one;
@@ -30,10 +52,18 @@ class MongoDao {
             throw error;
         }
     };
-    // Método específico para encontrar usuario por email
+    // Encontrar usuario por email
     findByEmail = async (email) => {
         try {
             return await this.model.findOne({ email: email });
+        } catch (error) {
+            throw new Error(`Error buscando usuario por email: ${error.message}`);
+        }
+    }
+    // Encontrar role del usuario 
+    findByRole = async (role) => {
+        try {
+            return await this.model.find({ role: role });
         } catch (error) {
             throw new Error(`Error buscando usuario por email: ${error.message}`);
         }
@@ -43,7 +73,7 @@ class MongoDao {
         try {
             const opts = { new: true };
             //para devolver el objeto luego de la modifiacion
-            const one = await this.model.findOneAndUpdate({ _id: id }, data, opts);
+            const one = await this.model.findOneAndUpdate({ _id: id } , data, opts);
             return one;
         } catch (error) {
             throw error;
@@ -51,7 +81,7 @@ class MongoDao {
     };
     
     // Eliminar por ID
-    destroy = async (id) => {
+    delete = async (id) => {
         try {
             const one = await this.model.findOneAndDelete({ _id: id });
             return one;
@@ -59,7 +89,49 @@ class MongoDao {
             throw error;
         }
     };
+    aggregation = async (id) => {
+        try {
+            const detalle = await this.model.aggregate([
+                { $match: { user_id: new Types.ObjectId(id) }},
+                { $lookup: {
+                    foreignField: "_id",
+                    from: "products" ,
+                    localField: "product_id" ,
+                    as: "product_id" ,
+                    }
+                },
+                { $replaceRoot: { 
+                    newRoot: { 
+                        $mergeObjects: [{ 
+                            $arrayElemAt: ["$product_id" , 0] }, "$$ROOT" ]
+                }}},
+                { $set: { subTotal: { $multiply: ["$quantity" , "$price" ] } } },
+                { $group: { _id: "$user_id" , total: { $sum: "$subTotal" } } },
+                { $project: { _id: 0, user_id: "$_id", total: "$total" , date: new Date() } },
+                { $lookup: {
+                    foreignField: "_id",
+                    from: "users",
+                    localField: "user_id",
+                    as: "user_id" 
+                }},
+                    // 8 $replaceRoot para mergear el objeto con el objeto cero del array populado
+                { $replaceRoot: {
+                    newRoot: {
+                        $mergeObjects: [
+                        { $arrayElemAt: ["$user_id", 0] },
+                        "$$ROOT"
+                        ]
+                    }
+                }},
+                // 9 $project para limpiar el objeto
+                { $project: { _id: 0, user_id: 0, first_name: 0, last_name: 0, password: 0, age: 0, role: 0, __v: 0 }},
+            ])
+            return detalle
 
+        } catch (error) {
+            throw error
+        } 
+    }
 }
 
 export default MongoDao;

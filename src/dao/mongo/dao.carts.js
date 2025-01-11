@@ -18,7 +18,7 @@ class CartDaoMongo  extends MongoDao {
     // Buscar todos los usuarios
     async getAllCart() {
         try {
-            return await this.readAll();
+            return await this.find();
         } catch (error) {
             throw new Error(error);
         }
@@ -27,7 +27,7 @@ class CartDaoMongo  extends MongoDao {
     // Buscar usuario por ID
     async cartById(id) {
         try {
-            const user = await this.readById(id)
+            const user = await this.findById(id)
             if (!user) throw new Error(`Usuario con ID ${id} no encontrado.`);
             return user;
         } catch (error) {
@@ -48,7 +48,7 @@ class CartDaoMongo  extends MongoDao {
     // Eliminar por ID
     async delete(id) {
         try {
-            const one = await this.destroy(id)
+            const one = await this.delete(id)
             return one;
         } catch (error) {
             throw error;

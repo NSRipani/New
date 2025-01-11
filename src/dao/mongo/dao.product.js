@@ -13,7 +13,15 @@ class ProductDaoMongo extends MongoDao {
             throw error;
         }
     }
-    read = async (id) => {
+    // Buscar todos 
+    readAll = async () => {
+        try {
+            return await this.model.find();
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+    readID = async (id) => {
         try {
             const one = await this.model.findById(id);
             return one;
@@ -25,7 +33,7 @@ class ProductDaoMongo extends MongoDao {
         // paginate va a devolver los documentos paginados
         try {
             opts.lean = true
-            const all = await this.model.paginate(filter, opts)
+            const all = await this.model.paginateProducts(filter, opts)
             return all
         } catch (error) {
             throw error
@@ -33,30 +41,31 @@ class ProductDaoMongo extends MongoDao {
     }
     findByCategory = async (category) => {
         try {
-            return await this.find({ category });
+            return await this.readAll(category);
         } catch (error) {
             throw error;
         }
     };
     
-    update = async (id, data) => {
-        try {
-            const opts = { new: true };
-            //para devolver el objeto luego de la modifiacion
-            const one = await this.model.findOneAndUpdate(id, data, opts);
-            return one;
-        } catch (error) {
-            throw error;
-        }
-    }
-    destroy = async (id) => {
-        try {
-            const one = await this.model.findOneAndDelete(id);
-            return one;
-        } catch (error) {
-            throw error;
-        }
-    }
+    // update = async (id, data) => {
+    //     try {
+    //         const opts = { new: true };
+    //         //para devolver el objeto luego de la modifiacion
+    //         const one = await this.update(id, data, opts) 
+    //         return one;
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // }
+    // delete = async (id) => {
+    //     try {
+    //         const one = await this.model.delete(id)
+    //         return one;
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // }
 };
 
 export const prodDao = new ProductDaoMongo();
+

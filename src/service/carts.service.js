@@ -9,7 +9,7 @@ class CartService extends Services {
    // Leer todos los carritos
     async readCarts() {
         try {
-            const carts = await this.getAll();
+            const carts = await this.findAll();
             return carts;
         } catch (error) {
             throw new Error('Error al leer los carritos: ' + error.message);
@@ -17,18 +17,15 @@ class CartService extends Services {
     }
 
     async readCartsByID(id) {
-        try {
-            const carts = await this.getById(id);
-            return carts;
-        } catch (error) {
-            throw new Error('Error al leer los carritos: ' + error.message);
-        }
+
+        const carts = await this.getById(id);
+        return carts;
     }
 
     // Crear un nuevo carrito
     async createCart() {
         try {
-            const newCart = await this.create({...newCart, user_id: Users._id});
+            const newCart = await this.create({...newCart, user_id: Users._id }); //
             return newCart;
         } catch (error) {
             throw new Error('Error al crear el carrito: ' + error.message);
@@ -37,30 +34,30 @@ class CartService extends Services {
     // Eliminar un producto
     deleteCart = async (Id) => {
         try {
-            const result = await this.delete(Id);
+            const result = await cartsDao.delete(Id);
             return result;
         } catch (error) {
             throw new Error(`Error deleting cart: ${error.message}`);
         }
     };
-    // // Agregar un producto al carrito
-    // async addProductToCart(cartId, productId) {
-    //     try {
-    //         const updatedCart = await this.dao.addProduct(cartId, productId);
-    //         return updatedCart;
-    //     } catch (error) {
-    //         throw new Error('Error al agregar producto al carrito: ' + error.message);
-    //     }
-    // }
+    // Agregar un producto al carrito
+    async update(Id, productId) {
+        try {
+            const updatedCart = await cartsDao.update(Id, productId);
+            return updatedCart;
+        } catch (error) {
+            throw new Error('Error al agregar producto al carrito: ' + error.message);
+        }
+    }
+    async aggregation(id){
+        try {
+            const response = await cartsDao.aggregation(id)
+            return response
+            
+        } catch (error) {
+            throw error
+        }
 
-    // // Remover un producto del carrito
-    // async removeProductFromCart(cartId, productId) {
-    //     try {
-    //         const updatedCart = await this.dao.removeProduct(cartId, productId);
-    //         return updatedCart;
-    //     } catch (error) {
-    //         throw new Error('Error al remover producto del carrito: ' + error.message);
-    //     }
-    // }
+    }
 }
 export const cartService = new CartService();
