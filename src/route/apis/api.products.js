@@ -9,7 +9,7 @@ prodRouter.get("/", productController.readAll)
 prodRouter.get("/filter", productController.readCategory)
 prodRouter.get("/paginate", productController.paginate)
 prodRouter.get("/:id", productController.readIdProduct)
-prodRouter.put("/:id", productController.update)
+prodRouter.put("/:id", isValidatorProduct, productController.update)
 prodRouter.delete("/:id", productController.delete)
 
 export default prodRouter;

@@ -89,15 +89,6 @@ export default class Services {
         } catch (error) {
             throw new Error(error);
         }
-    }
-    async order(id){
-        try {
-            const response = await this.dao.aggregation(id)
-            return response
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-    
+    }    
 }
 

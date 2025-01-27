@@ -1,13 +1,12 @@
-// import { Router } from "express";
-// import ticketController from "../../controllers/ticket.controller.js";
+import { Router } from "express";
+import ticketController from "../../controllers/ticket.controller.js";
 
-// const ticketRouter = Router()
+const ticketRouter = Router()
 
-// ticketRouter.get("/", ticketController.crearTicket)
-// // ticketRouter.get("/", ticketController.readAll)
-// // ticketRouter.get("/:id", ticketController.readID)
-// // ticketRouter.get("/ticket/:id", ticketController.tickets)
-// // ticketRouter.put("/:id", ticketController.update)
-// // ticketRouter.delete("/:id", ticketController.deleteID)
+ticketRouter.post("/", ticketController.create)
+ticketRouter.get("/", ticketController.readAllTickets)
+ticketRouter.get("/:id", ticketController.idTickets)
+ticketRouter.put("/:id", ticketController.update)
+ticketRouter.delete("/:id", ticketController.delete)
 
-// export default ticketRouter
+export default ticketRouter

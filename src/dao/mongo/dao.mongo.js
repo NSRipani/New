@@ -1,5 +1,4 @@
 import { Types } from "mongoose";
-import Tickets from './../models/ticket.model.js';
 
 class MongoDao {
     constructor(model) {

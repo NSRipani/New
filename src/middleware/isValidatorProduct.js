@@ -27,17 +27,3 @@ export const isValidatorProduct = (req, res, next) => {
     const { error } = productSchema.validate(req.body, { abortEarly: false });
     error ? res.status(400).send(error) : next();
 };
-// function isValidatorProduct (req, res, next){
-//     try {
-//         let { title, category, price, stock } = req.body;
-//         if (!title || !category || !price || !stock){
-//             const error = new Error("The product must contain all its values");
-//             error.statusCode = 404;
-//             throw error;
-//         }
-//     } catch (error) {
-//         return next(error)
-//     }
-// }
-
-// export default isValidatorProduct
