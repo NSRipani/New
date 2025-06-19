@@ -29,7 +29,7 @@ class UserController extends Controllers {
             res.cookie('token', token, {
                 httpOnly: true,
                 secure: process.env.HTTP === 'token',
-                sameSite: 'Strict'
+                sameSite: 'Lax'
             }).json({ message: 'Login OK', token });//
         } catch (error) {
             next(error);
